@@ -8,7 +8,6 @@ const PostContent = ({ post }: Props) => {
   return (
     <>
       <p>{post.content}</p>
-      <p>{post.date}</p>
     </>
   );
 }
