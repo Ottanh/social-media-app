@@ -11,4 +11,5 @@ export interface Post {
     user: string;
     date: string;
     content: string;
+    likes: number;
 }

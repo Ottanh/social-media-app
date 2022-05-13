@@ -8,7 +8,8 @@ const user = {
       "id": "postid1",
       "user": "userid1",
       "date": "13/05/2022",
-      "content": "Eka postaus"
+      "content": "Eka postaus",
+      "likes": 2
     }
   ]
 }
