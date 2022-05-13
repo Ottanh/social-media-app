@@ -1,9 +1,10 @@
-import Post from "./UserProfilePage/Post";
+import PostList from "./UserProfilePage/PostList";
+import user from './data/user';
 
 const App = () => {
   return (
     <div className="App">
-      <Post />
+      <PostList user={user} />
     </div>
   );
 }
