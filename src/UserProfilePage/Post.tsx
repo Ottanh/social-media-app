@@ -1,4 +1,5 @@
 import user from '../data/user';
+import PostContent from './PostContent';
 import PostUser from './PostUser';
 
 const Post = () => {
@@ -7,8 +8,7 @@ const Post = () => {
   return (
     <div>
       <PostUser user={user} />
-      {post.content} <br/>
-      {post.date}
+      <PostContent post={post} />
     </div>
     );
 }
