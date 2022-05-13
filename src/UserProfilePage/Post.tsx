@@ -1,11 +1,12 @@
 import user from '../data/user';
+import PostUser from './PostUser';
 
 const Post = () => {
   const post = user.posts[0];
 
   return (
     <div>
-      {user.name} <br/>
+      <PostUser user={user} />
       {post.content} <br/>
       {post.date}
     </div>

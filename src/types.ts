@@ -3,7 +3,7 @@ export interface User {
   name: string;
   joined: string;
   description: string;
-  posts: [Post]
+  posts: Post[]
 }
 
 export interface Post {
