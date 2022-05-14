@@ -1,4 +1,6 @@
-import { User } from "../types";
+import Col from 'react-bootstrap/esm/Col';
+import Row from 'react-bootstrap/esm/Row';
+import { User } from '../types';
 
 interface Props {
   user: User
@@ -6,9 +8,11 @@ interface Props {
 
 const PostUser = ({ user }: Props) => {
   return (
-    <p>
-      {user.name}
-    </p>
+    <Row className="border-bottom p-3">
+      <Col>
+        {user.name}
+      </Col>
+    </Row>
   )
 }
 

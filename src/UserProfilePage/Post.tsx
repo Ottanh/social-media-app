@@ -1,3 +1,4 @@
+import Container from 'react-bootstrap/esm/Container';
 import { Post as PostType, User } from '../types';
 import PostButtons from './PostButtons';
 import PostContent from './PostContent';
@@ -9,22 +10,14 @@ interface Props {
   user: User;
 }
 
-const style = {
-  "padding": "5px",
-  "margin": "5px",
-  "border": "black",
-  "border-style": "solid",
-  "border-width": "1px"
-}
-
 const Post = ({ post, user }: Props) => {
   return (
-    <div style={style}>
+    <Container className="border rounded p-3 w-50">
       <PostUser user={user} />
       <PostContent post={post} />
       <PostStats post={post} />
       <PostButtons />
-    </div>
+    </Container>
     );
 }
 

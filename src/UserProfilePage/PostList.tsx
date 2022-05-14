@@ -1,22 +1,19 @@
-import { User } from "../types";
-import Post from "./Post";
+import Container from 'react-bootstrap/esm/Container';
+import { User } from '../types';
+import Post from './Post';
 
 interface Props {
   user: User
 }
 
-const style = {
-  "margin": "auto",
-  "width": "30%",
-}
 
 const PostList = ({ user }: Props) => {
   return (
-    <div style={style}>
+    <Container className="d-grid gap-3">
       {user.posts.map(post => (
         <Post key={post.id} post={post} user={user}/>
       ))}
-    </div>
+    </Container>
   )
 }
 
