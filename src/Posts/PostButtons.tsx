@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/esm/Row';
 
 const PostButtons = () => {
   return (
-    <Row className="pt-3 px-3">
+    <Row className="PostButtons pt-3 px-3">
       <Col>
         <Button variant="dark">Reply</Button>
       </Col>

@@ -1,4 +1,4 @@
-import Container from 'react-bootstrap/esm/Container';
+import Row from 'react-bootstrap/esm/Row';
 import { Post } from '../types';
 import PostButtons from './PostButtons';
 import PostContent from './PostContent';
@@ -11,12 +11,12 @@ interface Props {
 
 const PostView = ({ post }: Props) => {
   return (
-    <Container className="border rounded p-3 w-50">
+    <Row className="PostView w-50 border rounded p-3 m-auto mt-3">
       <PostUser post={post} />
       <PostContent post={post} />
       <PostStats post={post} />
       <PostButtons />
-    </Container>
+    </Row>
     );
 };
 

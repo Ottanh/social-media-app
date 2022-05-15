@@ -8,7 +8,7 @@ interface Props {
 
 const PostStats = ({ post }: Props) => {
   return (
-    <Row className="pt-3 px-3">
+    <Row className="PostStats pt-3 px-3">
       <Col>
         {post.date}
       </Col>

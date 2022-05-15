@@ -8,8 +8,8 @@ interface Props {
 
 const UserDetails = ({ user }: Props) => {
   return (
-    <Row className="justify-content-md-center mb-3">
-      <Col className="col-md-6 border rounded p-3">
+    <Row className="UserDetails w-50 border rounded p-3 m-auto">
+      <Col className="">
         <p>
           Name: {user.name} <br/>
           Username: {user.username}
