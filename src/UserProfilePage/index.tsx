@@ -1,5 +1,7 @@
+import { Container } from 'react-bootstrap';
 import PostList from '../Posts/PostList';
 import { User } from '../types';
+import UserDetails from './UserDetails';
 
 interface Props {
   user: User
@@ -7,9 +9,10 @@ interface Props {
 
 const UserProfilePage = ({ user }: Props) => {
   return (
-    <div>
-      <PostList user={user}/>
-    </div>
+    <Container>
+      <UserDetails user={user} />
+      <PostList user={user} />
+    </Container>
   );
 };
 
