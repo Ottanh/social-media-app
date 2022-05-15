@@ -14,7 +14,7 @@ const PostList = ({ user }: Props) => {
         <Post key={post.id} post={post} user={user}/>
       ))}
     </Container>
-  )
-}
+  );
+};
 
 export default PostList;

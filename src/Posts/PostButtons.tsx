@@ -12,7 +12,7 @@ const PostButtons = () => {
         <Button variant="dark">Like</Button>
       </Col>
     </Row>
-  )
-}
+  );
+};
 
 export default PostButtons;

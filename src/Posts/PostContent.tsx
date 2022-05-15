@@ -6,17 +6,14 @@ interface Props {
   post: Post
 }
 
-const PostStats = ({ post }: Props) => {
+const PostContent = ({ post }: Props) => {
   return (
     <Row className="pt-3 px-3">
       <Col>
-        {post.date}
-      </Col>
-      <Col>
-        Likes: {post.likes}
+        {post.content}
       </Col>
     </Row>
-  )
-}
+  );
+};
 
-export default PostStats;
+export default PostContent;

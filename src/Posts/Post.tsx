@@ -19,6 +19,6 @@ const Post = ({ post, user }: Props) => {
       <PostButtons />
     </Container>
     );
-}
+};
 
 export default Post;

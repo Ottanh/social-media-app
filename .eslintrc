@@ -21,7 +21,8 @@
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "react/react-in-jsx-scope": 0,
     "quotes": ["warn", "single", { "avoidEscape": true }],
-    "jsx-quotes": ["warn", "prefer-double"]
+    "jsx-quotes": ["warn", "prefer-double"],
+    "semi": ["warn", "always"]
   
   }
 }

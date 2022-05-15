@@ -13,7 +13,7 @@ const PostUser = ({ user }: Props) => {
         {user.name}
       </Col>
     </Row>
-  )
-}
+  );
+};
 
 export default PostUser;

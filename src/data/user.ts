@@ -19,6 +19,6 @@ const user = {
       'likes': 1
     }
   ]
-}
+};
 
 export default user;
