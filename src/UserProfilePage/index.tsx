@@ -11,7 +11,7 @@ const UserProfilePage = ({ user }: Props) => {
   return (
     <Container>
       <UserDetails user={user} />
-      <PostList user={user} />
+      <PostList posts={user.posts} />
     </Container>
   );
 };

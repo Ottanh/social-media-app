@@ -6,14 +6,18 @@ const user = {
   'posts': [
     {
       'id': 'postid1',
-      'user': 'olli111',
+      'user': {
+        'name': 'Olli'
+      },
       'date': '10/05/2022',
       'content': 'Eka postaus',
       'likes': 6
     },
     {
       'id': 'postid2',
-      'user': 'olli111',
+      'user': {
+        'name': 'Olli'
+      },
       'date': '13/05/2022',
       'content': 'Toinen postaus',
       'likes': 1

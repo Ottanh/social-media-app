@@ -1,4 +1,3 @@
-import PostList from './Posts/PostList';
 import user from './data/user';
 import Container from 'react-bootstrap/esm/Container';
 import UserProfilePage from './UserProfilePage';

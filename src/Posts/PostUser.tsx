@@ -1,16 +1,16 @@
 import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
-import { User } from '../types';
+import { Post } from '../types';
 
 interface Props {
-  user: User
+  post: Post
 }
 
-const PostUser = ({ user }: Props) => {
+const PostUser = ({ post }: Props) => {
   return (
     <Row className="border-bottom p-3">
       <Col>
-        {user.name}
+        {post.user.name}
       </Col>
     </Row>
   );

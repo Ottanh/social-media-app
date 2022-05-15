@@ -1,17 +1,17 @@
 import Row from 'react-bootstrap/esm/Row';
-import { User } from '../types';
-import Post from './Post';
+import { Post } from '../types';
+import PostView from './PostView';
 
 interface Props {
-  user: User
+  posts: Post[]
 }
 
 
-const PostList = ({ user }: Props) => {
+const PostList = ({ posts }: Props) => {
   return (
     <Row className="d-grid gap-3">
-      {user.posts.map(post => (
-        <Post key={post.id} post={post} user={user}/>
+      {posts.map(post => (
+        <PostView key={post.id} post={post} />
       ))}
     </Row>
   );
