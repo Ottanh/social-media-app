@@ -1,3 +1,4 @@
+import Row from 'react-bootstrap/esm/Row';
 import { Post } from '../types';
 import PostView from './PostView';
 
@@ -8,11 +9,11 @@ interface Props {
 
 const PostList = ({ posts }: Props) => {
   return (
-    <>
-      {posts.map(post => (
-        <PostView key={post.id} post={post} />
+    <Row className="PostList flex-grow-1 border rounded w-50 m-auto" >
+      {posts.map((post, index) => (
+        <PostView index={index} key={post.id} post={post} />
       ))}
-    </>
+    </Row>
   );
 };
 

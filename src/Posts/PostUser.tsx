@@ -8,7 +8,7 @@ interface Props {
 
 const PostUser = ({ post }: Props) => {
   return (
-    <Row className="PostUser border-bottom p-3">
+    <Row className="PostUser p-3">
       <Col>
         {post.user.name}
       </Col>

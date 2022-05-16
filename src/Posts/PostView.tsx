@@ -1,3 +1,4 @@
+import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
 import { Post } from '../types';
 import PostButtons from './PostButtons';
@@ -7,15 +8,22 @@ import PostUser from './PostUser';
 
 interface Props {
   post: Post;
+  index: number;
 }
 
-const PostView = ({ post }: Props) => {
+const PostView = ({ post, index }: Props) => {
+
+  const border = index !== 1 ? '' : 'border-top';
+  const className = `PostView mx-auto p-3 ${border}`;
+
   return (
-    <Row className="PostView w-50 border rounded p-3 m-auto mt-3">
-      <PostUser post={post} />
-      <PostContent post={post} />
-      <PostStats post={post} />
-      <PostButtons />
+    <Row className={className}>
+      <Col>
+        <PostUser post={post} />
+        <PostContent post={post} />
+        <PostStats post={post} />
+        <PostButtons />
+      </Col>
     </Row>
     );
 };

@@ -4,7 +4,7 @@ import UserProfilePage from './UserProfilePage';
 
 const App = () => {
   return (
-    <Container className="App border border-top-0 p-3 vh-100">
+    <Container className="App border border-top-0 vh-100">
       <UserProfilePage user={user} />
     </Container>
   );

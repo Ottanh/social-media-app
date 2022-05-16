@@ -8,18 +8,24 @@ interface Props {
 
 const UserDetails = ({ user }: Props) => {
   return (
-    <Row className="UserDetails w-50 border rounded p-3 m-auto">
-      <Col className="">
-        <p>
-          Name: {user.name} <br/>
-          Username: {user.username}
-        </p>
-        <p>
-          {user.description}
-        </p>
-        <p>
-          Joined: {user.joined}
-        </p>
+    <Row className="UserDetails w-50 border rounded p-3 m-auto mb-3">
+      <Col>
+        <Row className="p-3">
+          <div className="fw-bold">
+            {user.name} 
+          </div>
+          <div className="fw-light">
+            @{user.username}
+          </div>
+        </Row>
+        <Row className="p-3">
+          <p>
+            {user.description}
+          </p>
+          <p>
+            Joined: {user.joined}
+          </p>
+        </Row>
       </Col>
     </Row>
   );

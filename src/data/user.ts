@@ -2,7 +2,7 @@ const user = {
   'username': 'olli111',
   'name': 'Olli',
   'joined': '13/05/2022',
-  'description': 'moooi oon olli ja tää on mun description ja en tykkää ***REMOVED***',
+  'description': 'moooi oon olli ja tää on mun description ja *********',
   'posts': [
     {
       'id': 'postid1',
