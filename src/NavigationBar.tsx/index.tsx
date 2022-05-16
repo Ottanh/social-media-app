@@ -1,5 +1,4 @@
 import Col from 'react-bootstrap/esm/Col';
-import './index.css';
 import { NavLink } from 'react-router-dom';
 
 const NavigationBar = () => {
