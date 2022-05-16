@@ -9,7 +9,7 @@ interface Props {
 
 const PostList = ({ posts }: Props) => {
   return (
-    <Row className="PostList flex-grow-1 border rounded w-50 m-auto" >
+    <Row className="PostList flex-grow-1 border rounded m-auto" style={{'width': '100%'}}>
       {posts.map((post, index) => (
         <PostView index={index} key={post.id} post={post} />
       ))}
