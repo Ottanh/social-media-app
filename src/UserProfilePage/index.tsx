@@ -3,7 +3,6 @@ import Col from 'react-bootstrap/esm/Col';
 import { useParams } from 'react-router-dom';
 import PostList from '../Posts/PostList';
 import { useStateValue, setUser } from '../state';
-import { User } from '../types';
 import UserDetails from './UserDetails';
 import Users from '../data/users';
 
@@ -19,7 +18,7 @@ const UserProfilePage = () => {
     if(user) {
       dispatch(setUser(user));
     }
-  }, [userName])
+  }, [userName]);
 
   if(!user){
     return <Col className="NoUserFound col-md-5 h-100 d-flex flex-column">No user found</Col>;

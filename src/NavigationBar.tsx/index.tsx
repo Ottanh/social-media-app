@@ -12,8 +12,8 @@ const NavigationBar = () => {
         color: 'black',
         fontWeight: isActive ? 'bold' : ''
       }
-    )
-  }
+    );
+  };
 
   return (
     <Col className="" style={{'paddingLeft': '10vw', 'textAlign': 'center'}}>

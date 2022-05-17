@@ -8,10 +8,9 @@ import PostUser from './PostUser';
 
 interface Props {
   post: Post;
-  index: number;
 }
 
-const PostView = ({ post, index }: Props) => {
+const PostView = ({ post }: Props) => {
   return (
     <>
     <Row className="PostView mx-auto p-3 border-bottom flex-grow-0">

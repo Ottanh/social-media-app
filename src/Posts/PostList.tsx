@@ -10,8 +10,8 @@ interface Props {
 const PostList = ({ posts }: Props) => {
   return (
     <Row className="PostList border rounded m-auto flex-column flex-grow-1 w-100" >
-      {posts.map((post, index) => (
-        <PostView index={index} key={post.id} post={post} />
+      {posts.map((post) => (
+        <PostView key={post.id} post={post} />
       ))}
     </Row>
   );
