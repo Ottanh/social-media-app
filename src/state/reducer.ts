@@ -19,7 +19,7 @@ export const reducer = (state: State, action: Action): State => {
   }
 };
 
-export const setPatientList = (payload: User): Action => {
+export const setUser = (payload: User): Action => {
   return {
     type: 'SET_USER',
     payload

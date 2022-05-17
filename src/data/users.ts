@@ -1,4 +1,4 @@
-const user = {
+const users = [{
   'username': 'olli111',
   'name': 'Olli',
   'joined': '13/05/2022',
@@ -23,6 +23,6 @@ const user = {
       'likes': 1
     }
   ]
-};
+}];
 
-export default user;
+export default users;

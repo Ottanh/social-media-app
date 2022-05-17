@@ -18,7 +18,7 @@ const NavigationBar = () => {
   return (
     <Col className="" style={{'paddingLeft': '10vw', 'textAlign': 'center'}}>
       <div className="flex-column m-auto w-50 pt-5" >
-        <NavLink to="/olli1111" style={isActive => style(isActive)} >
+        <NavLink to="/olli111" style={isActive => style(isActive)} >
           Profile
         </NavLink>
         <NavLink to="/explore" style={isActive => style(isActive)} >
