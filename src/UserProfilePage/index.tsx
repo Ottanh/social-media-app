@@ -9,7 +9,7 @@ interface Props {
 
 const UserProfilePage = ({ user }: Props) => {
   return (
-    <Col className="UserProfilePage h-100 d-flex flex-column col-5">
+    <Col className="UserProfilePage col-md-5 h-100 d-flex flex-column">
       <UserDetails user={user} />
       <PostList posts={user.posts} />
     </Col>

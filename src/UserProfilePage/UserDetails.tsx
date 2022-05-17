@@ -8,7 +8,7 @@ interface Props {
 
 const UserDetails = ({ user }: Props) => {
   return (
-    <Row className="UserDetails border rounded p-3 m-auto mb-3" style={{'width': '100%'}}>
+    <Row className="UserDetails border rounded p-3 m-auto mb-3 w-100">
       <Col>
         <Row className="p-3">
           <div className="fw-bold">

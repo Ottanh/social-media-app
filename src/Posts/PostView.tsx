@@ -12,19 +12,17 @@ interface Props {
 }
 
 const PostView = ({ post, index }: Props) => {
-
-  const border = index !== 1 ? '' : 'border-top';
-  const className = `PostView mx-auto p-3 ${border}`;
-
   return (
-    <Row className={className}>
-      <Col>
+    <>
+    <Row className="PostView mx-auto p-3 border-bottom flex-grow-0">
+      <Col className="">
         <PostUser post={post} />
         <PostContent post={post} />
         <PostStats post={post} />
         <PostButtons />
       </Col>
     </Row>
+    </>
     );
 };
 

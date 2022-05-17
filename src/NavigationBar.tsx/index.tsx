@@ -8,14 +8,16 @@ const NavigationBar = () => {
       {
         display: 'inline-block',
         width: '100%',
+        textDecoration: 'none',
+        color: 'black',
         fontWeight: isActive ? 'bold' : ''
       }
     )
   }
 
   return (
-    <Col className="" style={{'paddingLeft': '6rem', 'textAlign': 'center'}}>
-      <div className="flex-column m-auto w-50" >
+    <Col className="" style={{'paddingLeft': '10vw', 'textAlign': 'center'}}>
+      <div className="flex-column m-auto w-50 pt-5" >
         <NavLink to="/profile" style={isActive => style(isActive)} >
           Profile
         </NavLink>
