@@ -10,14 +10,15 @@ const NavigationBar = () => {
         width: '100%',
         textDecoration: 'none',
         color: 'black',
-        fontWeight: isActive ? 'bold' : ''
+        fontWeight: isActive ? 'bold' : '',
+        fontSize: 'large'
       }
     );
   };
 
   return (
     <Col className="NavBar " style={{'textAlign': 'center'}}>
-      <div className="flex-column w-50 pt-5" style={{'marginLeft': 'auto'}}>
+      <div className="flex-column w-50 pt-5 pe-3" style={{'marginLeft': 'auto'}}>
         <NavLink to="/olli111" style={isActive => style(isActive)} >
           Profile
         </NavLink>
