@@ -25,7 +25,7 @@ const UserProfilePage = () => {
   }
 
   return (
-    <Col className="UserProfilePage col-md-5 h-100 d-flex flex-column">
+    <Col className="UserProfilePage col-md-5 d-flex flex-column">
       <UserDetails user={user} />
       <PostList posts={user.posts} />
     </Col>
