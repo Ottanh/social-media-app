@@ -11,7 +11,7 @@ const App = () => {
 
   return (
     <Container className="App pt-5 border border-top-0 min-vh-100">
-      <Row className="">
+      <Row className="min-vh-100">
         <NavigationBar />
         <Routes>
           <Route path="/" element={loggedInUser ? <Navigate replace to="/olli111" />: <Navigate replace to="/home" />} />

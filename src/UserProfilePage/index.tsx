@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Col from 'react-bootstrap/esm/Col';
 import { useParams } from 'react-router-dom';
-import PostList from '../Posts/PostList';
+import PostList from '../PostList';
 import { useStateValue, setUser } from '../state';
 import UserDetails from './UserDetails';
 import Users from '../data/users';
