@@ -13,8 +13,6 @@ const UserProfilePage = () => {
 
   useEffect(() => {
     const user = Users.find(user => user.username === userName);
-    console.log(userName);
-    console.log(user);
     if(user) {
       dispatch(setUser(user));
     }
