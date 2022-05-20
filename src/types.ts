@@ -8,9 +8,7 @@ export interface User {
 
 export interface Post {
     id: string;
-    user: {
-      name: string;
-    };
+    user: string;
     date: string;
     content: string;
     likes: number;

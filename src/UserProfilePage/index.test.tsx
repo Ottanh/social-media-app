@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import { reducer, StateProvider } from '../state';
 import { MockedProvider } from '@apollo/client/testing';
 import { FIND_USER } from './index';
 import UserProfilePage from './index';
@@ -26,7 +25,8 @@ const mocks = [
               content: 'Eka postaus',
               date: '13/05/2022',
               likes: 6,
-              user: 'olli111'
+              username: 'olli111',
+              user: 'Olli'
             }
           ]
         }
@@ -48,9 +48,6 @@ test('renders correctly', async () => {
   );
 
   await new Promise(resolve => setTimeout(resolve, 1000)); 
-
-
-  screen.debug();
 
   expect(screen.getByText('testaus'));
   expect(screen.getAllByText('Olli')).toHaveLength(2);

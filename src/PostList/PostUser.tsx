@@ -10,7 +10,7 @@ const PostUser = ({ post }: Props) => {
   return (
     <Row className="PostUser p-3">
       <Col>
-        {post.user.name}
+        {post.user}
       </Col>
     </Row>
   );
