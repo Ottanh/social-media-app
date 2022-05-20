@@ -1,27 +1,62 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { reducer, StateProvider } from '../state';
+import { MockedProvider } from '@apollo/client/testing';
+import { FIND_USER } from './index';
 import UserProfilePage from './index';
+
+const mocks = [
+  {
+    request: {
+      query: FIND_USER,
+      variables: {
+        username: 'olli111',
+      },
+    },
+    result: {
+      data: {
+        findUser: {
+          username: 'olli111',
+          name: 'Olli',
+          joined: '13/05/2022',
+          description: 'testaus',
+          posts: [
+            {
+              id: 'postid1',
+              content: 'Eka postaus',
+              date: '13/05/2022',
+              likes: 6,
+              user: 'olli111'
+            }
+          ]
+        }
+      }
+    }
+  }
+];
 
 test('renders correctly', async () => {
   render(
     <MemoryRouter initialEntries={['/olli111']}>
-      <StateProvider reducer={reducer}>
+      <MockedProvider mocks={mocks} addTypename={false}>
         <Routes>
           <Route path="/:userName" element={<UserProfilePage />}>
           </Route>
         </Routes>
-      </StateProvider>
+      </MockedProvider>
     </MemoryRouter>
   );
 
-  expect(screen.getAllByText('moooi oon olli ja tää on mun description ja *********')).toHaveLength(1);
-  expect(screen.getAllByText('Olli')).toHaveLength(3);
-  expect(screen.getAllByRole('button')).toHaveLength(4);
-  expect(screen.getAllByText('13/05/2022', { exact: false })).toHaveLength(3);
+  await new Promise(resolve => setTimeout(resolve, 1000)); 
+
+
+  screen.debug();
+
+  expect(screen.getByText('testaus'));
+  expect(screen.getAllByText('Olli')).toHaveLength(2);
+  expect(screen.getAllByRole('button')).toHaveLength(2);
+  expect(screen.getAllByText('13/05/2022', { exact: false })).toHaveLength(2);
   expect(screen.getByText('Eka postaus'));
   expect(screen.getByText('Likes: 6'));
-  expect(screen.getByText('Toinen postaus'));
-  expect(screen.getByText('Likes: 1'));
 });
 

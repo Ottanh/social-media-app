@@ -35,7 +35,7 @@ const UserProfilePage = () => {
 
 
   if(loading) {
-    return <Col className="NoUserFound col-md-5 h-100 d-flex flex-column">Loading...</Col>;
+    return <Col className="Loading col-md-5 h-100 d-flex flex-column">Loading...</Col>;
   }
 
   if(!data){
