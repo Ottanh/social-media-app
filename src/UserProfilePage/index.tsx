@@ -18,10 +18,10 @@ export const FIND_USER = gql`
         content
         date
         likes
-        user
       }
+    }
   }
-}`;
+`;
 
 interface UserQueryResult {
    findUser: User 
@@ -46,7 +46,7 @@ const UserProfilePage = () => {
   return (
     <Col className="UserProfilePage col-md-5 d-flex flex-column">
       <UserDetails user={data.findUser} />
-      <PostList posts={data.findUser.posts} />
+      <PostList posts={data.findUser.posts} user={data.findUser.name}/>
     </Col>
   );
 };
