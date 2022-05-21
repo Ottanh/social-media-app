@@ -47,13 +47,11 @@ test('renders correctly', async () => {
     </MemoryRouter>
   );
 
-  await new Promise(resolve => setTimeout(resolve, 1000)); 
-
-  expect(screen.getByText('testaus'));
-  expect(screen.getAllByText('Olli')).toHaveLength(2);
-  expect(screen.getAllByRole('button')).toHaveLength(2);
-  expect(screen.getAllByText('13/05/2022', { exact: false })).toHaveLength(2);
-  expect(screen.getByText('Eka postaus'));
-  expect(screen.getByText('Likes: 6'));
+  expect(await screen.findByText('testaus'));
+  expect(await screen.findAllByText('Olli')).toHaveLength(2);
+  expect(await screen.findAllByRole('button')).toHaveLength(2);
+  expect(await screen.findAllByText('13/05/2022', { exact: false })).toHaveLength(2);
+  expect(await screen.findByText('Eka postaus'));
+  expect(await screen.findByText('Likes: 6'));
 });
 
