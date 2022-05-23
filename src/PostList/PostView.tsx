@@ -8,15 +8,14 @@ import PostUser from './PostUser';
 
 interface Props {
   post: Post;
-  user: string;
 }
 
-const PostView = ({ post, user }: Props) => {
+const PostView = ({ post }: Props) => {
   return (
     <>
     <Row className="PostView mx-auto p-3 border-bottom flex-grow-0">
       <Col className="">
-        <PostUser user={user} />
+        <PostUser user={post.user.name} />
         <PostContent post={post} />
         <PostStats post={post} />
         <PostButtons />

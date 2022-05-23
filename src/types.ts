@@ -3,13 +3,16 @@ export interface User {
   name: string;
   joined: string;
   description: string;
-  posts: Post[]
 }
 
 export interface Post {
     id: string;
-    user: string;
+    user: {
+      id: string;
+      name: string;
+      username: string;
+    };
     date: string;
-    content: string;
+    content?: string;
     likes: number;
 }

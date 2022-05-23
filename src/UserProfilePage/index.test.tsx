@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { MockedProvider } from '@apollo/client/testing';
-import { FIND_USER } from './index';
+import { FIND_POSTS, FIND_USER } from './index';
 import UserProfilePage from './index';
 
 const mocks = [
@@ -19,17 +19,30 @@ const mocks = [
           name: 'Olli',
           joined: '13/05/2022',
           description: 'testaus',
-          posts: [
-            {
-              id: 'postid1',
-              content: 'Eka postaus',
-              date: '13/05/2022',
-              likes: 6,
-              username: 'olli111',
-              user: 'Olli'
-            }
-          ]
         }
+      }
+    }
+  },
+  {
+    request: {
+      query: FIND_POSTS,
+      variables: {
+        username: 'olli111',
+      },
+    },
+    result: {
+      data: {
+        findPosts: [
+          {
+            id: 'postid1',
+            content: 'Eka postaus',
+            date: '13/05/2022',
+            likes: 6,
+            user: {
+              name: 'Olli'
+            }
+          }
+        ]
       }
     }
   }

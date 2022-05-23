@@ -2,8 +2,6 @@ import Col from 'react-bootstrap/esm/Col';
 import { useParams } from 'react-router-dom';
 import PostList from '../PostList';
 import UserDetails from './UserDetails';
-import { User } from '../types';
-
 import { gql, useQuery } from '@apollo/client';
 
 export const FIND_USER = gql`
@@ -13,40 +11,60 @@ export const FIND_USER = gql`
       name
       joined
       description
-      posts {
-        id
-        content
-        date
-        likes
-      }
     }
   }
 `;
 
-interface UserQueryResult {
-   findUser: User 
-}
+export const FIND_POSTS = gql`
+  query findPosts($username: String!) {
+    findPosts (username: $username) { 
+      id
+      user {
+        name
+      }
+      date
+      content
+      likes
+    }
+  }
+`;
+
 
 const UserProfilePage = () => {
   const { userName } = useParams<{ userName: string }>();
-  const { loading, data } = useQuery<UserQueryResult>(FIND_USER, {
+  const user = useQuery(FIND_USER, {
+    variables: { username: userName }
+  });
+  const posts = useQuery(FIND_POSTS, {
     variables: { username: userName }
   });
 
 
-  if(loading) {
-    return <Col className="Loading col-md-5 h-100 d-flex flex-column">Loading...</Col>;
-  }
+  const userRender = () => {
+    if(user.loading ) {
+      return <Col className="Loading col-md-5 h-100 d-flex flex-column">Loading...</Col>;
+    } else if(!user.data){
+      return <Col className="NoUserFound col-md-5 h-100 d-flex flex-column">No user found</Col>;
+    } else {
+      return <UserDetails user={user.data.findUser} />;
+    }
+  };
 
-  if(!data){
-    return <Col className="NoUserFound col-md-5 h-100 d-flex flex-column">No user found</Col>;
-  }
+  const postsRender = () => {
+    if(posts.loading ) {
+      return <Col className="Loading col-md-5 h-100 d-flex flex-column">Loading...</Col>;
+    } else if(!posts.data){
+      return <Col className="NoUserFound col-md-5 h-100 d-flex flex-column">No posts found</Col>;
+    } else {
+      return <PostList posts={posts.data.findPosts} />;
+    }
+  };
 
 
   return (
     <Col className="UserProfilePage col-md-5 d-flex flex-column">
-      <UserDetails user={data.findUser} />
-      <PostList posts={data.findUser.posts} user={data.findUser.name}/>
+      {userRender()}
+      {postsRender()}
     </Col>
   );
 };
