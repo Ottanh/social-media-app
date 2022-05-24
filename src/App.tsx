@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import StartPage from './StartPage';
+import LoginForm from './StartPage/LoginForm';
 
 const App = () => {
 
@@ -16,7 +17,7 @@ const App = () => {
         <NavigationBar />
         <Routes>
           <Route path="*" element={loggedInUser ? <Navigate replace to="/olli111" />: <StartPage />} />
-          <Route path="/login" element={<Col className="ExploreView col-md-5 h-100 d-flex flex-column">Login</Col>} />
+          <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<Col className="ExploreView col-md-5 h-100 d-flex flex-column">Register</Col>} />
           <Route path="/:userName" element={<UserProfilePage />} />
           <Route path="/explore" element={<Col className="ExploreView col-md-5 h-100 d-flex flex-column">Explore</Col>} />
