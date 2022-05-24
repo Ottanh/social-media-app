@@ -24,7 +24,7 @@ form {
   margin: 0.2em;
 }
 
-div {
+.divErr {
   color: red;
 }
 

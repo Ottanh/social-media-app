@@ -53,20 +53,20 @@ const LoginForm = () => {
               placeholder="username" 
               {...register('username', {required: 'Username is required'})} 
             />
-            {errors.username && <div>{errors.username.message}</div>}
+            {errors.username && <div className="divErr">{errors.username.message}</div>}
             <input 
               className="field" 
               type="password" 
               placeholder="password" 
               {...register('password', {required: 'Password is required'})} 
             />
-            {errors.password && <div>{errors.password.message}</div>}
+            {errors.password && <div className="divErr">{errors.password.message}</div>}
             <input 
               className="button" 
               type="submit" 
               value="Login"
             />
-            {errors.submit && <div>{errors.submit.message}</div>}
+            {errors.submit && <div className="divErr">{errors.submit.message}</div>}
           </form>
         </Col>
       </Row>
