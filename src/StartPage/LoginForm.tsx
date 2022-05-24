@@ -3,13 +3,22 @@ import { useEffect } from 'react';
 import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
 import { SubmitHandler, useForm, useFormState } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { User } from '../types';
 
 import './LoginForm.css';
 
 export const LOGIN = gql`
   mutation login($username: String!, $password: String!) {
     login (username: $username, password: $password) { 
-      value
+      token
+      user {
+        id
+        username
+        name
+        joined
+        description
+      }
     }
   }
 `;
@@ -21,12 +30,12 @@ type Inputs = {
 };
 
 
-
-const LoginForm = () => {
+const LoginForm = ({ login }: { login: (a: string, b: User) => void }) => {
+  const navigate = useNavigate();
   const { register, handleSubmit, setError, clearErrors, reset, control, formState: { errors } } = useForm<Inputs>();
   const { isDirty } = useFormState({control});
 
-  const [login, result] = useMutation(LOGIN, {
+  const [loginQuery, result] = useMutation(LOGIN, {
     onError: (error) => {
       setError('submit', { message: error.graphQLErrors[0].message});
     },
@@ -36,9 +45,17 @@ const LoginForm = () => {
     clearErrors('submit');
   }, [isDirty]);
 
+  useEffect(() => {
+    if(result.data){
+      login(result.data.login.token, result.data.login.user);
+      localStorage.setItem('sma-user-token', result.data.login.token);
+      navigate(`/${result.data.login.user.username}`);
+    }
+  }, [result.data]);
 
-  const onSubmit: SubmitHandler<Inputs> = data => {
-    login({ variables: data });
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    loginQuery({ variables: { username: data.username, password: data.password } });
     reset();
   };
 

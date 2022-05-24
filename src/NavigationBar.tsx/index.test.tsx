@@ -4,10 +4,18 @@ import NavigationBar from './index';
 import { createMemoryHistory } from 'history';
 import userEvent from '@testing-library/user-event';
 
+const userData = {
+  id: '628ad0f662db080220901f41',
+  username: 'olli111',
+  name: 'Olli',
+  joined: '13/05/2022',
+  description: 'a'
+};
+
 test('renders navigation bar', async () => {
   render(
     <BrowserRouter >
-      <NavigationBar />
+      <NavigationBar user={userData}/>
     </BrowserRouter>
   );
 
@@ -24,7 +32,7 @@ test('navigates to correct URL when clicked', async () => {
   const history = createMemoryHistory();
   render(
     <Router location={history.location} navigator={history}>
-      <NavigationBar />
+      <NavigationBar user={userData}/>
     </Router>
   );
 

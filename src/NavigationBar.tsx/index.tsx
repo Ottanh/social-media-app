@@ -1,7 +1,8 @@
 import Col from 'react-bootstrap/esm/Col';
 import { NavLink } from 'react-router-dom';
+import { User } from '../types';
 
-const NavigationBar = () => {
+const NavigationBar = ({user}: {user: User | null}) => {
 
   const style = ({ isActive }: { isActive: boolean }) => {
     return (
@@ -16,10 +17,12 @@ const NavigationBar = () => {
     );
   };
 
+  const profile = user ? user.username : '';
+
   return (
     <Col className="NavBar " style={{'textAlign': 'center'}}>
       <div className="flex-column w-50 pt-5 pe-3" style={{'marginLeft': 'auto'}}>
-        <NavLink to="/olli111" style={isActive => style(isActive)} >
+        <NavLink to={profile} style={isActive => style(isActive)} >
           Profile
         </NavLink>
         <NavLink to="/explore" style={isActive => style(isActive)} >

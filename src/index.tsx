@@ -8,15 +8,35 @@ import { reducer, StateProvider } from './state';
 import { 
   ApolloClient, 
   ApolloProvider, 
+  from, 
   HttpLink, 
   InMemoryCache
 } from '@apollo/client';
+import { setContext } from 'apollo-link-context';
+
+let token = localStorage.getItem('sma-user-token');
+export const setHeaderToken = (newToken: string) => {
+  token = newToken;
+};
+
+const authLink = setContext((_, { headers }) => {  
+  return {    
+    headers: {      
+      ...headers,      
+      authorization: token ? `bearer ${token}` : null,    
+    }  
+  };
+});
+
+const httpLink = new HttpLink({
+  uri: 'http://localhost:4000',
+});
+
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: new HttpLink({
-    uri: 'http://localhost:4000',
-  })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  link: from([authLink as any, httpLink])
 });
 
 const root = ReactDOM.createRoot(
