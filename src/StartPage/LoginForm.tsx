@@ -49,10 +49,10 @@ const LoginForm = ({ login }: { login: (a: string, b: User) => void }) => {
     if(result.data){
       login(result.data.login.token, result.data.login.user);
       localStorage.setItem('sma-user-token', result.data.login.token);
+      localStorage.setItem('sma-user', JSON.stringify(result.data.login.user));
       navigate(`/${result.data.login.user.username}`);
     }
   }, [result.data]);
-
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     loginQuery({ variables: { username: data.username, password: data.password } });

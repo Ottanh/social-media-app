@@ -12,8 +12,15 @@ import { User } from './types';
 
 const App = () => {
 
-  const [token, setToken] = useState<string | null>(null);
-  const [user, setUser] = useState<User | null>(null);
+  const [token, setToken] = useState<string | null>(localStorage.getItem('sma-user-token'));
+  const [user, setUser] = useState<User | null>(() => {
+    const storedUser = localStorage.getItem('sma-user');
+    console.log(storedUser);
+    if(storedUser){
+      return JSON.parse(storedUser);
+    }
+  });
+
 
   const login = (token: string, user: User) => {
     setToken(token);
