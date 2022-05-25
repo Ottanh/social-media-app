@@ -1,6 +1,6 @@
 import Row from 'react-bootstrap/esm/Row';
-import { Post } from '../types';
-import PostView from './PostView';
+import { Post } from '../../types';
+import PostView from './Post';
 
 interface Props {
   posts: Post[]

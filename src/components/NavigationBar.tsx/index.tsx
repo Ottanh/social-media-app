@@ -1,8 +1,7 @@
 import { useApolloClient } from '@apollo/client';
 import Col from 'react-bootstrap/esm/Col';
 import { NavLink } from 'react-router-dom';
-import { useStateValue } from '../state';
-import { setToken, setUser } from '../state';
+import { useStateValue, setToken, setUser } from '../state';
 
 const NavigationBar = () => {
 

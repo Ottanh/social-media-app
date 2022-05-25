@@ -1,6 +1,6 @@
 import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
-import { User } from '../types';
+import { User } from '../../types';
 
 interface Props {
   user: User

@@ -1,6 +1,6 @@
 import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
-import { Post } from '../types';
+import { Post } from '../../../types';
 import PostButtons from './PostButtons';
 import PostContent from './PostContent';
 import PostStats from './PostStats';

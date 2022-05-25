@@ -1,6 +1,6 @@
 import Col from 'react-bootstrap/esm/Col';
 import { useParams } from 'react-router-dom';
-import PostList from '../PostList';
+import PostList from '../Post/PostList';
 import UserDetails from './UserDetails';
 import { gql, useQuery } from '@apollo/client';
 

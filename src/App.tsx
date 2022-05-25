@@ -1,12 +1,12 @@
 import Container from 'react-bootstrap/esm/Container';
-import UserProfilePage from './UserProfilePage';
-import NavigationBar from './NavigationBar.tsx';
+import UserProfilePage from './components/UserProfilePage';
+import NavigationBar from './components/NavigationBar.tsx';
 import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import StartPage from './StartPage';
-import LoginForm from './StartPage/LoginForm';
-import { useStateValue } from './state';
+import StartPage from './components/StartPage';
+import LoginForm from './components/StartPage/LoginForm';
+import { useStateValue } from './components/state';
 
 const App = () => {
   const [{loggedInUser: { token, user }}] = useStateValue();

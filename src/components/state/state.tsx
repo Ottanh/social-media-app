@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import { User } from '../types';
+import { User } from '../../types';
 
 import { Action } from './reducer';
 
