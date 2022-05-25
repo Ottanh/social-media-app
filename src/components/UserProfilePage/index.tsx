@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import PostList from '../Post/PostList';
 import UserDetails from './UserDetails';
 import { gql, useQuery } from '@apollo/client';
+import PostForm from '../Post/PostForm';
+import { useStateValue } from '../state';
 
 export const FIND_USER = gql`
   query findUser($username: String!) {
@@ -39,6 +41,7 @@ const UserProfilePage = () => {
     variables: { username: userName }
   });
 
+  const [{ loggedInUser }] = useStateValue();
 
   const userRender = () => {
     if(user.loading ) {
@@ -64,6 +67,9 @@ const UserProfilePage = () => {
   return (
     <Col className="UserProfilePage col-md-5 d-flex flex-column">
       {userRender()}
+      {loggedInUser.user 
+        && userName === loggedInUser.user.username 
+        && <PostForm />}
       {postsRender()}
     </Col>
   );
