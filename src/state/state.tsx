@@ -4,11 +4,22 @@ import { User } from '../types';
 import { Action } from './reducer';
 
 export type State = {
-  user: User | null;
+  loggedInUser: {
+    token: string | null;
+    user: User | null;
+  }
 };
 
 const initialState: State = {
-  user: null
+  loggedInUser: {
+    token: localStorage.getItem('sma-user-token'),
+    user: (() => {
+      const storedUser = localStorage.getItem('sma-user');
+      if(storedUser){
+        return JSON.parse(storedUser);
+      }
+    })()
+  }
 };
 
 export const StateContext = createContext<[State, React.Dispatch<Action>]>([

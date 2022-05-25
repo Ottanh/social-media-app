@@ -1,8 +1,13 @@
+import { useApolloClient } from '@apollo/client';
 import Col from 'react-bootstrap/esm/Col';
 import { NavLink } from 'react-router-dom';
-import { User } from '../types';
+import { useStateValue } from '../state';
+import { setToken, setUser } from '../state';
 
-const NavigationBar = ({user, logout}: {user: User | null, logout: () => void}) => {
+const NavigationBar = () => {
+
+  const client = useApolloClient();
+  const [{loggedInUser: { user }}, dispatch] = useStateValue();
 
   const style = ({ isActive }: { isActive: boolean }) => {
     return (
@@ -18,13 +23,11 @@ const NavigationBar = ({user, logout}: {user: User | null, logout: () => void}) 
   };
 
   const styleLogOut = () => {
-
     if(!user){
       return {
         display: 'none'
       };
     }
-
     return (
       {
         display: 'inline-block',
@@ -37,6 +40,13 @@ const NavigationBar = ({user, logout}: {user: User | null, logout: () => void}) 
   };
 
   const profile = user ? user.username : '';
+
+  const logout = () => {
+    dispatch(setToken(null));
+    dispatch(setUser(null));
+    localStorage.clear();  
+    client.resetStore();
+  };
 
   return (
     <Col className="NavBar " style={{'textAlign': 'center'}}>

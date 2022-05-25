@@ -6,42 +6,18 @@ import Row from 'react-bootstrap/esm/Row';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import StartPage from './StartPage';
 import LoginForm from './StartPage/LoginForm';
-import { useState } from 'react';
-import { setHeaderToken } from '.';
-import { User } from './types';
-import { useApolloClient } from '@apollo/client';
+import { useStateValue } from './state';
 
 const App = () => {
-  const client = useApolloClient();
-  const [token, setToken] = useState<string | null>(localStorage.getItem('sma-user-token'));
-  const [user, setUser] = useState<User | null>(() => {
-    const storedUser = localStorage.getItem('sma-user');
-    if(storedUser){
-      return JSON.parse(storedUser);
-    }
-  });
-
-
-  const login = (token: string, user: User) => {
-    setToken(token);
-    setUser(user);
-    setHeaderToken(token);
-  };
-
-  const logout = () => {
-    setToken(null);
-    setUser(null);  
-    localStorage.clear();  
-    client.resetStore();
-  };
+  const [{loggedInUser: { token, user }}] = useStateValue();
 
   return (
     <Container className="App pt-5 border border-top-0 min-vh-100">
       <Row className="min-vh-100">
-        <NavigationBar user={user} logout={logout}/>
+        <NavigationBar />
         <Routes>
           <Route path="*" element={token && user ? <Navigate replace to={`/${user.username}`} />: <StartPage />} />
-          <Route path="/login" element={<LoginForm login={login}/>} />
+          <Route path="/login" element={<LoginForm/>} />
           <Route path="/register" element={<Col className="ExploreView col-md-5 h-100 d-flex flex-column">Register</Col>} />
           <Route path="/:userName" element={<UserProfilePage />} />
           <Route path="/explore" element={<Col className="ExploreView col-md-5 h-100 d-flex flex-column">Explore</Col>} />

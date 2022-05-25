@@ -4,7 +4,8 @@ import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
 import { SubmitHandler, useForm, useFormState } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { User } from '../types';
+import { useStateValue } from '../state';
+import { setUser, setToken } from '../state';
 
 import './LoginForm.css';
 
@@ -30,10 +31,12 @@ type Inputs = {
 };
 
 
-const LoginForm = ({ login }: { login: (a: string, b: User) => void }) => {
+const LoginForm = () => {
   const navigate = useNavigate();
   const { register, handleSubmit, setError, clearErrors, reset, control, formState: { errors } } = useForm<Inputs>();
   const { isDirty } = useFormState({control});
+
+  const [, dispatch] = useStateValue();
 
   const [loginQuery, result] = useMutation(LOGIN, {
     onError: (error) => {
@@ -47,7 +50,8 @@ const LoginForm = ({ login }: { login: (a: string, b: User) => void }) => {
 
   useEffect(() => {
     if(result.data){
-      login(result.data.login.token, result.data.login.user);
+      dispatch(setUser(result.data.login.user));
+      dispatch(setToken(result.data.login.token));
       localStorage.setItem('sma-user-token', result.data.login.token);
       localStorage.setItem('sma-user', JSON.stringify(result.data.login.user));
       navigate(`/${result.data.login.user.username}`);
