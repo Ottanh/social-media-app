@@ -9,13 +9,13 @@ import LoginForm from './StartPage/LoginForm';
 import { useState } from 'react';
 import { setHeaderToken } from '.';
 import { User } from './types';
+import { useApolloClient } from '@apollo/client';
 
 const App = () => {
-
+  const client = useApolloClient();
   const [token, setToken] = useState<string | null>(localStorage.getItem('sma-user-token'));
   const [user, setUser] = useState<User | null>(() => {
     const storedUser = localStorage.getItem('sma-user');
-    console.log(storedUser);
     if(storedUser){
       return JSON.parse(storedUser);
     }
@@ -28,10 +28,17 @@ const App = () => {
     setHeaderToken(token);
   };
 
+  const logout = () => {
+    setToken(null);
+    setUser(null);  
+    localStorage.clear();  
+    client.resetStore();
+  };
+
   return (
     <Container className="App pt-5 border border-top-0 min-vh-100">
       <Row className="min-vh-100">
-        <NavigationBar user={user}/>
+        <NavigationBar user={user} logout={logout}/>
         <Routes>
           <Route path="*" element={token && user ? <Navigate replace to={`/${user.username}`} />: <StartPage />} />
           <Route path="/login" element={<LoginForm login={login}/>} />

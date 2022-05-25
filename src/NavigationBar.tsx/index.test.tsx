@@ -15,7 +15,7 @@ const userData = {
 test('renders navigation bar', async () => {
   render(
     <BrowserRouter >
-      <NavigationBar user={userData}/>
+      <NavigationBar logout={() => console.log('logout')} user={userData}/>
     </BrowserRouter>
   );
 
@@ -32,7 +32,7 @@ test('navigates to correct URL when clicked', async () => {
   const history = createMemoryHistory();
   render(
     <Router location={history.location} navigator={history}>
-      <NavigationBar user={userData}/>
+      <NavigationBar logout={() => console.log('logout')} user={userData}/>
     </Router>
   );
 
