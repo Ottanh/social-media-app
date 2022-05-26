@@ -4,6 +4,7 @@ import UserDetails from './UserDetails';
 import { gql, useQuery } from '@apollo/client';
 import PostForm from '../Post/PostForm';
 import { useStateValue } from '../state';
+import './index.css';
 
 export const FIND_USER = gql`
   query findUser($username: String!) {
@@ -44,9 +45,9 @@ const UserProfilePage = () => {
 
   const userRender = () => {
     if(user.loading ) {
-      return <div style={{'display': 'flex', 'flex': '1', 'flexDirection': 'column'}}>Loading...</div>;
+      return <div className="UserProfilePage">Loading...</div>;
     } else if(!user.data){
-      return <div style={{'display': 'flex', 'flex': '1', 'flexDirection': 'column'}}>No user found</div>;
+      return <div className="UserProfilePage">No user found</div>;
     } else {
       return <UserDetails user={user.data.findUser} />;
     }
@@ -54,9 +55,9 @@ const UserProfilePage = () => {
 
   const postsRender = () => {
     if(posts.loading ) {
-      return <div style={{'display': 'flex', 'flex': '1', 'flexDirection': 'column'}}>Loading...</div>;
+      return <div className="UserProfilePage">Loading...</div>;
     } else if(!posts.data){
-      return <div style={{'display': 'flex', 'flex': '1', 'flexDirection': 'column'}}>No user found</div>;
+      return <div className="UserProfilePage">No user found</div>;
     } else {
       return <PostList posts={posts.data.findPosts} />;
     }
@@ -64,7 +65,7 @@ const UserProfilePage = () => {
 
 
   return (
-    <div style={{'display': 'flex', 'flex': '1', 'flexDirection': 'column'}}>
+    <div className="UserProfilePage">
       {userRender()}
       {loggedInUser.user 
         && userName === loggedInUser.user.username 

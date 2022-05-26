@@ -1,5 +1,5 @@
 import LogRegButtons from './LogRegButtons';
-import './LoginForm.css';
+import './index.css';
 
 const StartPage = () => {
   return (

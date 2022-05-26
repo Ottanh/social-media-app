@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react';
 import Textarea from 'react-expanding-textarea';
 import { useStateValue } from '../../state';
 import { FIND_POSTS } from '../../UserProfilePage';
-
-import './PostForm.css';
+import './index.css';
 
 export const CREATE_POST = gql`
   mutation createPost($content: String!, $date: String!, $likes: Int!) {
@@ -57,7 +56,7 @@ const PostForm = () => {
   
 
   return (
-    <div style={{'display': 'flex', 'flex': '1', 'flexDirection': 'column'}}>
+    <div className="PostForm">
         <div className="TextAreaContainer">
           <Textarea
             className="TextArea" 

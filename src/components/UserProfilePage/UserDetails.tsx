@@ -1,4 +1,5 @@
 import { User } from '../../types';
+import './index.css';
 
 interface Props {
   user: User
@@ -6,7 +7,7 @@ interface Props {
 
 const UserDetails = ({ user }: Props) => {
   return (
-    <div style={{'border': '1px solid'}}>
+    <div className="UserDetails">
         <div>
           <div className="fw-bold">
             {user.name} 

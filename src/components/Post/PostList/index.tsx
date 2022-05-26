@@ -1,5 +1,5 @@
-import { Post } from '../../types';
-import PostView from './Post';
+import { Post } from '../../../types';
+import PostView from '../Post';
 
 interface Props {
   posts: Post[]
@@ -8,7 +8,7 @@ interface Props {
 
 const PostList = ({ posts }: Props) => {
   return (
-    <div style={{'display': 'flex', 'flex': '1', 'flexDirection': 'column'}}>
+    <div className="PostList">
       {posts.map((post) => (
         <PostView key={post.id} post={post} />
       ))}

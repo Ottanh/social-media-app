@@ -4,8 +4,7 @@ import { SubmitHandler, useForm, useFormState } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useStateValue } from '../state';
 import { setUser, setToken } from '../state';
-
-import './LoginForm.css';
+import './index.css';
 
 export const LOGIN = gql`
   mutation login($username: String!, $password: String!) {

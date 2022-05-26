@@ -1,4 +1,5 @@
 import { Post } from '../../../types';
+import './index.css';
 
 interface Props {
   post: Post
@@ -6,7 +7,7 @@ interface Props {
 
 const PostStats = ({ post }: Props) => {
   return (
-    <div style={{'display': 'flex'}}>
+    <div className="PostStats">
       <div>
         {post.date}
       </div>

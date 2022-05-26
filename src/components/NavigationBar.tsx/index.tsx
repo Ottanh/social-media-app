@@ -1,6 +1,7 @@
 import { useApolloClient } from '@apollo/client';
 import { NavLink } from 'react-router-dom';
 import { useStateValue, setToken, setUser } from '../state';
+import './index.css';
 
 const NavigationBar = () => {
 
@@ -10,12 +11,7 @@ const NavigationBar = () => {
   const style = ({ isActive }: { isActive: boolean }) => {
     return (
       {
-        display: 'inline-block',
-        width: 'fit-content',
-        textDecoration: 'none',
-        color: 'black',
         fontWeight: isActive ? 'bold' : '',
-        fontSize: 'large'
       }
     );
   };
@@ -26,15 +22,6 @@ const NavigationBar = () => {
         display: 'none'
       };
     }
-    return (
-      {
-        display: 'inline-block',
-        width: 'fit-content',
-        textDecoration: 'none',
-        color: 'black',
-        fontSize: 'large'
-      }
-    );
   };
 
   const profile = user ? user.username : '';
@@ -47,17 +34,17 @@ const NavigationBar = () => {
   };
 
   return (
-    <div style={{'display': 'flex', 'flex': '1', 'flexDirection': 'column', 'alignItems': 'flex-end'}}>
-        <NavLink to={profile} style={isActive => style(isActive)} >
+    <div className="NavBar">
+        <NavLink className="NavLink" to={profile} style={isActive => style(isActive)} >
           Profile
         </NavLink>
-        <NavLink to="/explore" style={isActive => style(isActive)} >
+        <NavLink className="NavLink" to="/explore" style={isActive => style(isActive)} >
           Explore
         </NavLink>
-        <NavLink to="/settings" style={isActive => style(isActive)} >
+        <NavLink className="NavLink" to="/settings" style={isActive => style(isActive)} >
           Settings
         </NavLink>
-        <NavLink to="/" onClick={logout} style={styleLogOut()}>Log out</NavLink>
+        <NavLink className="NavLink" to="/" onClick={logout} style={styleLogOut()}>Log out</NavLink>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import PostButtons from './PostButtons';
 import PostContent from './PostContent';
 import PostStats from './PostStats';
 import PostUser from './PostUser';
+import './index.css';
 
 interface Props {
   post: Post;
@@ -10,7 +11,7 @@ interface Props {
 
 const PostView = ({ post }: Props) => {
   return (
-    <div style={{'display': 'flex', 'flex': '1', 'flexDirection': 'column', 'border': '1px solid'}}>
+    <div className="PostView">
       <PostUser user={post.user.name} />
       <PostContent post={post} />
       <PostStats post={post} />
