@@ -4,7 +4,7 @@ interface Props {
 
 const PostUser = ({ user }: Props) => {
   return (
-    <div>
+    <div className="Name">
       {user}
     </div>
   );

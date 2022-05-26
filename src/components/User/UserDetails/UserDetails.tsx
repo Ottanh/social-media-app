@@ -32,22 +32,22 @@ const UserDetails = ({ username }: Props) => {
   const user = userQuery.data.findUser;
   return (
     <div className="UserDetails">
-        <div>
-          <div className="fw-bold">
-            {user.name} 
-          </div>
-          <div className="fw-light">
-            @{user.username}
-          </div>
+      <div>
+        <div className="Name">
+          {user.name} 
         </div>
-        <div>
-          <p>
-            {user.description}
-          </p>
-          <p>
-            Joined: {user.joined}
-          </p>
+        <div className="UserName">
+          @{user.username}
         </div>
+      </div>
+      <div>
+        <p>
+          {user.description}
+        </p>
+        <p>
+          Joined: {user.joined}
+        </p>
+      </div>
     </div>
   );
 };

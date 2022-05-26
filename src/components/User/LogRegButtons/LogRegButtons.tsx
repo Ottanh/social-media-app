@@ -1,4 +1,3 @@
-import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import './index.css';
 
@@ -11,8 +10,8 @@ const LogRegButtons = () => {
 
   return (
     <div className="LogRegButtons">
-        <Button style={{'marginRight': '0.5rem'}} onClick={() => handleClick('/login')} variant="dark">Login</Button>
-        <Button style={{'marginLeft': '0.5rem'}} onClick={() => handleClick('/register')} variant="dark">Register</Button>
+        <button className="Buttons" onClick={() => handleClick('/login')}>Login</button>
+        <button className="Buttons" onClick={() => handleClick('/register')}>Register</button>
     </div>
   );
 };

@@ -6,21 +6,23 @@ import LoginPage from './screens/LoginPage';
 import NavigationMenu from './screens/NavigationMenu';
 import UserPage from './screens/UserPage';
 
+import './App.css';
+
 const App = () => {
   const [{loggedInUser: { token, user }}] = useStateValue();
 
   return (
-    <div style={{'display': 'flex'}}>
-          <NavigationMenu />
-          <Routes>
-            <Route path="*" element={token && user ? <Navigate replace to={`/${user.username}`} />: <StartPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<div>Register</div>} />
-            <Route path="/:username" element={<UserPage />} />
-            <Route path="/explore" element={<div>Explore</div>} />
-            <Route path="/settings" element={<div>Settings</div>} />
-          </Routes>
-          <div style={{'display': 'flex', 'flex': '1'}} />
+    <div className="App">
+      <NavigationMenu />
+        <Routes>
+          <Route path="*" element={token && user ? <Navigate replace to={`/${user.username}`} />: <StartPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<div className="RightPadding">Register</div>} />
+          <Route path="/:username" element={<UserPage />} />
+          <Route path="/explore" element={<div className="RightPadding">Explore</div>} />
+          <Route path="/settings" element={<div className="RightPadding">Settings</div>} />
+        </Routes>
+      <div className="RightPadding" />
     </div>
   );
 };

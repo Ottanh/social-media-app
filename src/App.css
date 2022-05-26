@@ -1,0 +1,16 @@
+
+html *
+{
+   font-size: 1em ;
+   font-family: 'Century Gothic' !important;
+}
+
+.App {
+  display: flex;
+  margin-top: 3rem;
+}
+
+.RightPadding {
+  display: flex;
+  flex: 1;
+}
