@@ -1,21 +1,22 @@
-import UserProfilePage from './components/UserProfilePage';
-import NavigationBar from './components/NavigationBar.tsx';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import StartPage from './components/StartPage';
-import LoginForm from './components/StartPage/LoginForm';
-import { useStateValue } from './components/state';
+import { useStateValue } from './state';
+
+import StartPage from './screens/StartPage';
+import LoginPage from './screens/LoginPage';
+import NavigationMenu from './screens/NavigationMenu';
+import UserPage from './screens/UserPage';
 
 const App = () => {
   const [{loggedInUser: { token, user }}] = useStateValue();
 
   return (
     <div style={{'display': 'flex'}}>
-          <NavigationBar />
+          <NavigationMenu />
           <Routes>
             <Route path="*" element={token && user ? <Navigate replace to={`/${user.username}`} />: <StartPage />} />
-            <Route path="/login" element={<LoginForm/>} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<div>Register</div>} />
-            <Route path="/:userName" element={<UserProfilePage />} />
+            <Route path="/:username" element={<UserPage />} />
             <Route path="/explore" element={<div>Explore</div>} />
             <Route path="/settings" element={<div>Settings</div>} />
           </Routes>

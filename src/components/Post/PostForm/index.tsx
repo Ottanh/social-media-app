@@ -1,8 +1,8 @@
 import { gql, useMutation } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import Textarea from 'react-expanding-textarea';
-import { useStateValue } from '../../state';
-import { FIND_POSTS } from '../../UserProfilePage';
+import { useStateValue } from '../../../state';
+import { FIND_POSTS } from '../PostList';
 import './index.css';
 
 export const CREATE_POST = gql`
@@ -13,7 +13,12 @@ export const CREATE_POST = gql`
   }
 `;
 
-const PostForm = () => {
+interface Props {
+  username: string | undefined
+}
+
+const PostForm = ({ username }: Props) => {
+  const [{ loggedInUser }] = useStateValue();
   const [error, setError] = useState<string | null>(null);
   const [content, setContent] = useState<string>('');
 
@@ -54,6 +59,13 @@ const PostForm = () => {
     setError(null);
   };
   
+  if(!loggedInUser.user) {
+    return null;
+  }
+
+  if(username !== loggedInUser.user.username){ 
+    return null;
+  }
 
   return (
     <div className="PostForm">

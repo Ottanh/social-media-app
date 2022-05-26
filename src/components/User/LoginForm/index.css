@@ -1,19 +1,4 @@
 
-
-.StartPage {
-  background-color: lightblue;
-  display: flex;
-  flex: 1;
-  justify-content: center;
-}
-
-.LoginFormContainer {
-  background-color: lightblue;
-  display: flex;
-  flex: 1;
-  justify-content: center;
-}
-
 .field {
   display: block;
   margin: 0.2em;
@@ -36,7 +21,3 @@
   color: red;
 }
 
-.LogRegButtons {
-  display: flex;
-  padding-top: 3rem;
-}

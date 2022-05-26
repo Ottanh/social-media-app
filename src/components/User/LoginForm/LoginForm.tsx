@@ -2,8 +2,8 @@ import { gql, useMutation } from '@apollo/client';
 import { useEffect } from 'react';
 import { SubmitHandler, useForm, useFormState } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useStateValue } from '../state';
-import { setUser, setToken } from '../state';
+import { useStateValue } from '../../../state';
+import { setUser, setToken } from '../../../state';
 import './index.css';
 
 export const LOGIN = gql`
@@ -61,30 +61,28 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="LoginFormContainer">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input 
-              className="field" 
-              type="text" 
-              placeholder="username" 
-              {...register('username', {required: 'Username is required'})} 
-            />
-            {errors.username && <div className="divErr">{errors.username.message}</div>}
-            <input 
-              className="field" 
-              type="password" 
-              placeholder="password" 
-              {...register('password', {required: 'Password is required'})} 
-            />
-            {errors.password && <div className="divErr">{errors.password.message}</div>}
-            <input 
-              className="button" 
-              type="submit" 
-              value="Login"
-            />
-            {errors.submit && <div className="divErr">{errors.submit.message}</div>}
-          </form>
-    </div>
+    <form onSubmit={handleSubmit(onSubmit)}>     
+      <input 
+        className="field" 
+        type="text" 
+        placeholder="username" 
+        {...register('username', {required: 'Username is required'})} 
+      />
+      {errors.username && <div className="divErr">{errors.username.message}</div>}
+      <input 
+        className="field" 
+        type="password" 
+        placeholder="password" 
+        {...register('password', {required: 'Password is required'})} 
+      />
+      {errors.password && <div className="divErr">{errors.password.message}</div>}
+      <input 
+        className="button" 
+        type="submit" 
+        value="Login"
+      />
+      {errors.submit && <div className="divErr">{errors.submit.message}</div>}
+    </form>
   );
 };
 

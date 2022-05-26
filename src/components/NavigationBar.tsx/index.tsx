@@ -1,6 +1,6 @@
 import { useApolloClient } from '@apollo/client';
 import { NavLink } from 'react-router-dom';
-import { useStateValue, setToken, setUser } from '../state';
+import { useStateValue, setToken, setUser } from '../../state';
 import './index.css';
 
 const NavigationBar = () => {
@@ -34,7 +34,7 @@ const NavigationBar = () => {
   };
 
   return (
-    <div className="NavBar">
+    <nav className="NavBar">
         <NavLink className="NavLink" to={profile} style={isActive => style(isActive)} >
           Profile
         </NavLink>
@@ -45,7 +45,7 @@ const NavigationBar = () => {
           Settings
         </NavLink>
         <NavLink className="NavLink" to="/" onClick={logout} style={styleLogOut()}>Log out</NavLink>
-    </div>
+    </nav>
   );
 };
 
