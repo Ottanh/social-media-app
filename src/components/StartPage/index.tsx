@@ -1,12 +1,12 @@
-import Col from 'react-bootstrap/esm/Col';
 import LogRegButtons from './LogRegButtons';
+import './LoginForm.css';
 
-const LoginPage = () => {
+const StartPage = () => {
   return (
-    <Col className="Home col-md-5 h-100 d-flex flex-column">
+    <div className="StartPage">
       <LogRegButtons />
-    </Col>
+    </div>
   );
 };
 
-export default LoginPage;
+export default StartPage;

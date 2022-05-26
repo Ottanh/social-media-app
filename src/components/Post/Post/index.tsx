@@ -1,5 +1,3 @@
-import Col from 'react-bootstrap/esm/Col';
-import Row from 'react-bootstrap/esm/Row';
 import { Post } from '../../../types';
 import PostButtons from './PostButtons';
 import PostContent from './PostContent';
@@ -12,17 +10,13 @@ interface Props {
 
 const PostView = ({ post }: Props) => {
   return (
-    <>
-    <Row className="PostView mx-auto p-3 border-bottom flex-grow-0">
-      <Col className="">
-        <PostUser user={post.user.name} />
-        <PostContent post={post} />
-        <PostStats post={post} />
-        <PostButtons />
-      </Col>
-    </Row>
-    </>
-    );
+    <div style={{'display': 'flex', 'flex': '1', 'flexDirection': 'column', 'border': '1px solid'}}>
+      <PostUser user={post.user.name} />
+      <PostContent post={post} />
+      <PostStats post={post} />
+      <PostButtons />
+    </div>
+  );
 };
 
 export default PostView;

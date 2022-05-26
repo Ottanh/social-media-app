@@ -1,5 +1,4 @@
 import { useApolloClient } from '@apollo/client';
-import Col from 'react-bootstrap/esm/Col';
 import { NavLink } from 'react-router-dom';
 import { useStateValue, setToken, setUser } from '../state';
 
@@ -12,7 +11,7 @@ const NavigationBar = () => {
     return (
       {
         display: 'inline-block',
-        width: '100%',
+        width: 'fit-content',
         textDecoration: 'none',
         color: 'black',
         fontWeight: isActive ? 'bold' : '',
@@ -30,7 +29,7 @@ const NavigationBar = () => {
     return (
       {
         display: 'inline-block',
-        width: '100%',
+        width: 'fit-content',
         textDecoration: 'none',
         color: 'black',
         fontSize: 'large'
@@ -48,8 +47,7 @@ const NavigationBar = () => {
   };
 
   return (
-    <Col className="NavBar " style={{'textAlign': 'center'}}>
-      <div className="flex-column w-50 pt-5 pe-3" style={{'marginLeft': 'auto'}}>
+    <div style={{'display': 'flex', 'flex': '1', 'flexDirection': 'column', 'alignItems': 'flex-end'}}>
         <NavLink to={profile} style={isActive => style(isActive)} >
           Profile
         </NavLink>
@@ -60,8 +58,7 @@ const NavigationBar = () => {
           Settings
         </NavLink>
         <NavLink to="/" onClick={logout} style={styleLogOut()}>Log out</NavLink>
-      </div>
-    </Col>
+    </div>
   );
 };
 

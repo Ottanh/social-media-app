@@ -1,7 +1,5 @@
 import { gql, useMutation } from '@apollo/client';
 import { useEffect } from 'react';
-import Col from 'react-bootstrap/esm/Col';
-import Row from 'react-bootstrap/esm/Row';
 import { SubmitHandler, useForm, useFormState } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useStateValue } from '../state';
@@ -64,9 +62,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Col className="LoginForm col-md-5 d-flex flex-column">
-      <Row id="row" className="border rounded p-3 m-auto mt-0 mb-3 w-100" >
-        <Col id="FormColumn" className="p-3 pt-5" align="center">
+    <div className="LoginFormContainer">
           <form onSubmit={handleSubmit(onSubmit)}>
             <input 
               className="field" 
@@ -89,9 +85,7 @@ const LoginForm = () => {
             />
             {errors.submit && <div className="divErr">{errors.submit.message}</div>}
           </form>
-        </Col>
-      </Row>
-    </Col>
+    </div>
   );
 };
 

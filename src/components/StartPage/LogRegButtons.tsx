@@ -1,4 +1,4 @@
-import { Row, Col, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 const LogRegButtons = () => {
@@ -9,14 +9,10 @@ const LogRegButtons = () => {
   };
 
   return (
-    <Row className="Buttons pt-5 px-3">
-      <Col align="right">
-        <Button onClick={() => handleClick('/login')} variant="dark">Login</Button>
-      </Col>
-      <Col align="left">
-        <Button onClick={() => handleClick('/register')} variant="dark">Register</Button>
-      </Col>
-    </Row>
+    <div style={{'display': 'flex', 'paddingTop': '3rem'}}>
+        <Button style={{'marginRight': '0.5rem'}} onClick={() => handleClick('/login')} variant="dark">Login</Button>
+        <Button style={{'marginLeft': '0.5rem'}} onClick={() => handleClick('/register')} variant="dark">Register</Button>
+    </div>
   );
 };
 

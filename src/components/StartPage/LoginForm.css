@@ -6,6 +6,20 @@ form {
   width: 80%;
 }
 
+.StartPage {
+  background-color: lightblue;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.LoginFormContainer {
+  background-color: lightblue;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
 .field {
   display: block;
   margin: 0.2em;

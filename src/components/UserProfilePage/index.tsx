@@ -1,4 +1,3 @@
-import Col from 'react-bootstrap/esm/Col';
 import { useParams } from 'react-router-dom';
 import PostList from '../Post/PostList';
 import UserDetails from './UserDetails';
@@ -45,9 +44,9 @@ const UserProfilePage = () => {
 
   const userRender = () => {
     if(user.loading ) {
-      return <Col className="Loading col-md-5 h-100 d-flex flex-column">Loading...</Col>;
+      return <div style={{'display': 'flex', 'flex': '1', 'flexDirection': 'column'}}>Loading...</div>;
     } else if(!user.data){
-      return <Col className="NoUserFound col-md-5 h-100 d-flex flex-column">No user found</Col>;
+      return <div style={{'display': 'flex', 'flex': '1', 'flexDirection': 'column'}}>No user found</div>;
     } else {
       return <UserDetails user={user.data.findUser} />;
     }
@@ -55,9 +54,9 @@ const UserProfilePage = () => {
 
   const postsRender = () => {
     if(posts.loading ) {
-      return <Col className="Loading col-md-5 h-100 d-flex flex-column">Loading...</Col>;
+      return <div style={{'display': 'flex', 'flex': '1', 'flexDirection': 'column'}}>Loading...</div>;
     } else if(!posts.data){
-      return <Col className="NoUserFound col-md-5 h-100 d-flex flex-column">No posts found</Col>;
+      return <div style={{'display': 'flex', 'flex': '1', 'flexDirection': 'column'}}>No user found</div>;
     } else {
       return <PostList posts={posts.data.findPosts} />;
     }
@@ -65,13 +64,13 @@ const UserProfilePage = () => {
 
 
   return (
-    <Col className="UserProfilePage col-md-5 d-flex flex-column">
+    <div style={{'display': 'flex', 'flex': '1', 'flexDirection': 'column'}}>
       {userRender()}
       {loggedInUser.user 
         && userName === loggedInUser.user.username 
         && <PostForm />}
       {postsRender()}
-    </Col>
+    </div>
   );
 };
 
