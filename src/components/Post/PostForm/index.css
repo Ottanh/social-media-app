@@ -1,4 +1,10 @@
-
+.PostForm {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
 
 
 .PostButton {
@@ -23,6 +29,7 @@
 
 .TextAreaContainer {
   border-bottom: 1px solid;
+  border-color: #6c7b95;
   margin-bottom: 0.5em;
   text-align: left;
 }

@@ -1,6 +1,5 @@
-import Col from 'react-bootstrap/esm/Col';
-import Row from 'react-bootstrap/esm/Row';
 import { Post } from '../../../types';
+import './index.css';
 
 interface Props {
   post: Post
@@ -8,14 +7,14 @@ interface Props {
 
 const PostStats = ({ post }: Props) => {
   return (
-    <Row className="PostStats pt-3 px-3">
-      <Col>
+    <div className="PostStats">
+      <div>
         {post.date}
-      </Col>
-      <Col>
+      </div>
+      <div>
         Likes: {post.likes}
-      </Col>
-    </Row>
+      </div>
+    </div>
   );
 };
 

@@ -1,31 +1,29 @@
-import Container from 'react-bootstrap/esm/Container';
-import UserProfilePage from './components/UserProfilePage';
-import NavigationBar from './components/NavigationBar.tsx';
-import Col from 'react-bootstrap/esm/Col';
-import Row from 'react-bootstrap/esm/Row';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import StartPage from './components/StartPage';
-import LoginForm from './components/StartPage/LoginForm';
-import { useStateValue } from './components/state';
+import { useStateValue } from './state';
+
+import StartPage from './screens/StartPage';
+import LoginPage from './screens/LoginPage';
+import NavigationMenu from './screens/NavigationMenu';
+import UserPage from './screens/UserPage';
+
+import './App.css';
 
 const App = () => {
   const [{loggedInUser: { token, user }}] = useStateValue();
 
   return (
-    <Container className="App pt-5 border border-top-0 min-vh-100">
-      <Row className="min-vh-100">
-        <NavigationBar />
+    <div className="App">
+      <NavigationMenu />
         <Routes>
           <Route path="*" element={token && user ? <Navigate replace to={`/${user.username}`} />: <StartPage />} />
-          <Route path="/login" element={<LoginForm/>} />
-          <Route path="/register" element={<Col className="ExploreView col-md-5 h-100 d-flex flex-column">Register</Col>} />
-          <Route path="/:userName" element={<UserProfilePage />} />
-          <Route path="/explore" element={<Col className="ExploreView col-md-5 h-100 d-flex flex-column">Explore</Col>} />
-          <Route path="/settings" element={<Col className="SettingsView col-md-5 h-100 d-flex flex-column">Settings</Col>} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<div className="RightPadding">Register</div>} />
+          <Route path="/:username" element={<UserPage />} />
+          <Route path="/explore" element={<div className="RightPadding">Explore</div>} />
+          <Route path="/settings" element={<div className="RightPadding">Settings</div>} />
         </Routes>
-        <Col className="RightPadding col-sx-1 ps-5" />
-      </Row>
-    </Container>
+      <div className="RightPadding" />
+    </div>
   );
 };
 

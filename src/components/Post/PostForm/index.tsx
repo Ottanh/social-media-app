@@ -1,12 +1,9 @@
 import { gql, useMutation } from '@apollo/client';
 import { useEffect, useState } from 'react';
-import Col from 'react-bootstrap/esm/Col';
-import Row from 'react-bootstrap/esm/Row';
 import Textarea from 'react-expanding-textarea';
-import { useStateValue } from '../../state';
-import { FIND_POSTS } from '../../UserProfilePage';
-
-import './PostForm.css';
+import { useStateValue } from '../../../state';
+import { FIND_POSTS } from '../PostList';
+import './index.css';
 
 export const CREATE_POST = gql`
   mutation createPost($content: String!, $date: String!, $likes: Int!) {
@@ -16,7 +13,12 @@ export const CREATE_POST = gql`
   }
 `;
 
-const PostForm = () => {
+interface Props {
+  username: string | undefined
+}
+
+const PostForm = ({ username }: Props) => {
+  const [{ loggedInUser }] = useStateValue();
   const [error, setError] = useState<string | null>(null);
   const [content, setContent] = useState<string>('');
 
@@ -57,29 +59,34 @@ const PostForm = () => {
     setError(null);
   };
   
+  if(!loggedInUser.user) {
+    return null;
+  }
+
+  if(username !== loggedInUser.user.username){ 
+    return null;
+  }
 
   return (
-      <Row className="NewPost border rounded p-3 m-auto mb-3 w-100" >
-        <Col className="p-3" align="center">
-          <div className="TextAreaContainer">
-            <Textarea
-              className="TextArea" 
-              placeholder="..."
-              onChange={handleChange}
-              value={content}
-            />
-          </div>
-          <button 
-            className="PostButton" 
-            type="submit" 
-            value="Post"
-            onClick={onSubmit}
-          >
-            Post
-          </button>
-          {error && <div className="divErrPost">{error}</div>}
-        </Col>
-      </Row>
+    <div className="PostForm">
+        <div className="TextAreaContainer">
+          <Textarea
+            className="TextArea" 
+            placeholder="..."
+            onChange={handleChange}
+            value={content}
+          />
+        </div>
+        <button 
+          className="PostButton" 
+          type="submit" 
+          value="Post"
+          onClick={onSubmit}
+        >
+          Post
+        </button>
+        {error && <div className="divErrPost">{error}</div>}
+    </div>
   );
 };
 

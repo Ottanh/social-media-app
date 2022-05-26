@@ -1,9 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter, Router } from 'react-router-dom';
-import NavigationBar from './index';
+import NavigationMenu from '.';
 import { createMemoryHistory } from 'history';
 import userEvent from '@testing-library/user-event';
 
+/*
 const userData = {
   id: '628ad0f662db080220901f41',
   username: 'olli111',
@@ -11,11 +12,12 @@ const userData = {
   joined: '13/05/2022',
   description: 'a'
 };
+*/
 
 test('renders navigation bar', async () => {
   render(
     <BrowserRouter >
-      <NavigationBar />
+      <NavigationMenu />
     </BrowserRouter>
   );
 
@@ -32,7 +34,7 @@ test('navigates to correct URL when clicked', async () => {
   const history = createMemoryHistory();
   render(
     <Router location={history.location} navigator={history}>
-      <NavigationBar />
+      <NavigationMenu />
     </Router>
   );
 

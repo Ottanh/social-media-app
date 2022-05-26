@@ -1,7 +1,7 @@
 import { useApolloClient } from '@apollo/client';
-import Col from 'react-bootstrap/esm/Col';
 import { NavLink } from 'react-router-dom';
-import { useStateValue, setToken, setUser } from '../state';
+import { useStateValue, setToken, setUser } from '../../state';
+import './index.css';
 
 const NavigationBar = () => {
 
@@ -11,12 +11,7 @@ const NavigationBar = () => {
   const style = ({ isActive }: { isActive: boolean }) => {
     return (
       {
-        display: 'inline-block',
-        width: '100%',
-        textDecoration: 'none',
-        color: 'black',
         fontWeight: isActive ? 'bold' : '',
-        fontSize: 'large'
       }
     );
   };
@@ -27,15 +22,6 @@ const NavigationBar = () => {
         display: 'none'
       };
     }
-    return (
-      {
-        display: 'inline-block',
-        width: '100%',
-        textDecoration: 'none',
-        color: 'black',
-        fontSize: 'large'
-      }
-    );
   };
 
   const profile = user ? user.username : '';
@@ -48,20 +34,18 @@ const NavigationBar = () => {
   };
 
   return (
-    <Col className="NavBar " style={{'textAlign': 'center'}}>
-      <div className="flex-column w-50 pt-5 pe-3" style={{'marginLeft': 'auto'}}>
-        <NavLink to={profile} style={isActive => style(isActive)} >
+    <nav className="NavBar">
+        <NavLink className="NavLink" to={profile} style={isActive => style(isActive)} >
           Profile
         </NavLink>
-        <NavLink to="/explore" style={isActive => style(isActive)} >
+        <NavLink className="NavLink" to="/explore" style={isActive => style(isActive)} >
           Explore
         </NavLink>
-        <NavLink to="/settings" style={isActive => style(isActive)} >
+        <NavLink className="NavLink" to="/settings" style={isActive => style(isActive)} >
           Settings
         </NavLink>
-        <NavLink to="/" onClick={logout} style={styleLogOut()}>Log out</NavLink>
-      </div>
-    </Col>
+        <NavLink className="NavLink" to="/" onClick={logout} style={styleLogOut()}>Log out</NavLink>
+    </nav>
   );
 };
 

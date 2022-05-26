@@ -1,11 +1,4 @@
 
-form {
-  display: inline-block; 
-  text-align: center;
-  position: relative;
-  width: 80%;
-}
-
 .field {
   display: block;
   margin: 0.2em;
@@ -28,6 +21,3 @@ form {
   color: red;
 }
 
-#row {
-  min-height: 30%;
-}

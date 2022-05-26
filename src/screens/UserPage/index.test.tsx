@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { MockedProvider } from '@apollo/client/testing';
-import { FIND_POSTS, FIND_USER } from './index';
-import UserProfilePage from './index';
+import { FIND_POSTS } from '../../components/Post/PostList';
+import { FIND_USER } from '../../components/User/UserDetails/UserDetails';
+import UserPage from '.';
 
 const mocks = [
   {
@@ -53,7 +54,7 @@ test('renders correctly', async () => {
     <MemoryRouter initialEntries={['/olli111']}>
       <MockedProvider mocks={mocks} addTypename={false}>
         <Routes>
-          <Route path="/:userName" element={<UserProfilePage />}>
+          <Route path="/:userName" element={<UserPage />}>
           </Route>
         </Routes>
       </MockedProvider>
