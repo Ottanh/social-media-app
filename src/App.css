@@ -1,13 +1,16 @@
 
 html *
 {
-   font-size: 1em ;
-   font-family: 'Century Gothic' !important;
+   font-size: large;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+body {
+  margin: 0;
 }
 
 .App {
   display: flex;
-  margin-top: 3rem;
 }
 
 .RightPadding {

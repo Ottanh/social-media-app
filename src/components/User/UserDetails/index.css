@@ -1,9 +1,10 @@
 
 .UserDetails {
   border: 1px solid;
+  border-top: 0;
   padding: 1rem;
-  margin-bottom: 1rem;
-  border-color: #6c7b95;
+  padding-top: 2rem;
+  border-color: rgba(108, 123, 149, 0.5);
 }
 
 .Name {
