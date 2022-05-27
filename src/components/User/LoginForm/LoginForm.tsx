@@ -14,7 +14,7 @@ export const LOGIN = gql`
         id
         username
         name
-        joined
+        date
         description
       }
     }

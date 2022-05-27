@@ -1,7 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Textarea from 'react-expanding-textarea';
-
 import './index.css';
 
 
@@ -29,26 +28,26 @@ const Search = () => {
     variables: { searchword: content }
   });
 
-  useEffect(() => {
-    if(searchQuery.data){
-      console.log(searchQuery);
-    }
-  }, [searchQuery.data]);
-
-
   const handleChange = (event: { target: { value: string; }; }) => {
     setContent(event.target.value);
   };
   
 
   return (
-    <div className="SearchAreaContainer">
-      <Textarea
-        className="SearchArea" 
-        placeholder="Search..."
-        onChange={handleChange}
-        value={content}
-      />
+    <div className="ExplorePage">
+      <div className="SearchAreaContainer">
+        <Textarea
+          className="SearchArea" 
+          placeholder="Search..."
+          onChange={handleChange}
+          value={content}
+        />
+      </div>
+      {searchQuery.data && content.length > 0 &&
+      <div >
+        {searchQuery.data.search.users.map((user: { username: string }) => (<p key={user.username}>@{user.username}</p>))}
+      </div>
+      }
     </div>
   );
 };

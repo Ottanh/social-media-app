@@ -1,6 +1,9 @@
 
-
-
+.ExplorePage {
+  display: flex; 
+  flex: 1;
+  flex-direction: column;
+}
 
 
 .SearchArea {
@@ -16,9 +19,8 @@
   border-color: #6c7b95;
   margin-bottom: 0.5em;
   text-align: left;
-  margin-top: auto;
   display: flex;
+  padding-top: 4rem;
 }
-
 
 
