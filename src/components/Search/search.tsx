@@ -5,34 +5,35 @@ import Textarea from 'react-expanding-textarea';
 import './index.css';
 
 
-export const FIND_POSTS = gql`
-  query findPosts($username: String!) {
-    findPosts (username: $username) { 
-      id
-      user {
+const SEARCH = gql`
+  query search($searchword: String!) {
+    search (searchword: $searchword) { 
+      users {
         name
+        username
       }
-      date
-      content
-      likes
+      posts {
+        user {
+          name
+        }
+        content
+      }
     }
   }
 `;
 
 const Search = () => {
-
   const [content, setContent] = useState<string>('');
 
-  const postQuery = useQuery(FIND_POSTS, {
-    variables: { username: content }
+  const searchQuery = useQuery(SEARCH, {
+    variables: { searchword: content }
   });
 
-
   useEffect(() => {
-    if(postQuery.data){
-      console.log(postQuery);
+    if(searchQuery.data){
+      console.log(searchQuery);
     }
-  }, [postQuery.data]);
+  }, [searchQuery.data]);
 
 
   const handleChange = (event: { target: { value: string; }; }) => {
