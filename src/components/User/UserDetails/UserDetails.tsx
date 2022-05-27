@@ -6,7 +6,7 @@ export const FIND_USER = gql`
     findUser (username: $username) { 
       username
       name
-      joined
+      date
       description
     }
   }
@@ -45,7 +45,7 @@ const UserDetails = ({ username }: Props) => {
           {user.description}
         </p>
         <p>
-          Joined: {user.joined}
+          Joined: {user.date}
         </p>
       </div>
     </div>

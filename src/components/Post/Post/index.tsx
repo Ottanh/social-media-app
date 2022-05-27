@@ -1,8 +1,7 @@
 import { Post } from '../../../types';
-import PostButtons from './PostButtons';
+import PostHeader from './PostHeader';
 import PostContent from './PostContent';
-import PostStats from './PostStats';
-import PostUser from './PostUser';
+import PostFooter from './PostFooter';
 import './index.css';
 
 interface Props {
@@ -12,10 +11,9 @@ interface Props {
 const PostView = ({ post }: Props) => {
   return (
     <div className="PostView">
-      <PostUser user={post.user.name} />
+      <PostHeader user={post.user.name} post={post}/>
       <PostContent post={post} />
-      <PostStats post={post} />
-      <PostButtons />
+      <PostFooter post={post}/>
     </div>
   );
 };

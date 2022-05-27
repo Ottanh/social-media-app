@@ -6,8 +6,8 @@ import { FIND_POSTS } from '../PostList';
 import './index.css';
 
 export const CREATE_POST = gql`
-  mutation createPost($content: String!, $date: String!, $likes: Int!) {
-    createPost(date: $date, content: $content, likes: $likes) {
+  mutation createPost($content: String!, $likes: Int!) {
+    createPost(content: $content, likes: $likes) {
       id
     }
   }
@@ -46,8 +46,7 @@ const PostForm = ({ username }: Props) => {
     }
     createPost({ 
       variables: { 
-        content: content,  
-        date: (new Date()).toISOString().split('T')[0],
+        content: content,
         likes: 0
       } 
     });
@@ -78,7 +77,7 @@ const PostForm = ({ username }: Props) => {
           />
         </div>
         <button 
-          className="PostButton" 
+          className="PostFormButton" 
           type="submit" 
           value="Post"
           onClick={onSubmit}
