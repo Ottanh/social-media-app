@@ -4,16 +4,11 @@
   flex-direction: column;
   padding: 1rem;
   padding-top: 2rem;
-  border: 1px solid;
-  border-top: 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid;
   border-color: rgba(108, 123, 149, 0.5);
 }
 
-
-/*
-box-shadow: 0 0 Xpx [hex/rgba]; 
-clip-path: inset(Apx Bpx Cpx Dpx);
-*/
 
 .PostFormButton {
   display: block;

@@ -2,6 +2,9 @@
 .LogRegButtons {
   display: flex;
   padding: 1rem;
+  padding-top: 5rem;
+  width: 100%;
+  justify-content: center;
 }
 
 .Buttons {

@@ -1,5 +1,3 @@
-.UserProfilePage {
-  display: flex; 
-  flex: 1;
-  flex-direction: column;
+.UserPage {
+  width: 100%;
 }

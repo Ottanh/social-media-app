@@ -2,7 +2,7 @@
 .StartPage {
   display: flex;
   flex: 1;
-  justify-content: left;
-  align-items: end;
+  justify-content: center;
+  align-items: start;
 }
 

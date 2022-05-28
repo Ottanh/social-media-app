@@ -37,11 +37,23 @@ const PostList = ({ username }: Props) => {
   const posts = postQuery.data.findPosts;
   return (
     <div className="PostList">
-      {posts.map((post: Post) => (
-        <PostView key={post.id} post={post} />
-      ))}
+      <PostView key={posts[0].id} post={posts[0]} />
+      <PostView key={posts[1].id} post={posts[1]} />
+      <PostView key={posts[2].id} post={posts[2]} />
+      <PostView key={posts[3].id} post={posts[3]} />
+      <PostView key={posts[4].id} post={posts[4]} />
     </div>
   );
 };
+
+
+/*
+{posts.map((post: Post) => (
+        <PostView key={post.id} post={post} />
+      ))}
+            <PostView key={posts[4].id} post={posts[4]} />
+      <PostView key={posts[5].id} post={posts[5]} />
+      <PostView key={posts[6].id} post={posts[6]} />
+*/
 
 export default PostList;

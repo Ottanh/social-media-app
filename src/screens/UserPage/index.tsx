@@ -8,12 +8,14 @@ import './index.css';
 const UserPage = () => {
   const { username } = useParams<{ username: string }>();
   return (
-    <div className="UserProfilePage">
+    <div className="UserPage">
       <UserDetails username={username} />
       <PostForm username={username} />
       <PostList username={username} />
     </div>
   );
 };
+
+
 
 export default UserPage;
