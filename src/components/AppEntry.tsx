@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import NavigationMenu from '../screens/NavigationMenu';
 import StartPage from '../screens/StartPage';
@@ -12,12 +13,14 @@ const AppEntry = () => {
   const [{loggedInUser: { token, user }}] = useStateValue();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location.pathname);
+
+  useEffect(() => {
+    if(token && user && location.pathname === '/') {
+      navigate(`/${user.username}`);
+    }
+  });
   
     if(token && user) {
-      if(location.pathname === '/') {
-        navigate(`/${user.username}`);
-      }
       return (
         <>
           <NavigationMenu />

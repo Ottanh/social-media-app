@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 import LoginPage from './screens/LoginPage';
 import UserPage from './screens/UserPage';
@@ -9,6 +9,10 @@ import MainRouteWrapper from './components/AppEntry';
 
 
 const App = () => {
+
+  const loc = useLocation();
+  console.log(loc.pathname);
+
   return (
     <div className="App">
       <Routes>

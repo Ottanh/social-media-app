@@ -6,7 +6,6 @@ import './index.css';
 
 
 const UserPage = () => {
-  console.log('render userpage');
   const { username } = useParams<{ username: string }>();
   return (
       <article className="UserPage">

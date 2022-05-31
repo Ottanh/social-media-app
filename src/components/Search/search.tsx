@@ -24,8 +24,6 @@ const SEARCH = gql`
 const Search = () => {
   const [content, setContent] = useState<string>('');
 
-  console.log('render search');
-
   const searchQuery = useQuery(SEARCH, {
     variables: { searchword: content }
   });
