@@ -1,9 +1,9 @@
-.UserPage {
+.ExplorePage {
+  padding: 1rem;
   box-sizing: border-box;
   height: max-content;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   flex: 1;
   border: 1px solid;
   border-color: rgba(108, 123, 149, 0.5);

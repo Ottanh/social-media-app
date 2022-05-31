@@ -41,10 +41,7 @@ const NavigationBar = () => {
         <NavLink className="NavLink" to="/explore" style={isActive => style(isActive)} >
           Explore
         </NavLink>
-        <NavLink className="NavLink" to="/settings" style={isActive => style(isActive)} >
-          Settings
-        </NavLink>
-        <NavLink className="NavLink" to="/" onClick={logout} style={styleLogOut()}>Log out</NavLink>
+        <NavLink className="NavLink" to="" onClick={logout} style={styleLogOut()}>Log out</NavLink>
     </nav>
   );
 };

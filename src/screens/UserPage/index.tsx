@@ -6,13 +6,14 @@ import './index.css';
 
 
 const UserPage = () => {
+  console.log('render userpage');
   const { username } = useParams<{ username: string }>();
   return (
-    <div className="UserPage">
-      <UserDetails username={username} />
-      <PostForm username={username} />
-      <PostList username={username} />
-    </div>
+      <article className="UserPage">
+        <UserDetails username={username} />
+        <PostForm username={username} />
+        <PostList username={username} />
+      </article>
   );
 };
 
