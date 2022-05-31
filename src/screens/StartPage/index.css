@@ -3,6 +3,33 @@
   display: flex;
   flex: 1;
   justify-content: center;
-  align-items: start;
+  align-items: center;
 }
 
+.ImageContainer {
+  width: 45%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-right: 5rem;
+  box-sizing: border-box;
+}
+
+
+.Title {
+  font-size: 5rem;
+  font-weight: 200;
+  text-align: center;
+}
+
+.TitleContainer {
+  display: flex;
+  flex: 1;
+  justify-content: end;
+  flex-direction: column;
+  height: 100%;
+}
+
+.TitlePadding {
+  height: 50%;
+}

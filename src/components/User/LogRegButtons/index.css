@@ -1,14 +1,11 @@
 
 .LogRegButtons {
-  display: flex;
-  padding: 1rem;
-  padding-top: 5rem;
-  width: 100%;
-  justify-content: center;
+  text-align: center;
 }
 
 .Buttons {
-  display: block;
+  width: 6rem;
+  height: 2.5rem;
   background: #161d20;
   color: white;
   border-radius: 4px;
