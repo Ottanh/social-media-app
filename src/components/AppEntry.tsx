@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import NavigationMenu from '../screens/NavigationMenu';
-import StartPage from '../screens/StartPage';
+import EntryPage from '../screens/EntryPage';
 import { useStateValue } from '../state';
 
 
@@ -31,7 +31,7 @@ const AppEntry = () => {
         </>
       );
     } else {
-      return <StartPage />;
+      return <EntryPage />;
     }
   };
 

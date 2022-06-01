@@ -7,29 +7,28 @@
 }
 
 .ImageContainer {
-  width: 45%;
+  min-width: 45%;
   display: flex;
   justify-content: right;
   align-items: center;
-  margin-right: 5rem;
   box-sizing: border-box;
 }
 
-
-.Title {
-  font-size: 5rem;
-  font-weight: 200;
-  text-align: center;
-}
-
-.TitleContainer {
+.PageContent {
   display: flex;
-  flex: 1;
   justify-content: end;
   flex-direction: column;
   height: 100%;
+  width: 33%;
+  text-align: center;
 }
 
-.TitlePadding {
+.Title {
+  font-size: 5vw;
+  font-weight: 100;
+  text-align: center;
+}
+
+.BottomPadding {
   height: 50%;
 }

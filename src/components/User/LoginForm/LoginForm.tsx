@@ -61,7 +61,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>     
+    <form className="LoginForm" onSubmit={handleSubmit(onSubmit)}>     
       <input 
         className="field" 
         type="text" 

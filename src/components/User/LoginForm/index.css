@@ -1,4 +1,10 @@
 
+.LoginForm {
+  max-width: 15rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .field {
   display: block;
   margin: 0.2em;
