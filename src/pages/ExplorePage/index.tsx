@@ -1,4 +1,4 @@
-import Search from '../../components/Search/search';
+import Search from '../../components/Forms/Search/search';
 import './index.css';
 
 

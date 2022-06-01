@@ -1,11 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
-import NavigationMenu from '../screens/NavigationMenu';
-import EntryPage from '../screens/EntryPage';
+import NavigationMenu from './NavigationMenu';
+import EntryPage from '../pages/EntryPage';
 import { useStateValue } from '../state';
-
-
-
 
 
 
