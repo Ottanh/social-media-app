@@ -1,0 +1,36 @@
+.PostPage {
+  box-sizing: border-box;
+  height: max-content;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border: 1px solid;
+  border-color: rgba(108, 123, 149, 0.5);
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.PostTitle {
+  font-weight: bold;
+  height: fit-content;
+  padding-left: 1rem;
+  display: inline-block;
+}
+
+.Msg {
+  height: fit-content;
+  margin-left: 3rem;
+}
+
+.PostPageHeader {
+  border-bottom: 1px solid rgba(108, 123, 149, 0.5);
+  display: flex;
+}
+
+.arrow {
+  vertical-align: bottom;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-left: 1rem;
+}

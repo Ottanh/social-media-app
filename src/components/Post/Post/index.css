@@ -1,7 +1,6 @@
 
 .PostView {
   display: flex;
-  flex: 1;
   flex-direction: column;
   border-bottom: 1px solid;
   padding: 1rem;
