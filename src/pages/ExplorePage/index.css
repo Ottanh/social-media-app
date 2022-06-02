@@ -1,5 +1,6 @@
 .ExplorePage {
   padding: 1rem;
+  padding-right: 0.5rem;
   box-sizing: border-box;
   height: max-content;
   min-height: 100vh;
@@ -14,6 +15,12 @@
 
 .ExploreContainer {
   display: flex; 
-  flex: 1;
-  flex-direction: column;
+}
+
+select {
+  width: 30%;
+  height: 10%;
+  margin-top: auto;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
 }

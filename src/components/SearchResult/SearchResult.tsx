@@ -2,11 +2,10 @@ import { useStateValue } from '../../state';
 import { Post, User } from '../../types';
 
 interface Props {
-  type: string
+  type: string | undefined
 }
 
 const SearchResult = ({ type }: Props) => {
-
   const [state,] = useStateValue();
 
   return (
