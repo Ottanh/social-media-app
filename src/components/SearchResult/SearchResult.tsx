@@ -2,7 +2,7 @@ import { useStateValue } from '../../state';
 import { Post, User } from '../../types';
 
 interface Props {
-  type: string | undefined
+  type: string
 }
 
 const SearchResult = ({ type }: Props) => {

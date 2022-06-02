@@ -5,7 +5,7 @@ import './index.css';
 
 
 const ExplorePage = () => {
-  const [type, setType] = useState<string>();
+  const [type, setType] = useState<string>('users');
 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     event.preventDefault();
