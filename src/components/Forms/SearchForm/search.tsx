@@ -1,6 +1,7 @@
 import { gql, useQuery } from '@apollo/client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Textarea from 'react-expanding-textarea';
+import { setSearchResult, useStateValue } from '../../../state';
 import './index.css';
 
 
@@ -21,12 +22,22 @@ const SEARCH = gql`
   }
 `;
 
-const Search = () => {
+const SearchForm = () => {
   const [content, setContent] = useState<string>('');
+  const [, dispatch] = useStateValue();
 
   const searchQuery = useQuery(SEARCH, {
     variables: { searchword: content }
   });
+
+  useEffect(() => {
+    if(searchQuery.data && searchQuery.data.search && content.length >= 3){
+      dispatch(setSearchResult(searchQuery.data.search));
+    }
+    if(content.length < 3) {
+      dispatch(setSearchResult({users: [], posts: []}));
+    }
+  },[searchQuery.data, content]);
 
   const handleChange = (event: { target: { value: string; }; }) => {
     setContent(event.target.value);
@@ -34,7 +45,6 @@ const Search = () => {
   
 
   return (
-    <div className="ExploreContainer">
       <div className="SearchAreaContainer">
         <Textarea
           className="SearchArea" 
@@ -43,14 +53,8 @@ const Search = () => {
           value={content}
         />
       </div>
-      {searchQuery.data && content.length > 0 &&
-      <div >
-        {searchQuery.data.search.users.map((user: { username: string }) => (<p key={user.username}>@{user.username}</p>))}
-      </div>
-      }
-    </div>
   );
 };
 
 
-export default Search;
+export default SearchForm;

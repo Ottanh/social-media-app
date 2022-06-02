@@ -1,11 +1,4 @@
 
-.ExploreContainer {
-  display: flex; 
-  flex: 1;
-  flex-direction: column;
-}
-
-
 .SearchArea {
   outline: none;
   border: 0;

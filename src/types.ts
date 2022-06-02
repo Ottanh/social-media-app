@@ -16,3 +16,8 @@ export interface Post {
     content?: string;
     likes: number;
 }
+
+export interface SearchResult {
+  users: [User?];
+  posts: [Post?];
+}

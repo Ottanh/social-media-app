@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import { User } from '../types';
+import { SearchResult, User } from '../types';
 
 import { Action } from './reducer';
 
@@ -7,7 +7,8 @@ export type State = {
   loggedInUser: {
     token: string | null;
     user: User | null;
-  }
+  },
+  searchResult: SearchResult;
 };
 
 const initialState: State = {
@@ -19,7 +20,11 @@ const initialState: State = {
         return JSON.parse(storedUser);
       }
     })()
-  }
+  },
+  searchResult: {
+    users: [],
+    posts: []
+   }
 };
 
 export const StateContext = createContext<[State, React.Dispatch<Action>]>([

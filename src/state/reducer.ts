@@ -1,5 +1,5 @@
 import { State } from './state';
-import { User } from '../types';
+import { SearchResult, User } from '../types';
 
 export type Action =
   | {
@@ -9,6 +9,10 @@ export type Action =
   | {
       type: 'SET_TOKEN';
       payload: string | null;
+    }
+  | {
+      type: 'SET_SEARCH_RESULT';
+      payload: SearchResult;
     };
 
 
@@ -16,6 +20,7 @@ export const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case 'SET_USER':
       return {
+        ...state,
         loggedInUser: {
           ...state.loggedInUser,
           user: action.payload
@@ -23,10 +28,16 @@ export const reducer = (state: State, action: Action): State => {
       };
     case 'SET_TOKEN':
       return {
+        ...state,
         loggedInUser: {
           ...state.loggedInUser,
           token: action.payload
         }
+      };
+      case 'SET_SEARCH_RESULT':
+      return {
+        ...state,
+        searchResult: action.payload
       };
     default:
       return state;
@@ -43,6 +54,13 @@ export const setUser = (payload: User | null): Action => {
 export const setToken = (payload: string | null): Action => {
   return {
     type: 'SET_TOKEN',
+    payload
+  };
+};
+
+export const setSearchResult = (payload: SearchResult): Action => {
+  return {
+    type: 'SET_SEARCH_RESULT',
     payload
   };
 };
