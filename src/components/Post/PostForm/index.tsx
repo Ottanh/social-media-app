@@ -2,7 +2,7 @@ import { gql, useMutation } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import Textarea from 'react-expanding-textarea';
 import { useStateValue } from '../../../state';
-import { FIND_POSTS } from '../../Post/PostList';
+import { FIND_POSTS } from '../PostList';
 import './index.css';
 
 export const CREATE_POST = gql`

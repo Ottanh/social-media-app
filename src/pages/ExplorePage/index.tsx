@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react';
-import Search from '../../components/Forms/SearchForm/search';
-import SearchResult from '../../components/SearchResult/SearchResult';
+import Search from '../../components/Search/SearchForm/search';
+import SearchResult from '../../components/Search/SearchResult/SearchResult';
 import './index.css';
 
 

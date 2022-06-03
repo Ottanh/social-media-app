@@ -1,5 +1,5 @@
-import { useStateValue } from '../../state';
-import { Post, User } from '../../types';
+import { useStateValue } from '../../../state';
+import { Post, User } from '../../../types';
 
 interface Props {
   type: string
