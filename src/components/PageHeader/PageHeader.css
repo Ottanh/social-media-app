@@ -1,0 +1,11 @@
+.PageHeader {
+  border-bottom: 1px solid rgba(108, 123, 149, 0.5);
+  display: flex;
+}
+
+.arrow {
+  vertical-align: bottom;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-left: 1rem;
+}

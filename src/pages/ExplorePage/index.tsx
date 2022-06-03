@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from 'react';
+import PageHeader from '../../components/PageHeader/PageHeader';
 import Search from '../../components/Search/SearchForm/search';
 import SearchResult from '../../components/Search/SearchResult/SearchResult';
 import './index.css';
@@ -14,6 +15,7 @@ const ExplorePage = () => {
 
     return (
       <div className="ExplorePage">
+        <PageHeader title="Explore" />
         <div className="ExploreContainer">
           <Search/>
           <select onChange={handleChange}> 
