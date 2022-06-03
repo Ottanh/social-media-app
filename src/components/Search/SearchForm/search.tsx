@@ -13,10 +13,13 @@ const SEARCH = gql`
         username
       }
       posts {
+        id
         user {
           name
         }
+        date
         content
+        likes
       }
     }
   }
