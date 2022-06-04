@@ -8,6 +8,7 @@ export const FIND_POSTS = gql`
       id
       user {
         name
+        username
       }
       date
       content
