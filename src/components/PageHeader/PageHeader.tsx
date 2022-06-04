@@ -16,7 +16,7 @@ const PageHeader = ({ title }: Props) => {
 
   return (
     <div className="PageHeader">
-      <VscArrowLeft className="arrow" size="1.5rem" onClick={onClick}/>
+      <VscArrowLeft className="arrow" size="1.5em" onClick={onClick}/>
       <p className="PostTitle">{title}</p>
     </div>
   );
