@@ -26,7 +26,10 @@ const PostForm = ({ username, replyTo }: Props) => {
   const [{loggedInUser: { user }}] = useStateValue();
 
   const [createPost, result] = useMutation(CREATE_POST, {
-    refetchQueries: [  {query: FIND_POSTS, variables: { username: user?.username }} ],
+    refetchQueries: [ {query: FIND_POSTS, variables: { 
+      replyTo: replyTo, 
+      username: replyTo ? undefined: user?.username 
+    }} ],
     onError: (error) => {
       setError(error.graphQLErrors[0].message);
     },

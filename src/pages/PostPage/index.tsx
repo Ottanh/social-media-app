@@ -33,7 +33,7 @@ const PostPage = () => {
     return <div className="Msg">Loading...</div>;
   }
 
-  if(!postQuery.data){
+  if(!postQuery.data || !postQuery.data.findPosts[0]){
     return <div className="Msg">Not found</div>;
   }
 
