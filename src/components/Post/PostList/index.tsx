@@ -3,8 +3,8 @@ import { Post } from '../../../types';
 import PostView from '../Post';
 
 export const FIND_POSTS = gql`
-  query findPosts($username: String!) {
-    findPosts (username: $username) { 
+  query findPosts($username: String, $replyTo: String) {
+    findPosts (username: $username, replyTo: $replyTo) { 
       id
       user {
         name
@@ -18,13 +18,14 @@ export const FIND_POSTS = gql`
 `;
 
 interface Props {
-  username: string | undefined
+  username: string | undefined,
+  replyTo: string | undefined
 }
 
-const PostList = ({ username }: Props) => {
+const PostList = ({ username, replyTo }: Props) => {
 
   const postQuery = useQuery(FIND_POSTS, {
-    variables: { username: username }
+    variables: { username, replyTo }
   });
 
   if(postQuery.loading ) {
