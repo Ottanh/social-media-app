@@ -3,6 +3,7 @@ import './index.css';
 import manuli from '../../images/manuli.jpg';
 import { Outlet, Route, Routes } from 'react-router-dom';
 import LoginForm from '../../components/User/LoginForm/LoginForm';
+import RegisterForm from '../../components/User/RegisterForm/RegisterForm';
 
 
 const EntryPage = () => {
@@ -13,7 +14,7 @@ const EntryPage = () => {
       </div>
       <div className="PageContent">
         <Routes>
-          <Route path="" element={
+          <Route path="/" element={
             <>
               <Outlet/>
               <div className="BottomPadding"/>
@@ -26,8 +27,8 @@ const EntryPage = () => {
                 </>
               }
             />
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/register" element={<div>Register</div>} />
+            <Route path="login" element={<LoginForm />} />
+            <Route path="register" element={<RegisterForm />} />
           </Route>
         </Routes>
       </div>
