@@ -14,10 +14,11 @@ export const CREATE_POST = gql`
 `;
 
 interface Props {
-  username: string | undefined
+  username: string | undefined,
+  replyTo: string | undefined
 }
 
-const PostForm = ({ username }: Props) => {
+const PostForm = ({ username, replyTo }: Props) => {
   const [{ loggedInUser }] = useStateValue();
   const [error, setError] = useState<string | null>(null);
   const [content, setContent] = useState<string>('');
@@ -47,7 +48,7 @@ const PostForm = ({ username }: Props) => {
     createPost({ 
       variables: { 
         content: content,
-        replyTo: null
+        replyTo: replyTo
       } 
     });
     setContent('');
@@ -62,7 +63,7 @@ const PostForm = ({ username }: Props) => {
     return null;
   }
 
-  if(username !== loggedInUser.user.username){ 
+  if(username !== loggedInUser.user.username && !replyTo){ 
     return null;
   }
 

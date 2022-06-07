@@ -5,6 +5,7 @@ import './index.css';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import { useParams } from 'react-router-dom';
 import PostList from '../../components/Post/PostList';
+import PostForm from '../../components/Post/PostForm';
 
 export const FIND_POSTS = gql`
   query findPosts($id: String!) {
@@ -28,12 +29,19 @@ const PostPage = () => {
     variables: { id }
   });
 
+  if(postQuery.loading){
+    return <div className="Msg">Loading...</div>;
+  }
+
+  if(!postQuery.data){
+    return <div className="Msg">Not found</div>;
+  }
+
   return (
     <div className="PostPage">
       <PageHeader title="Post"/>
-      {postQuery.loading && <div className="Msg">Loading...</div>}
-      {!postQuery.data && <div className="Msg">Not found</div>}
-      {postQuery.data && <Post post={postQuery.data.findPosts[0]}/>}
+      <Post post={postQuery.data.findPosts[0]}/>
+      <PostForm username={undefined} replyTo={id}  />
       <PostList username={undefined} replyTo={id} />
     </div>
   );

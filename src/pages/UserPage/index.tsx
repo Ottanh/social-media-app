@@ -12,7 +12,7 @@ const UserPage = () => {
       <article className="UserPage">
         <PageHeader title={username ? `@${username }` : ''} />
         <UserDetails username={username} />
-        <PostForm username={username} />
+        <PostForm username={username} replyTo={undefined} />
         <PostList username={username} replyTo={undefined} />
       </article>
   );
