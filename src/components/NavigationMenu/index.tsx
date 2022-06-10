@@ -1,20 +1,15 @@
 import { useApolloClient } from '@apollo/client';
 import { NavLink } from 'react-router-dom';
 import { useStateValue, setToken, setUser } from '../../state';
+import { VscAccount, VscSearch, VscSignOut } from 'react-icons/vsc';
+
+
 import './index.css';
 
 const NavigationBar = () => {
-
   const client = useApolloClient();
   const [{loggedInUser: { user }}, dispatch] = useStateValue();
 
-  const style = ({ isActive }: { isActive: boolean }) => {
-    return (
-      {
-        fontWeight: isActive ? 'bold' : '',
-      }
-    );
-  };
 
   const styleLogOut = () => {
     if(!user){
@@ -35,13 +30,21 @@ const NavigationBar = () => {
 
   return (
     <nav className="NavBar">
-        <NavLink className="NavLink" to={profile} style={isActive => style(isActive)} >
-          Profile
+        <NavLink className={({ isActive }) => isActive ? 'ActiveNavLink' : 'NavLink'} to={profile} >
+          <div className="IconContainer">
+            <VscAccount className="ProfileIcon"/> Profile
+          </div>
         </NavLink>
-        <NavLink className="NavLink" to="/explore" style={isActive => style(isActive)} >
-          Explore
+        <NavLink className={({ isActive }) => isActive ? 'ActiveNavLink' : 'NavLink'} to="/explore" >
+        <div className="IconContainer">
+          <VscSearch className="SearchIcon"/> Explore
+          </div>
         </NavLink>
-        <NavLink className="NavLink" to="" onClick={logout} style={styleLogOut()}>Log out</NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'ActiveNavLink' : 'NavLink'} to="" onClick={logout} style={styleLogOut()}>
+        <div className="IconContainer">
+          <VscSignOut className="LogOutIcon"/> Sign out
+        </div>
+        </NavLink>
     </nav>
   );
 };

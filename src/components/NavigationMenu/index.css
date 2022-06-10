@@ -3,11 +3,32 @@
   width: fit-content;
   text-decoration: none;
   color: #191919;
-  font-size: large;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 5px;
+  border-radius: 15px;
+}
+
+.ActiveNavLink {
+  font-weight: bold;
+  display: inline-block;
+  width: fit-content;
+  text-decoration: none;
+  color: #191919;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 5px;
+  border-radius: 15px;
 }
 
 .NavLink:hover {
-  color: black;
+  background-color: rgba(26, 27, 29, 0.5)
+}
+
+.ActiveNavLink:hover {
+  background-color: rgba(26, 27, 29, 0.5)
 }
 
 .NavBar {
@@ -17,4 +38,16 @@
   align-items: flex-end;
   margin-right: 4rem;
   padding-top: 4rem;
+}
+
+.IconContainer {
+  display: flex;
+  font-size: larger;
+}
+
+.ProfileIcon, .SearchIcon, .LogOutIcon {
+  vertical-align: bottom;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-right: 1rem;
 }
