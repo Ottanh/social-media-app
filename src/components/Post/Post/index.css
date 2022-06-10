@@ -27,7 +27,7 @@
 /*******#161d20***********/
 
 .PostFooter {
-  column-gap: 0.5rem;
+  column-gap: 1rem;
   display: inline;
   display: flex;
   justify-content: left;
@@ -55,4 +55,20 @@
   display: inline-block;
 }
 
+.PostIcons {
+  vertical-align: bottom;
+  margin-top: auto;
+  margin-bottom: auto;
+}
 
+.Replies, .Likes {
+  color: rgba(26, 27, 29, 0.8);
+}
+
+.Likes:hover {
+  color: rgba(158, 31, 101, 0.8);
+}
+
+.Replies:hover {
+  color: rgba(26, 27, 29);
+}

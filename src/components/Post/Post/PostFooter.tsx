@@ -3,6 +3,7 @@ import { MouseEvent } from 'react';
 import './index.css';
 import { gql, useMutation } from '@apollo/client';
 import { FIND_POSTS } from '../PostList';
+import { VscCommentDiscussion, VscHeart } from 'react-icons/vsc';
 
 
 export const ADD_LIKE = gql`
@@ -27,7 +28,7 @@ const PostFooter = ({ post }: Props) => {
   });
 
 
-  const like = (e: MouseEvent<HTMLElement>) => {
+  const like = (e: MouseEvent<SVGElement>) => {
     e.stopPropagation();
     addLike({
       variables: {
@@ -36,16 +37,18 @@ const PostFooter = ({ post }: Props) => {
     });
   };
 
-  const reply = (e: MouseEvent<HTMLElement>) => {
-    e.stopPropagation();
+  const reply = () => {
     console.log('reply');
   };
 
   return (
     <div className="PostFooter">
-      <button className="PostButton" onClick={reply}>Reply</button>
-      <button className="PostButton" onClick={like}>Like</button>
-      <div className="Likes">Likes: {post.likes}</div>
+      <div className="Replies">
+        <VscCommentDiscussion className="PostIcons" size="1.5em" onClick={reply}/> 69
+      </div>
+      <div className="Likes">
+        <VscHeart className="PostIcons" size="1.5em" onClick={like}/> {post.likes}
+      </div>
     </div>
   );
 };
