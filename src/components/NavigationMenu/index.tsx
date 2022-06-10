@@ -2,6 +2,7 @@ import { useApolloClient } from '@apollo/client';
 import { NavLink } from 'react-router-dom';
 import { useStateValue, setToken, setUser } from '../../state';
 import { VscAccount, VscSearch, VscSignOut } from 'react-icons/vsc';
+import manuliLogo from '../../images/cat-logo.jpg';
 
 
 import './index.css';
@@ -30,6 +31,8 @@ const NavigationBar = () => {
 
   return (
     <nav className="NavBar">
+      <div className="LinkWrapper">
+        <img className="manuliLogo" src={manuliLogo} alt="manuliLogo"/>
         <NavLink className={({ isActive }) => isActive ? 'ActiveNavLink' : 'NavLink'} to={profile} >
           <div className="IconContainer">
             <VscAccount className="ProfileIcon"/> Profile
@@ -45,6 +48,7 @@ const NavigationBar = () => {
           <VscSignOut className="LogOutIcon"/> Sign out
         </div>
         </NavLink>
+        </div>
     </nav>
   );
 };
