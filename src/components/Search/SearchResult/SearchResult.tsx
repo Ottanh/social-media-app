@@ -1,6 +1,6 @@
 import { useStateValue } from '../../../state';
 import { Post, User } from '../../../types';
-import PostView from '../../Post/Post';
+import PostView from '../../Post/PostView/PostView';
 import UserDetails from '../../User/UserDetails/UserDetails';
 
 

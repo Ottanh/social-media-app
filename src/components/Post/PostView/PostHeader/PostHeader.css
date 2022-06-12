@@ -1,0 +1,12 @@
+.PostHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+#postUser {
+  font-weight: bold;
+}
+
+#postDate {
+  font-weight: 100;
+}

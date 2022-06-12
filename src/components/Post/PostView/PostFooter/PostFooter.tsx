@@ -1,10 +1,10 @@
-import { Post } from '../../../types';
+import { Post } from '../../../../types';
 import { MouseEvent } from 'react';
-import './index.css';
 import { gql, useMutation } from '@apollo/client';
-import { FIND_POSTS } from '../PostList';
+import { FIND_POSTS } from '../../PostList';
 import { VscCommentDiscussion, VscHeart } from 'react-icons/vsc';
 
+import './PostFooter.css';
 
 export const ADD_LIKE = gql`
   mutation addLike($id: ID!) {

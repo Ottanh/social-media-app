@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import { Post } from '../../../types';
-import PostView from '../Post';
+import PostView from '../PostView/PostView';
 
 export const FIND_POSTS = gql`
   query findPosts($username: String, $replyTo: String) {

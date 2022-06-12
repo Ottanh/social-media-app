@@ -1,0 +1,11 @@
+.PostView {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid;
+  padding: 1rem;
+  box-sizing: border-box;
+  border-color: rgba(108, 123, 149, 0.5);
+  row-gap: 1.5rem;
+}
+
+

@@ -1,9 +1,10 @@
 import { Post } from '../../../types';
-import PostHeader from './PostHeader';
-import PostContent from './PostContent';
-import PostFooter from './PostFooter';
-import './index.css';
+import PostHeader from './PostHeader/PostHeader';
+import PostContent from './PostContent/PostContent';
+import PostFooter from './PostFooter/PostFooter';
 import { useNavigate } from 'react-router-dom';
+
+import './PostView.css';
 
 interface Props {
   post: Post;
@@ -18,7 +19,7 @@ const PostView = ({ post }: Props) => {
 
   return (
     <div className="PostView" onClick={onClick}>
-      <PostHeader user={post.user.name} post={post}/>
+      <PostHeader post={post}/>
       <PostContent post={post} />
       <PostFooter post={post}/>
     </div>

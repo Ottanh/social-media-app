@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import Post from '../../components/Post/Post';
+import Post from '../../components/Post/PostView/PostView';
 
 import './index.css';
 import PageHeader from '../../components/PageHeader/PageHeader';
