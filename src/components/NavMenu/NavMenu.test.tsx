@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter, Router } from 'react-router-dom';
-import NavigationMenu from '.';
+import NavigationMenu from './NavMenu';
 import { createMemoryHistory } from 'history';
 import userEvent from '@testing-library/user-event';
 

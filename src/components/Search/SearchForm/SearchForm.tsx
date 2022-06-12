@@ -2,7 +2,7 @@ import { gql, useQuery } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import Textarea from 'react-expanding-textarea';
 import { setSearchResult, useStateValue } from '../../../state';
-import './index.css';
+import './SearchForm.css';
 
 
 const SEARCH = gql`

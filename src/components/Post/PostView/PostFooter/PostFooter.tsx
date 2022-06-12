@@ -1,7 +1,7 @@
 import { Post } from '../../../../types';
 import { MouseEvent } from 'react';
 import { gql, useMutation } from '@apollo/client';
-import { FIND_POSTS } from '../../PostList';
+import { FIND_POSTS } from '../../PostList/PostList';
 import { VscCommentDiscussion, VscHeart } from 'react-icons/vsc';
 
 import './PostFooter.css';

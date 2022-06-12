@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import './index.css';
+import './UserDetails.css';
 
 export const FIND_USER = gql`
   query findUser($username: String!) {
@@ -23,10 +23,10 @@ const UserDetails = ({ username }: Props) => {
   });
 
   if(userQuery.loading ) {
-    return <div className="UserProfilePage">Loading...</div>;
+    return <div className="UserDetails">Loading...</div>;
   } 
-  if(!userQuery.data){
-    return <div className="UserProfilePage">No user found</div>;
+  if(!userQuery.data.findUser){
+    return <div className="UserDetails">No user found</div>;
   }
 
   const user = userQuery.data.findUser;

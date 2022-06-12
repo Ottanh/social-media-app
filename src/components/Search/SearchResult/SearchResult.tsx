@@ -25,17 +25,4 @@ const SearchResult = ({ type }: Props) => {
 };
 
 
-/*
-<>
-          {user &&
-          <p key={user.username}>@{user.username}</p>}
-        </>
-
-        <>
-          {post &&
-          <p key={post.id}>{post.content}</p>}
-        </>
-
-        */
-
 export default SearchResult;

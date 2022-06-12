@@ -1,9 +1,9 @@
 import { gql, useMutation } from '@apollo/client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Textarea from 'react-expanding-textarea';
 import { useStateValue } from '../../../state';
-import { FIND_POSTS } from '../PostList';
-import './index.css';
+import { FIND_POSTS } from '../PostList/PostList';
+import './PostForm.css';
 
 export const CREATE_POST = gql`
   mutation createPost($content: String!, $replyTo: String) {
@@ -19,13 +19,11 @@ interface Props {
 }
 
 const PostForm = ({ username, replyTo }: Props) => {
-  const [{ loggedInUser }] = useStateValue();
   const [error, setError] = useState<string | null>(null);
   const [content, setContent] = useState<string>('');
-
   const [{loggedInUser: { user }}] = useStateValue();
 
-  const [createPost, result] = useMutation(CREATE_POST, {
+  const [createPost,] = useMutation(CREATE_POST, {
     refetchQueries: [ {query: FIND_POSTS, variables: { 
       replyTo: replyTo, 
       username: replyTo ? undefined: user?.username 
@@ -35,12 +33,6 @@ const PostForm = ({ username, replyTo }: Props) => {
     },
   });
 
-
-  useEffect(() => {
-    if(result.data){
-      console.log(result.data);
-    }
-  }, [result.data]);
 
   const onSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault(); 
@@ -62,11 +54,11 @@ const PostForm = ({ username, replyTo }: Props) => {
     setError(null);
   };
   
-  if(!loggedInUser.user) {
+  if(!user) {
     return null;
   }
 
-  if(username !== loggedInUser.user.username && !replyTo){ 
+  if(username !== user.username && !replyTo){ 
     return null;
   }
 

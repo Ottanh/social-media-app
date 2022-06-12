@@ -1,11 +1,10 @@
 import { gql, useQuery } from '@apollo/client';
 import Post from '../../components/Post/PostView/PostView';
-
-import './index.css';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import { useParams } from 'react-router-dom';
-import PostList from '../../components/Post/PostList';
-import PostForm from '../../components/Post/PostForm';
+import PostList from '../../components/Post/PostList/PostList';
+import PostForm from '../../components/Post/PostForm/PostForm';
+import './PostPage.css';
 
 export const FIND_POSTS = gql`
   query findPosts($id: String!) {

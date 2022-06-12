@@ -3,9 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useStateValue, setToken, setUser } from '../../state';
 import { VscAccount, VscSearch, VscSignOut } from 'react-icons/vsc';
 import manuliLogo from '../../images/cat-logo.jpg';
-
-
-import './index.css';
+import './NavMenu.css';
 
 const NavigationBar = () => {
   const client = useApolloClient();
@@ -39,16 +37,16 @@ const NavigationBar = () => {
           </div>
         </NavLink>
         <NavLink className={({ isActive }) => isActive ? 'ActiveNavLink' : 'NavLink'} to="/explore" >
-        <div className="IconContainer">
-          <VscSearch className="SearchIcon"/> Explore
+          <div className="IconContainer">
+            <VscSearch className="SearchIcon"/> Explore
           </div>
         </NavLink>
         <NavLink className={({ isActive }) => isActive ? 'ActiveNavLink' : 'NavLink'} to="" onClick={logout} style={styleLogOut()}>
-        <div className="IconContainer">
-          <VscSignOut className="LogOutIcon"/> Sign out
-        </div>
+          <div className="IconContainer">
+            <VscSignOut className="LogOutIcon"/> Sign out
+          </div>
         </NavLink>
-        </div>
+      </div>
     </nav>
   );
 };

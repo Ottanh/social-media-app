@@ -4,7 +4,7 @@ import { SubmitHandler, useForm, useFormState } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useStateValue } from '../../../state';
 import { setUser, setToken } from '../../../state';
-import './index.css';
+import './RegisterForm.css';
 
 const REGISTER = gql`
   mutation CreateUser($username: String!, $password: String!, $name: String!) {
@@ -21,7 +21,6 @@ const REGISTER = gql`
     }
 }
 `;
-
 
 type Inputs = {
   name: string,
@@ -43,12 +42,6 @@ const RegisterForm = () => {
     },
   });
 
-
-  useEffect(() => {
-    clearErrors('submit');
-  }, [isDirty]);
-
-
   useEffect(() => {
     if(result.data){
       const user = result.data.createUser.user;
@@ -59,7 +52,8 @@ const RegisterForm = () => {
       localStorage.setItem('sma-user', JSON.stringify(user));
       navigate(`/${user.username}`);
     }
-  }, [result.data]);
+    clearErrors('submit');
+  }, [result.data, isDirty]);
 
   
   const onSubmit: SubmitHandler<Inputs> = (data) => {

@@ -1,8 +1,8 @@
 import { ChangeEvent, useState } from 'react';
 import PageHeader from '../../components/PageHeader/PageHeader';
-import Search from '../../components/Search/SearchForm/search';
+import Search from '../../components/Search/SearchForm/SearchForm';
 import SearchResult from '../../components/Search/SearchResult/SearchResult';
-import './index.css';
+import './ExplorePage.css';
 
 
 const ExplorePage = () => {

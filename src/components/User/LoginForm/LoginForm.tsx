@@ -4,7 +4,7 @@ import { SubmitHandler, useForm, useFormState } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useStateValue } from '../../../state';
 import { setUser, setToken } from '../../../state';
-import './index.css';
+import './LoginForm.css';
 
 export const LOGIN = gql`
   mutation login($username: String!, $password: String!) {
@@ -27,23 +27,17 @@ type Inputs = {
   submit: string
 };
 
-
 const LoginForm = () => {
   const navigate = useNavigate();
+  const [, dispatch] = useStateValue();
   const { register, handleSubmit, setError, clearErrors, reset, control, formState: { errors } } = useForm<Inputs>();
   const { isDirty } = useFormState({control});
-
-  const [, dispatch] = useStateValue();
 
   const [loginQuery, result] = useMutation(LOGIN, {
     onError: (error) => {
       setError('submit', { message: error.graphQLErrors[0].message});
     },
   });
-
-  useEffect(() => {
-    clearErrors('submit');
-  }, [isDirty]);
 
   useEffect(() => {
     if(result.data){
@@ -53,10 +47,14 @@ const LoginForm = () => {
       localStorage.setItem('sma-user', JSON.stringify(result.data.login.user));
       navigate(`/${result.data.login.user.username}`);
     }
-  }, [result.data]);
+    clearErrors('submit');
+  }, [result.data, isDirty]);
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    loginQuery({ variables: { username: data.username, password: data.password } });
+    loginQuery({ variables: { 
+      username: data.username, 
+      password: data.password 
+    }});
     reset();
   };
 

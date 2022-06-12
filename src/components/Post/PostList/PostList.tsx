@@ -29,11 +29,8 @@ const PostList = ({ username, replyTo }: Props) => {
   });
 
   if(postQuery.loading ) {
-    return <div className="UserProfilePage">Loading...</div>;
+    return <div className="PostList">Loading...</div>;
   } 
-  if(!postQuery.data){
-    return <div className="UserProfilePage">No user found</div>;
-  }
 
   const posts = postQuery.data.findPosts;
   return (

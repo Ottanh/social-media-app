@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { MockedProvider } from '@apollo/client/testing';
-import { FIND_POSTS } from '../../components/Post/PostList';
+import { FIND_POSTS } from '../../components/Post/PostList/PostList';
 import { FIND_USER } from '../../components/User/UserDetails/UserDetails';
-import UserPage from '.';
+import UserPage from './UserPage';
 
 const mocks = [
   {

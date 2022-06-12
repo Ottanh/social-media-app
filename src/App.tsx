@@ -1,10 +1,9 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
-import UserPage from './pages/UserPage';
-import ExplorePage from './pages/ExplorePage';
+import UserPage from './pages/UserPage/UserPage';
+import ExplorePage from './pages/ExplorePage/ExplorePage';
 import AppEntry from './components/AppEntry/AppEntry';
-
+import PostPage from './pages/PostPage/PostPage';
 import './App.css';
-import PostPage from './pages/PostPage';
 
 const App = () => {
   const loc = useLocation();

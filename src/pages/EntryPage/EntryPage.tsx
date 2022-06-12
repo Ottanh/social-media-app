@@ -1,9 +1,9 @@
 import LogRegButtons from '../../components/User/LogRegButtons/LogRegButtons';
-import './index.css';
 import manuli from '../../images/manuli.jpg';
 import { Outlet, Route, Routes } from 'react-router-dom';
 import LoginForm from '../../components/User/LoginForm/LoginForm';
 import RegisterForm from '../../components/User/RegisterForm/RegisterForm';
+import './EntryPage.css';
 
 
 const EntryPage = () => {

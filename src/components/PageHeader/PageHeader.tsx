@@ -1,6 +1,5 @@
 import { VscArrowLeft } from 'react-icons/vsc';
 import { useNavigate } from 'react-router-dom';
-
 import './PageHeader.css';
 
 interface Props {
