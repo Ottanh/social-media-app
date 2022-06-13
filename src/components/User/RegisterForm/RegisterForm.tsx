@@ -4,7 +4,7 @@ import { SubmitHandler, useForm, useFormState } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useStateValue } from '../../../state';
 import { setUser, setToken } from '../../../state';
-import './RegisterForm.css';
+import '../Form.css';
 
 const REGISTER = gql`
   mutation CreateUser($username: String!, $password: String!, $name: String!) {
@@ -69,26 +69,29 @@ const RegisterForm = () => {
         placeholder="name" 
         {...register('name', {required: 'Name is required'})} 
       />
+      <div className="divErr">{errors.name && errors.name.message}</div>
       <input 
         className="field" 
         type="text" 
         placeholder="username" 
         {...register('username', {required: 'Username is required'})} 
       />
-      {errors.username && <div className="divErr">{errors.username.message}</div>}
+      <div className="divErr">{errors.username && errors.username.message}</div>
       <input 
         className="field" 
         type="password" 
         placeholder="password" 
         {...register('password', {required: 'Password is required'})} 
       />
-      {errors.password && <div className="divErr">{errors.password.message}</div>}
+      <div className="divErr">
+        {errors.password && errors.password.message}
+        {errors.submit && errors.submit.message}
+      </div>
       <input 
         className="button" 
         type="submit" 
         value="Register"
       />
-      {errors.submit && <div className="divErr">{errors.submit.message}</div>}
     </form>
   );
 };

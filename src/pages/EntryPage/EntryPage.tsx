@@ -5,36 +5,29 @@ import LoginForm from '../../components/User/LoginForm/LoginForm';
 import RegisterForm from '../../components/User/RegisterForm/RegisterForm';
 import './EntryPage.css';
 
-
 const EntryPage = () => {
   return (
     <div className="StartPage">
-      <div className="ImageContainer">
         <img src={manuli} alt="manuli"/>
-      </div>
       <div className="PageContent">
         <Routes>
           <Route path="/" element={
             <>
-              <Outlet/>
-              <div className="BottomPadding"/>
+              <h1 className="Title">SomeThing</h1>
+              <div className="OutletContainer">
+                <Outlet/>
+              </div>
             </>
           }>
-            <Route path="" element={
-                <>
-                  <h1 className="Title">SomeThing</h1>
-                  <LogRegButtons />
-                </>
-              }
-            />
+            <Route path="" element={<LogRegButtons />} />
             <Route path="login" element={<LoginForm />} />
             <Route path="register" element={<RegisterForm />} />
           </Route>
         </Routes>
       </div>
-      <div className="Padding" />
     </div>
   );
 };
+
 
 export default EntryPage;

@@ -17,10 +17,6 @@ body {
   scrollbar-gutter: stable both-edges;
 }
 
-.react-icons {
-  vertical-align: middle;
-}
-
 .MainContent {
   display: flex;
   width: 40rem;

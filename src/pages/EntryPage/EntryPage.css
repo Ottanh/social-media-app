@@ -6,14 +6,6 @@
   align-items: center;
 }
 
-.ImageContainer {
-  min-width: 45%;
-  display: flex;
-  justify-content: right;
-  align-items: center;
-  box-sizing: border-box;
-}
-
 .PageContent {
   display: flex;
   justify-content: end;
@@ -21,14 +13,22 @@
   height: 100%;
   width: 33%;
   text-align: center;
+  margin-right: 5rem;
 }
 
 .Title {
-  font-size: 5vw;
+  font-size: 5rem;
   font-weight: 100;
   text-align: center;
+  margin-bottom: 0;
+  margin-top: 20vh;
 }
 
-.BottomPadding {
-  height: 50%;
+.OutletContainer {
+  height: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: auto;
 }
+
