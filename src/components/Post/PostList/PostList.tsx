@@ -13,6 +13,7 @@ export const FIND_POSTS = gql`
       date
       content
       likes
+      replyTo
     }
   }
 `;
@@ -28,9 +29,9 @@ const PostList = ({ username, replyTo }: Props) => {
     variables: { username, replyTo }
   });
 
-  if(postQuery.loading ) {
+  if(postQuery.loading ){
     return <div className="PostList">Loading...</div>;
-  } 
+  }
 
   const posts = postQuery.data.findPosts;
   return (

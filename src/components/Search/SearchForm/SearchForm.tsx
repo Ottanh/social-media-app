@@ -16,6 +16,7 @@ const SEARCH = gql`
         id
         user {
           name
+          username
         }
         date
         content

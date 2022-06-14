@@ -1,13 +1,21 @@
-import { gql, useMutation } from '@apollo/client';
+import { ApolloError, gql, useMutation } from '@apollo/client';
 import { useState } from 'react';
 import Textarea from 'react-expanding-textarea';
 import { useStateValue } from '../../../state';
 import { FIND_POSTS } from '../PostList/PostList';
 import './PostForm.css';
 
-export const CREATE_POST = gql`
-  mutation createPost($content: String!, $replyTo: String) {
-    createPost(content: $content, replyTo: $replyTo) {
+const CREATE_POST = gql`
+  mutation createPost($content: String!) {
+    createPost(content: $content) {
+      id
+    }
+  }
+`;
+
+const CREATE_REPLY = gql`
+  mutation createReply($content: String!, $replyTo: String!) {
+    createReply(content: $content, replyTo: $replyTo) {
       id
     }
   }
@@ -23,14 +31,27 @@ const PostForm = ({ username, replyTo }: Props) => {
   const [content, setContent] = useState<string>('');
   const [{loggedInUser: { user }}] = useStateValue();
 
+  const handleError = (error: ApolloError) => {
+    if(error.networkError) {
+      setError(error.networkError.message);
+    } 
+    if (error.graphQLErrors[0]) {
+      setError(error.graphQLErrors[0].message);
+    }
+  };
+
   const [createPost,] = useMutation(CREATE_POST, {
     refetchQueries: [ {query: FIND_POSTS, variables: { 
-      replyTo: replyTo, 
-      username: replyTo ? undefined: user?.username 
+      username: user?.username 
     }} ],
-    onError: (error) => {
-      setError(error.graphQLErrors[0].message);
-    },
+    onError: handleError,
+  });
+
+  const [createReply,] = useMutation(CREATE_REPLY, {
+    refetchQueries: [ {query: FIND_POSTS, variables: { 
+      replyTo: replyTo
+    }} ],
+    onError: handleError,
   });
 
 
@@ -40,12 +61,21 @@ const PostForm = ({ username, replyTo }: Props) => {
       setError('Post must be at least 3 charecters');
       return;
     }
-    createPost({ 
-      variables: { 
-        content: content,
-        replyTo: replyTo
-      } 
-    });
+
+    if(replyTo !== undefined) {
+      createReply({ 
+        variables: { 
+          content: content,
+          replyTo: replyTo
+        } 
+      });
+    } else {
+      createPost({ 
+        variables: { 
+          content: content
+        } 
+      });
+    }
     setContent('');
   };
 
@@ -58,7 +88,7 @@ const PostForm = ({ username, replyTo }: Props) => {
     return null;
   }
 
-  if(username !== user.username && !replyTo){ 
+  if(username !== user.username && !replyTo) {
     return null;
   }
 

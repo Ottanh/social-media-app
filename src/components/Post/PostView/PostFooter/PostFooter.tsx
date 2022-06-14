@@ -1,9 +1,8 @@
 import { Post } from '../../../../types';
 import { MouseEvent } from 'react';
-import { gql, useMutation } from '@apollo/client';
+import { gql, useMutation, useQuery } from '@apollo/client';
 import { FIND_POSTS } from '../../PostList/PostList';
 import { VscCommentDiscussion, VscHeart } from 'react-icons/vsc';
-
 import './PostFooter.css';
 
 export const ADD_LIKE = gql`
@@ -15,16 +14,29 @@ export const ADD_LIKE = gql`
   }
 `;
 
+const GET_REPLIES = gql`
+  query countPostReplies($id: String!) {
+    countPostReplies(id: $id)
+  }
+`;
+
 interface Props {
   post: Post
 }
 
 const PostFooter = ({ post }: Props) => {
   const [addLike,] = useMutation(ADD_LIKE, {
-    refetchQueries: [  {query: FIND_POSTS, variables: { username: post.user.username }} ],
+    refetchQueries: [  {query: FIND_POSTS, variables: { 
+      username: post.replyTo ? undefined : post.user.username, 
+      replyTo: post.replyTo 
+    }} ],
     onError: (error) => {
       console.log(error.graphQLErrors[0].message);
     },
+  });
+
+  const countQuery = useQuery(GET_REPLIES, {
+    variables: { id: post.id }
   });
 
 
@@ -44,7 +56,7 @@ const PostFooter = ({ post }: Props) => {
   return (
     <div className="PostFooter">
       <div className="Replies">
-        <VscCommentDiscussion className="PostIcons" size="1.5em" onClick={reply}/> 69
+        <VscCommentDiscussion className="PostIcons" size="1.5em" onClick={reply}/> {countQuery.data && countQuery.data.countPostReplies}
       </div>
       <div className="Likes">
         <VscHeart className="PostIcons" size="1.5em" onClick={like}/> {post.likes}

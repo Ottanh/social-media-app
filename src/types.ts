@@ -15,6 +15,7 @@ export interface Post {
     date: string;
     content?: string;
     likes: number;
+    replyTo?: string;
 }
 
 export interface SearchResult {
