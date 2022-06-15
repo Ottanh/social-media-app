@@ -16,6 +16,7 @@ export const LOGIN = gql`
         name
         date
         description
+        likes
       }
     }
   }
