@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, MouseEvent } from 'react';
+import { useState, MouseEvent } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
 import { BsChatText } from 'react-icons/bs';
 import PageHeader from '../../components/PageHeader/PageHeader';

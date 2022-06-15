@@ -5,6 +5,7 @@ import { FIND_POSTS } from '../../PostList/PostList';
 import { BsChatText, BsHeart, BsHeartFill } from 'react-icons/bs';
 import './PostFooter.css';
 import { useNavigate } from 'react-router-dom';
+import { useStateValue } from '../../../../state';
  
 export const ADD_LIKE = gql`
   mutation addLike($id: ID!) {
@@ -38,6 +39,7 @@ interface Props {
 }
 
 const PostFooter = ({ post }: Props) => {
+  const [{ loggedInUser: { user }},] = useStateValue();
   const refetchQueries = [  
     {query: FIND_POSTS, 
       variables: { 
@@ -45,7 +47,7 @@ const PostFooter = ({ post }: Props) => {
         replyTo: post.replyTo 
       }},
     {query: GET_USER_LIKES, 
-      variables: { username: post.user.username }},
+      variables: { username: user?.username }},
   ];
 
   const [addLike,] = useMutation(ADD_LIKE, {
@@ -63,7 +65,7 @@ const PostFooter = ({ post }: Props) => {
   });
 
   const userQuery = useQuery(GET_USER_LIKES, {
-    variables: { username: post.user.username }
+    variables: { username: user?.username }
   });
 
   const [likedPost, setLikedPost] = useState(false);

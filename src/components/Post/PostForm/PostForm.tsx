@@ -6,20 +6,13 @@ import { FIND_POSTS } from '../PostList/PostList';
 import './PostForm.css';
 
 const CREATE_POST = gql`
-  mutation createPost($content: String!) {
-    createPost(content: $content) {
+  mutation createPost($content: String!,$replyTo: String) {
+    createPost(content: $content, replyTo: $replyTo) {
       id
     }
   }
 `;
 
-const CREATE_REPLY = gql`
-  mutation createReply($content: String!, $replyTo: String!) {
-    createReply(content: $content, replyTo: $replyTo) {
-      id
-    }
-  }
-`;
 
 interface Props {
   username: string | undefined,
@@ -40,16 +33,13 @@ const PostForm = ({ username, replyTo }: Props) => {
     }
   };
 
-  const [createPost,] = useMutation(CREATE_POST, {
-    refetchQueries: [ {query: FIND_POSTS, variables: { 
-      username: user?.username 
-    }} ],
-    onError: handleError,
-  });
 
-  const [createReply,] = useMutation(CREATE_REPLY, {
+  const [createPost,] = useMutation(CREATE_POST, {
     refetchQueries: [ 
-      {query: FIND_POSTS, variables: { replyTo: replyTo }},
+      {query: FIND_POSTS, variables: { 
+        replyTo: replyTo, 
+        username: replyTo ? undefined : user?.username 
+      }},
       {query: FIND_POSTS, variables: { id: replyTo }}
      ],
     onError: handleError,
@@ -63,20 +53,12 @@ const PostForm = ({ username, replyTo }: Props) => {
       return;
     }
 
-    if(replyTo !== undefined) {
-      createReply({ 
-        variables: { 
-          content: content,
-          replyTo: replyTo
-        } 
-      });
-    } else {
-      createPost({ 
-        variables: { 
-          content: content
-        } 
-      });
-    }
+    createPost({ 
+      variables: { 
+        content: content,
+        replyTo: replyTo
+      } 
+    });
     setContent('');
   };
 
