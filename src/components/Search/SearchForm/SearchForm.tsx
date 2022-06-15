@@ -9,6 +9,7 @@ const SEARCH = gql`
   query search($searchword: String!) {
     search (searchword: $searchword) { 
       users {
+        id
         name
         username
       }
@@ -21,6 +22,7 @@ const SEARCH = gql`
         date
         content
         likes
+        replies
       }
     }
   }

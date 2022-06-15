@@ -13,9 +13,9 @@ const SearchResult = ({ type }: Props) => {
 
   return (
     <div className="SearchResult">
-      {type === 'users' && state.searchResult.users.map((user: User | undefined) => (
-        <UserDetails key={user?.username} username={user?.username} />
-      ))}
+      {type === 'users' && state.searchResult.users.map((user: User | undefined) => {
+        return <UserDetails key={user?.username} username={user?.username} />;
+      })}
       {type === 'posts' && state.searchResult.posts.map((post: Post | undefined) => {
         if(!post) return null;
         return <PostView key={post.id} post={post} />;

@@ -28,13 +28,14 @@
 }
 
 .PostIcons {
-  vertical-align: bottom;
   margin-top: auto;
   margin-bottom: auto;
+  margin-right: 5px;
 }
 
 .Replies, .Likes {
   color: rgba(26, 27, 29, 0.8);
+  display: flex;
 }
 
 .Likes:hover {

@@ -1,4 +1,4 @@
-import { VscArrowLeft } from 'react-icons/vsc';
+import { BsArrowLeft } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import './PageHeader.css';
 
@@ -15,7 +15,7 @@ const PageHeader = ({ title }: Props) => {
 
   return (
     <div className="PageHeader">
-      <VscArrowLeft className="arrow" size="1.5em" onClick={onClick}/>
+      <BsArrowLeft className="arrow" size="1.5em" onClick={onClick}/>
       <p className="PostTitle">{title}</p>
     </div>
   );

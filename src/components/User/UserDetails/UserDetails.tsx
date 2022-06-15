@@ -4,6 +4,7 @@ import './UserDetails.css';
 export const FIND_USER = gql`
   query findUser($username: String!) {
     findUser (username: $username) { 
+      id
       username
       name
       date

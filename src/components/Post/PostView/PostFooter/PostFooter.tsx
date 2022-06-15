@@ -2,9 +2,9 @@ import { Post } from '../../../../types';
 import { MouseEvent, useEffect, useState } from 'react';
 import { gql, useMutation, useQuery } from '@apollo/client';
 import { FIND_POSTS } from '../../PostList/PostList';
-import { VscCommentDiscussion, VscHeart } from 'react-icons/vsc';
+import { BsChatText, BsHeart, BsHeartFill } from 'react-icons/bs';
 import './PostFooter.css';
-import { useStateValue } from '../../../../state';
+import { useNavigate } from 'react-router-dom';
  
 export const ADD_LIKE = gql`
   mutation addLike($id: ID!) {
@@ -27,6 +27,7 @@ export const DELETE_LIKE = gql`
 export const GET_USER_LIKES = gql`
   query findUser($username: String!) {
     findUser(username: $username) {
+      id
       likes
     }
   }
@@ -67,14 +68,12 @@ const PostFooter = ({ post }: Props) => {
 
   const [likedPost, setLikedPost] = useState(false);
   useEffect(() => {
-  
     if(userQuery.data && userQuery.data.findUser.likes.includes(post.id)) {
       setLikedPost(true);
     } else {
       setLikedPost(false);
     }
   }, [userQuery.data]);
-
   
   const like = (e: MouseEvent<HTMLElement>) => {
     e.stopPropagation();
@@ -93,13 +92,21 @@ const PostFooter = ({ post }: Props) => {
     }
   };
 
+  const navigate = useNavigate();
+
+  const onClick = () => {
+    navigate(`/post/${post.id}`);
+  };
+
   return (
-    <div className="PostFooter">
+    <div className="PostFooter" onClick={onClick}>
       <div className="Replies">
-        <VscCommentDiscussion className="PostIcons" size="1.5em" /> {post.replies.length}
+        <BsChatText className="PostIcons" size="1em" /> {post.replies.length}
       </div>
       <div className="Likes" onClick={like} style={likedPost ? {'color': 'rgba(158, 31, 101, 1)'}: {}}>
-        <VscHeart className="PostIcons" size="1.5em" /> {post.likes}
+        {likedPost 
+          ? <><BsHeartFill className="PostIcons" size="1em" /> {post.likes}</> 
+          : <><BsHeart className="PostIcons" size="1em" /> {post.likes}</>}
       </div>
     </div>
   );

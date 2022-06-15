@@ -24,3 +24,10 @@ select {
   margin-bottom: 0.5rem;
   margin-left: 0.5rem;
 }
+
+.SearchIcons {
+  margin-left: 0.5rem;
+  margin-top: auto;
+  border-radius: 5px;
+  padding: 5px;
+}

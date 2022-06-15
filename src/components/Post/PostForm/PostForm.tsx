@@ -109,7 +109,7 @@ const PostForm = ({ username, replyTo }: Props) => {
           value="Post"
           onClick={onSubmit}
         >
-          Post
+          Send
         </button>
         {error && <div className="divErrPost">{error}</div>}
     </div>
