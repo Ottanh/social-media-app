@@ -17,6 +17,7 @@ export const FIND_POSTS = gql`
       date
       content
       likes
+      replies
     }
   }
 `;

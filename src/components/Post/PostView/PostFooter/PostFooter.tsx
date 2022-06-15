@@ -1,22 +1,16 @@
 import { Post } from '../../../../types';
 import { MouseEvent } from 'react';
-import { gql, useMutation, useQuery } from '@apollo/client';
+import { gql, useMutation } from '@apollo/client';
 import { FIND_POSTS } from '../../PostList/PostList';
 import { VscCommentDiscussion, VscHeart } from 'react-icons/vsc';
 import './PostFooter.css';
-
+ 
 export const ADD_LIKE = gql`
   mutation addLike($id: ID!) {
     addLike(id: $id) {
       id
       likes
     }
-  }
-`;
-
-const GET_REPLIES = gql`
-  query countPostReplies($id: String!) {
-    countPostReplies(id: $id)
   }
 `;
 
@@ -35,11 +29,6 @@ const PostFooter = ({ post }: Props) => {
     },
   });
 
-  const countQuery = useQuery(GET_REPLIES, {
-    variables: { id: post.id }
-  });
-
-
   const like = (e: MouseEvent<SVGElement>) => {
     e.stopPropagation();
     addLike({
@@ -49,14 +38,10 @@ const PostFooter = ({ post }: Props) => {
     });
   };
 
-  const reply = () => {
-    console.log('reply');
-  };
-
   return (
     <div className="PostFooter">
       <div className="Replies">
-        <VscCommentDiscussion className="PostIcons" size="1.5em" onClick={reply}/> {countQuery.data && countQuery.data.countPostReplies}
+        <VscCommentDiscussion className="PostIcons" size="1.5em" /> {post.replies.length}
       </div>
       <div className="Likes">
         <VscHeart className="PostIcons" size="1.5em" onClick={like}/> {post.likes}

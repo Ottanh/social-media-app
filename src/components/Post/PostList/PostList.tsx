@@ -14,6 +14,7 @@ export const FIND_POSTS = gql`
       content
       likes
       replyTo
+      replies
     }
   }
 `;

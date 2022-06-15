@@ -1,4 +1,5 @@
 export interface User {
+  id: string;
   username: string;
   name: string;
   joined: string;
@@ -16,6 +17,7 @@ export interface Post {
     content?: string;
     likes: number;
     replyTo?: string;
+    replies: [string?]
 }
 
 export interface SearchResult {
