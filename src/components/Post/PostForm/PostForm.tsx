@@ -1,17 +1,8 @@
-import { ApolloError, gql, useMutation } from '@apollo/client';
 import { useState } from 'react';
 import Textarea from 'react-expanding-textarea';
+import useCreateUser from '../../../hooks/useCreateUser';
 import { useStateValue } from '../../../state';
-import { FIND_POSTS } from '../PostList/PostList';
 import './PostForm.css';
-
-const CREATE_POST = gql`
-  mutation createPost($content: String!,$replyTo: String) {
-    createPost(content: $content, replyTo: $replyTo) {
-      id
-    }
-  }
-`;
 
 
 interface Props {
@@ -23,28 +14,7 @@ const PostForm = ({ username, replyTo }: Props) => {
   const [error, setError] = useState<string | null>(null);
   const [content, setContent] = useState<string>('');
   const [{loggedInUser: { user }}] = useStateValue();
-
-  const handleError = (error: ApolloError) => {
-    if(error.networkError) {
-      setError(error.networkError.message);
-    } 
-    if (error.graphQLErrors[0]) {
-      setError(error.graphQLErrors[0].message);
-    }
-  };
-
-
-  const [createPost,] = useMutation(CREATE_POST, {
-    refetchQueries: [ 
-      {query: FIND_POSTS, variables: { 
-        replyTo: replyTo, 
-        username: replyTo ? undefined : user?.username 
-      }},
-      {query: FIND_POSTS, variables: { id: replyTo }}
-     ],
-    onError: handleError,
-  });
-
+  const createPost = useCreateUser(replyTo, setError);
 
   const onSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault(); 
@@ -52,7 +22,6 @@ const PostForm = ({ username, replyTo }: Props) => {
       setError('Post must be at least 3 charecters');
       return;
     }
-
     createPost({ 
       variables: { 
         content: content,

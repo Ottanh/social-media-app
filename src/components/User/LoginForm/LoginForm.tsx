@@ -1,26 +1,7 @@
-import { gql, useMutation } from '@apollo/client';
 import { useEffect } from 'react';
 import { SubmitHandler, useForm, useFormState } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { useStateValue } from '../../../state';
-import { setUser, setToken } from '../../../state';
+import useLogin from '../../../hooks/useLogin';
 import '../Form.css';
-
-export const LOGIN = gql`
-  mutation login($username: String!, $password: String!) {
-    login (username: $username, password: $password) { 
-      token
-      user {
-        id
-        username
-        name
-        date
-        description
-        likes
-      }
-    }
-  }
-`;
 
 type Inputs = {
   username: string,
@@ -29,27 +10,17 @@ type Inputs = {
 };
 
 const LoginForm = () => {
-  const navigate = useNavigate();
-  const [, dispatch] = useStateValue();
   const { register, handleSubmit, setError, clearErrors, reset, control, formState: { errors } } = useForm<Inputs>();
   const { isDirty } = useFormState({control});
-
-  const [loginQuery, result] = useMutation(LOGIN, {
-    onError: (error) => {
-      setError('submit', { message: error.graphQLErrors[0].message});
-    },
-  });
+  const [loginQuery, loginError] = useLogin();
 
   useEffect(() => {
-    if(result.data){
-      dispatch(setUser(result.data.login.user));
-      dispatch(setToken(result.data.login.token));
-      localStorage.setItem('sma-user-token', result.data.login.token);
-      localStorage.setItem('sma-user', JSON.stringify(result.data.login.user));
-      navigate(`/${result.data.login.user.username}`);
-    }
     clearErrors('submit');
-  }, [result.data, isDirty]);
+  }, [isDirty]);
+
+  useEffect(() => {
+    setError('submit', { message: loginError});
+  }, [loginError]);
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     loginQuery({ variables: { 
