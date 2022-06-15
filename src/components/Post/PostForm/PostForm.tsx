@@ -48,9 +48,10 @@ const PostForm = ({ username, replyTo }: Props) => {
   });
 
   const [createReply,] = useMutation(CREATE_REPLY, {
-    refetchQueries: [ {query: FIND_POSTS, variables: { 
-      replyTo: replyTo
-    }} ],
+    refetchQueries: [ 
+      {query: FIND_POSTS, variables: { replyTo: replyTo }},
+      {query: FIND_POSTS, variables: { id: replyTo }}
+     ],
     onError: handleError,
   });
 
