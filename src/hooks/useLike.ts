@@ -51,6 +51,7 @@ const useLike = (post: Post): [() => void, () => void] => {
         id: `User:${user.id}`,
         fields: {
           likes(cachedLikes) {
+            console.log(user);
             return cachedLikes.concat(response.data.addLike.id);
           },
         }
@@ -65,6 +66,7 @@ const useLike = (post: Post): [() => void, () => void] => {
         id: cache.identify(response.data.deleteLike),
         fields: {
           likes() {
+            console.log(user);
             console.log(response.data.deleteLike.likes);
             return response.data.deleteLike.likes;
           },

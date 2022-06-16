@@ -1,5 +1,5 @@
 import { Post } from '../../../../types';
-import { MouseEvent } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 import { BsChatText, BsHeart, BsHeartFill } from 'react-icons/bs';
 import './PostFooter.css';
 import { useNavigate } from 'react-router-dom';
@@ -26,9 +26,16 @@ interface Props {
 
 const PostFooter = ({ post }: Props) => {
   const [addLike, deleteLike] = useLike(post);
+  const [likedPost, setLikedPost] = useState<boolean>();
   const userQuery = useQuery(GET_USER);
 
-  const likedPost =  userQuery.data ? userQuery.data.me.likes.includes(post.id) : false;
+  useEffect(() => {
+    if(userQuery.data){
+      console.log(userQuery.data);
+      setLikedPost(userQuery.data.me.likes.includes(post.id));
+    }
+  },[userQuery.data]);
+
   const handleLike = (e: MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     if(likedPost) {
@@ -42,6 +49,10 @@ const PostFooter = ({ post }: Props) => {
   const onClick = () => {
     navigate(`/post/${post.id}`);
   };
+
+  if(!userQuery.data){
+    return null;
+  }
 
   return (
     <div className="PostFooter" onClick={onClick}>
