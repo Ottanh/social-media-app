@@ -6,9 +6,9 @@ import PostList from '../../components/Post/PostList/PostList';
 import PostForm from '../../components/Post/PostForm/PostForm';
 import './PostPage.css';
 
-export const FIND_POSTS = gql`
-  query findPosts($id: String!) {
-    findPosts (id: $id) { 
+export const FIND_POST = gql`
+  query findPost($id: String!) {
+    findPost(id: $id) { 
       id
       user {
         name
@@ -25,7 +25,7 @@ export const FIND_POSTS = gql`
 const PostPage = () => {
   const { id } = useParams<{ id: string }>();
 
-  const postQuery = useQuery(FIND_POSTS, {
+  const postQuery = useQuery(FIND_POST, {
     variables: { id }
   });
 
@@ -33,14 +33,14 @@ const PostPage = () => {
     return <div className="Msg">Loading...</div>;
   }
 
-  if(!postQuery.data || !postQuery.data.findPosts[0]){
+  if(!postQuery.data || !postQuery.data.findPost){
     return <div className="Msg">Not found</div>;
   }
 
   return (
     <div className="PostPage">
       <PageHeader title="Post"/>
-      <Post post={postQuery.data.findPosts[0]}/>
+      <Post post={postQuery.data.findPost}/>
       <PostForm username={undefined} replyTo={id}  />
       <PostList username={undefined} replyTo={id} />
     </div>

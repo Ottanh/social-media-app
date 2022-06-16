@@ -4,17 +4,38 @@ import { BsChatText, BsHeart, BsHeartFill } from 'react-icons/bs';
 import './PostFooter.css';
 import { useNavigate } from 'react-router-dom';
 import useLike from '../../../../hooks/useLike';
+import { gql, useQuery } from '@apollo/client';
  
+
+const GET_USER = gql`
+query Me {
+  me {
+    id
+    username
+    name
+    date
+    description
+    likes
+  }
+}
+`;
+
 interface Props {
   post: Post
 }
 
 const PostFooter = ({ post }: Props) => {
-  const [like, likedPost] = useLike(post);
-  
+  const [addLike, deleteLike] = useLike(post);
+  const userQuery = useQuery(GET_USER);
+
+  const likedPost =  userQuery.data ? userQuery.data.me.likes.includes(post.id) : false;
   const handleLike = (e: MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-    like();
+    if(likedPost) {
+      deleteLike();
+    } else {
+      addLike();
+    }
   };
 
   const navigate = useNavigate();

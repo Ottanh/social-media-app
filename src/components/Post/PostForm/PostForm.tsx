@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Textarea from 'react-expanding-textarea';
-import useCreateUser from '../../../hooks/useCreateUser';
+import useCreatePost from '../../../hooks/useCreatePost';
 import { useStateValue } from '../../../state';
 import './PostForm.css';
 
@@ -14,7 +14,7 @@ const PostForm = ({ username, replyTo }: Props) => {
   const [error, setError] = useState<string | null>(null);
   const [content, setContent] = useState<string>('');
   const [{loggedInUser: { user }}] = useStateValue();
-  const createPost = useCreateUser(replyTo, setError);
+  const createPost = useCreatePost(replyTo, setError);
 
   const onSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault(); 

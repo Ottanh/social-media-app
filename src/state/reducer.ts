@@ -7,6 +7,10 @@ export type Action =
       payload: User | null;
     }
   | {
+      type: 'SET_USER_LIKES';
+      payload: string[];
+    }
+  | {
       type: 'SET_TOKEN';
       payload: string | null;
     }
@@ -26,6 +30,20 @@ export const reducer = (state: State, action: Action): State => {
           user: action.payload
         }
       };
+    case 'SET_USER_LIKES':
+        if(!state.loggedInUser.user){
+          throw new TypeError('User is null');
+        }
+        return {
+          ...state,
+          loggedInUser: {
+            ...state.loggedInUser,
+            user: {
+              ...state.loggedInUser.user,
+              likes: action.payload
+            }
+          }
+        };
     case 'SET_TOKEN':
       return {
         ...state,
@@ -47,6 +65,13 @@ export const reducer = (state: State, action: Action): State => {
 export const setUser = (payload: User | null): Action => {
   return {
     type: 'SET_USER',
+    payload
+  };
+};
+
+export const setUserLikes = (payload: string[]): Action => {
+  return {
+    type: 'SET_USER_LIKES',
     payload
   };
 };

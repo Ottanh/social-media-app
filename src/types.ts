@@ -4,7 +4,7 @@ export interface User {
   name: string;
   joined: string;
   description: string;
-  likes: [string?];
+  likes: string[];
 }
 
 export interface Post {

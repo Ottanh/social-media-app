@@ -1,9 +1,7 @@
-
-import { useEffect, useState } from 'react';
-import { gql, useMutation, useQuery } from '@apollo/client';
+import { ApolloError, gql, useMutation } from '@apollo/client';
 import { useStateValue } from '../state';
-import { FIND_POSTS } from '../components/Post/PostList/PostList';
 import { Post } from '../types';
+import { arrRemove } from '../util/array';
 
 const ADD_LIKE = gql`
   mutation addLike($id: ID!) {
@@ -23,70 +21,83 @@ const DELETE_LIKE = gql`
   }
 `;
 
-const GET_USER_LIKES = gql`
-  query findUser($username: String!) {
-    findUser(username: $username) {
-      id
-      likes
-    }
+const useLike = (post: Post): [() => void, () => void] => {
+  const [{loggedInUser: { user }}] = useStateValue();
+  if(!user) {
+    throw new Error('User is null');
   }
-`;
 
-const useLike = (post: Post): [() => void, boolean] => {
-  const [{ loggedInUser: { user }},] = useStateValue();
-  const refetchQueries = [  
-    {query: FIND_POSTS, 
-      variables: { 
-        username: post.replyTo ? undefined : post.user.username, 
-        replyTo: post.replyTo 
-      }},
-    {query: GET_USER_LIKES, 
-      variables: { username: user?.username }},
-  ];
-
-  const [addLike,] = useMutation(ADD_LIKE, {
-    refetchQueries,
-    onError: (error) => {
+  const handleError = (error: ApolloError) => {
+    if(error.networkError) {
+      console.log(error.networkError.message);
+    } 
+    if (error.graphQLErrors[0]) {
       console.log(error.graphQLErrors[0].message);
-    },
-  });
-
-  const [deleteLike,] = useMutation(DELETE_LIKE, {
-    refetchQueries,
-    onError: (error) => {
-      console.log(error.graphQLErrors[0].message);
-    },
-  });
-
-  const userQuery = useQuery(GET_USER_LIKES, {
-    variables: { username: user?.username }
-  });
-
-  const [likedPost, setLikedPost] = useState(false);
-  useEffect(() => {
-    if(userQuery.data && userQuery.data.findUser.likes.includes(post.id)) {
-      setLikedPost(true);
-    } else {
-      setLikedPost(false);
-    }
-  }, [userQuery.data]);
-  
-  const like = () => {
-    if(likedPost) {
-      deleteLike({
-        variables: {
-          id: post.id
-        }
-      });
-    } else {
-      addLike({
-        variables: {
-          id: post.id
-        }
-      });
     }
   };
-  return [like, likedPost];
+  
+  const [addLikeMutation,] = useMutation(ADD_LIKE, {
+    onError: handleError,
+    update: (cache, response) => {  
+      cache.modify({
+        id: cache.identify(response.data.addLike),
+        fields: {
+          likes() {
+            return response.data.addLike.likes;
+          },
+        }
+      });
+      cache.modify({
+        id: `User:${user.id}`,
+        fields: {
+          likes(cachedLikes) {
+            return cachedLikes.concat(response.data.addLike.id);
+          },
+        }
+      }); 
+    },
+  });
+
+  const [deleteLikeMutation,] = useMutation(DELETE_LIKE, {
+    onError: handleError,
+    update: (cache, response) => {    
+      cache.modify({
+        id: cache.identify(response.data.deleteLike),
+        fields: {
+          likes() {
+            console.log(response.data.deleteLike.likes);
+            return response.data.deleteLike.likes;
+          },
+        }
+      }); 
+      cache.modify({
+        id: `User:${user.id}`,
+        fields: {
+          likes(cachedLikes) {
+            return arrRemove(response.data.deleteLike.id, cachedLikes);
+          },
+        }
+      }); 
+    },
+  });
+
+  const deleteLike = async () => {
+    deleteLikeMutation({
+      variables: {
+        id: post.id
+      }
+    });
+  };
+
+  const addLike = async () => {
+    addLikeMutation({
+      variables: {
+        id: post.id
+      }
+    });
+  };
+
+  return [addLike, deleteLike];
 };
 
 export default useLike;

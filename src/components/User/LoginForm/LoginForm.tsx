@@ -3,6 +3,7 @@ import { SubmitHandler, useForm, useFormState } from 'react-hook-form';
 import useLogin from '../../../hooks/useLogin';
 import '../Form.css';
 
+
 type Inputs = {
   username: string,
   password: string,
@@ -22,8 +23,8 @@ const LoginForm = () => {
     setError('submit', { message: loginError});
   }, [loginError]);
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    loginQuery({ variables: { 
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    await loginQuery({ variables: { 
       username: data.username, 
       password: data.password 
     }});

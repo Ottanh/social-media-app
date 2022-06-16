@@ -7,6 +7,7 @@ export const FIND_POSTS = gql`
     findPosts (username: $username, replyTo: $replyTo) { 
       id
       user {
+        id
         name
         username
       }
@@ -27,7 +28,7 @@ interface Props {
 const PostList = ({ username, replyTo }: Props) => {
 
   const postQuery = useQuery(FIND_POSTS, {
-    variables: { username, replyTo }
+    variables: { username, replyTo },
   });
 
   if(postQuery.loading ){

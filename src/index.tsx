@@ -32,7 +32,7 @@ const httpLink = new HttpLink({
 });
 
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   cache: new InMemoryCache(),
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   link: from([authLink as any, httpLink])

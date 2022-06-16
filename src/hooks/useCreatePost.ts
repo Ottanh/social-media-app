@@ -10,7 +10,7 @@ const CREATE_POST = gql`
   }
 `;
 
-const useCreateUser = (replyTo: string | undefined, setError: (msg: string) => void) => {
+const useCreatePost = (replyTo: string | undefined, setError: (msg: string) => void) => {
   const [{loggedInUser: { user }}] = useStateValue();
 
   const handleError = (error: ApolloError) => {
@@ -38,4 +38,4 @@ const useCreateUser = (replyTo: string | undefined, setError: (msg: string) => v
   return createPost;
 };
 
-export default useCreateUser;
+export default useCreatePost;
