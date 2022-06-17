@@ -17,6 +17,10 @@ export type Action =
   | {
       type: 'SET_SEARCH_RESULT';
       payload: SearchResult;
+    }
+  | {
+      type: 'SET_STATE';
+      payload: State;
     };
 
 
@@ -86,6 +90,13 @@ export const setToken = (payload: string | null): Action => {
 export const setSearchResult = (payload: SearchResult): Action => {
   return {
     type: 'SET_SEARCH_RESULT',
+    payload
+  };
+};
+
+export const setState = (payload: State): Action => {
+  return {
+    type: 'SET_STATE',
     payload
   };
 };

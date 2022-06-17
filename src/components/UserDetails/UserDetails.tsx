@@ -1,19 +1,6 @@
-import { gql } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 import { User } from '../../types';
 import './UserDetails.css';
-
-export const FIND_USER = gql`
-  query findUser($username: String!) {
-    findUser (username: $username) { 
-      id
-      username
-      name
-      date
-      description
-    }
-  }
-`;
 
 interface Props {
   user: User;

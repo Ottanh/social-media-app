@@ -47,4 +47,27 @@ export const StateProvider = ({
     </StateContext.Provider>
   );
 };
+
+interface MockState {
+  mockState: State;
+  reducer: React.Reducer<State, Action>;
+  children: JSX.Element;
+  debug?: boolean;
+}
+
+export const MockState = ({ mockState, reducer, children, debug = false }: MockState) => {
+  const [state, dispatch] = useReducer(reducer, mockState);
+
+  if(debug){
+    console.log(state);
+  }
+
+  return (
+    <StateContext.Provider value={[state, dispatch]}>
+      {children}
+    </StateContext.Provider>
+  );
+};
+
+
 export const useStateValue = () => useContext(StateContext);
