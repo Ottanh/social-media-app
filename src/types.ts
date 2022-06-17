@@ -18,7 +18,7 @@ export interface Post {
     content?: string;
     likes: number;
     replyTo?: string;
-    replies: [string?]
+    replies: string[];
 }
 
 export interface SearchResult {
