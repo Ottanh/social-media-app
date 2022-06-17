@@ -1,12 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-
 import PageHeader from './PageHeader';
 
 
-
 test('renders correctly', async () => {
-
   const { container }  = render(
     <BrowserRouter>
       <PageHeader title="testi420"/>
