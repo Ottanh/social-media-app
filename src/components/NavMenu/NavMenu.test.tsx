@@ -1,52 +1,23 @@
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter, Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import NavigationMenu from './NavMenu';
-import { createMemoryHistory } from 'history';
-import userEvent from '@testing-library/user-event';
-
-/*
-const userData = {
-  id: '628ad0f662db080220901f41',
-  username: 'olli111',
-  name: 'Olli',
-  joined: '13/05/2022',
-  description: 'a'
-};
-*/
+import { MockedProvider } from '@apollo/client/testing';
 
 test('renders navigation bar', async () => {
   render(
     <BrowserRouter >
-      <NavigationMenu />
+      <MockedProvider>
+          <NavigationMenu />
+        </MockedProvider>
     </BrowserRouter>
   );
 
   const profileLink = screen.getByText('Profile');
   const exploreLink = screen.getByText('Explore');
-  const settingsLink = screen.getByText('Settings');
+  const signOutLink = screen.getByText('Sign out');
 
   expect(profileLink).toBeInTheDocument();
   expect(exploreLink).toBeInTheDocument();
-  expect(settingsLink).toBeInTheDocument();
+  expect(signOutLink).toBeInTheDocument();
 });
 
-test('navigates to correct URL when clicked', async () => {
-  const history = createMemoryHistory();
-  render(
-    <Router location={history.location} navigator={history}>
-      <NavigationMenu />
-    </Router>
-  );
-
-  const user = userEvent.setup();
-
-  await user.click(screen.getByText('Profile'));
-  expect(history.location.pathname).toBe('/olli111');
-
-  await user.click(screen.getByText('Explore'));
-  expect(history.location.pathname).toBe('/explore');
-
-  await user.click(screen.getByText('Settings'));
-  expect(history.location.pathname).toBe('/settings');
-
-});

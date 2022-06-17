@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import { SearchResult, User } from '../types';
-
 import { Action } from './reducer';
 
 export type State = {
