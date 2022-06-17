@@ -1,5 +1,5 @@
-import { Post } from '../../../types';
-import PostView from '../PostView/PostView';
+import { Post } from '../../types';
+import PostView from '../Post/Post';
 
 interface Props {
   posts: Post[]

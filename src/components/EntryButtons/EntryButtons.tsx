@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import './LogRegButtons.css';
+import './EntryButtons.css';
 
 const LogRegButtons = () => {
   const navigate = useNavigate();
@@ -10,8 +10,8 @@ const LogRegButtons = () => {
 
   return (
     <div className="LogRegButtons">
-        <button className="Buttons" onClick={() => handleClick('/login')}>Login</button>
-        <button className="Buttons" onClick={() => handleClick('/register')}>Register</button>
+        <button className="LoginButton" onClick={() => handleClick('/login')}>Login</button>
+        <button className="RegisterButton" onClick={() => handleClick('/register')}>Register</button>
     </div>
   );
 };

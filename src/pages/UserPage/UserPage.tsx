@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
-import PostList from '../../components/Post/PostList/PostList';
-import UserDetails from '../../components/User/UserDetails/UserDetails';
-import PostForm from '../../components/Post/PostForm/PostForm';
+import PostList from '../../components/PostList/PostList';
+import UserDetails from '../../components/UserDetails/UserDetails';
+import PostForm from '../../components/Forms/PostForm/PostForm';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import './UserPage.css';
 import { gql, useQuery } from '@apollo/client';

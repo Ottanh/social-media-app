@@ -2,8 +2,8 @@ import { useState, MouseEvent } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
 import { BsChatText } from 'react-icons/bs';
 import PageHeader from '../../components/PageHeader/PageHeader';
-import Search from '../../components/Search/SearchForm/SearchForm';
-import SearchResult from '../../components/Search/SearchResult/SearchResult';
+import Search from '../../components/Forms/SearchForm/SearchForm';
+import SearchResult from '../../components/SearchResult/SearchResult';
 import './ExplorePage.css';
 
 

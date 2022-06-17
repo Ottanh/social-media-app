@@ -1,10 +1,10 @@
-import { Post } from '../../../../types';
+import { Post } from '../../../types';
 import { MouseEvent } from 'react';
 import { BsChatText, BsHeart, BsHeartFill } from 'react-icons/bs';
 import './PostFooter.css';
 import { useNavigate } from 'react-router-dom';
-import useLike from '../../../../hooks/useLike';
-import useLikedPost from '../../../../hooks/useLikedPost';
+import useLike from '../../../hooks/useLike';
+import useLikedPost from '../../../hooks/useLikedPost';
 
 interface Props {
   post: Post

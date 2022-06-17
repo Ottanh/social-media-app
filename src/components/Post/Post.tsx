@@ -1,14 +1,14 @@
-import { Post } from '../../../types';
+import { Post as PostType } from '../../types';
 import PostHeader from './PostHeader/PostHeader';
 import PostContent from './PostContent/PostContent';
 import PostFooter from './PostFooter/PostFooter';
-import './PostView.css';
+import './Post.css';
 
 interface Props {
-  post: Post;
+  post: PostType;
 }
 
-const PostView = ({ post }: Props) => {
+const Post = ({ post }: Props) => {
   return (
     <article className="PostView">
       <PostHeader post={post} />
@@ -18,4 +18,4 @@ const PostView = ({ post }: Props) => {
   );
 };
 
-export default PostView;
+export default Post;

@@ -14,7 +14,6 @@ query Me {
 }
 `;
 
-
 const useLikedPost = (id: string): boolean => {
   const userQuery = useQuery(GET_USER);
   const [likedPost, setLikedPost] = useState<boolean>(false);

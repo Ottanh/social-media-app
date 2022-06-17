@@ -1,9 +1,9 @@
 import { gql, useQuery } from '@apollo/client';
-import Post from '../../components/Post/PostView/PostView';
+import Post from '../../components/Post/Post';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import { useParams } from 'react-router-dom';
-import PostList from '../../components/Post/PostList/PostList';
-import PostForm from '../../components/Post/PostForm/PostForm';
+import PostList from '../../components/PostList/PostList';
+import PostForm from '../../components/Forms/PostForm/PostForm';
 import './PostPage.css';
 
 export const FIND_POST = gql`

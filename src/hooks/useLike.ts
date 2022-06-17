@@ -24,7 +24,7 @@ const DELETE_LIKE = gql`
 const useLike = (post: Post): [() => void, () => void] => {
   const [{loggedInUser: { user }}] = useStateValue();
   if(!user) {
-    throw new Error('User is null');
+    return [() => null, () => null];
   }
 
   const handleError = (error: ApolloError) => {

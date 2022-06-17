@@ -1,14 +1,14 @@
-import LogRegButtons from '../../components/User/LogRegButtons/LogRegButtons';
+import LogRegButtons from '../../components/EntryButtons/EntryButtons';
 import manuli from '../../images/manuli.jpg';
 import { Outlet, Route, Routes } from 'react-router-dom';
-import LoginForm from '../../components/User/LoginForm/LoginForm';
-import RegisterForm from '../../components/User/RegisterForm/RegisterForm';
+import LoginForm from '../../components/Forms/LoginForm/LoginForm';
+import RegisterForm from '../../components/Forms/RegisterForm/RegisterForm';
 import './EntryPage.css';
 
 const EntryPage = () => {
   return (
     <div className="StartPage">
-        <img src={manuli} alt="manuli"/>
+      <img src={manuli} alt="manuli"/>
       <div className="PageContent">
         <Routes>
           <Route path="/" element={

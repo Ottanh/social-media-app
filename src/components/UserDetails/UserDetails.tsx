@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
-import { User } from '../../../types';
+import { User } from '../../types';
 import './UserDetails.css';
 
 export const FIND_USER = gql`

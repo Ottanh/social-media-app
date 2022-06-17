@@ -1,0 +1,33 @@
+
+.LogRegButtons {
+  text-align: center;
+}
+
+.LoginButton, .RegisterButton {
+  width: 6rem;
+  height: 2.5rem;
+  color: white;
+  border-radius: 4px;
+  border: none;
+  padding: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin: 0.2em;
+}
+
+
+.LoginButton {
+  background: #168dc0;
+}
+
+.RegisterButton {
+  background: #161d20;
+}
+
+.LoginButton:hover {
+  background: #0e5b7c;
+}
+
+.RegisterButton:hover {
+  background: #232c30;
+}

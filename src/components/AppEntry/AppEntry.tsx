@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
-import NavigationMenu from '../../components/NavMenu/NavMenu';
-import EntryPage from '../EntryPage/EntryPage';
+import NavigationMenu from '../NavMenu/NavMenu';
+import EntryPage from '../../pages/EntryPage/EntryPage';
 import { useStateValue } from '../../state';
 import './AppEntry.css';
 
@@ -16,7 +16,9 @@ const AppEntry = () => {
     }
   });
   
-  if(token && user) {
+  if (!token && !user && location.pathname === '/') {
+    return <EntryPage />;
+  } else {
     return (
       <>
         <NavigationMenu />
@@ -24,8 +26,6 @@ const AppEntry = () => {
         <div className="Padding" />
       </>
     );
-  } else {
-    return <EntryPage />;
   }
 };
 
