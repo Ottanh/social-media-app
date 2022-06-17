@@ -24,14 +24,14 @@ export const LOGIN = gql`
 const useLogin = (): [any, string | undefined] => {
   const navigate = useNavigate();
   const [, dispatch] = useStateValue();
-  const [loginError, setLoginError] = useState<string | undefined>();
+  const [error, setError] = useState<string | undefined>();
   
   const handleError = (error: ApolloError) => {
     if(error.networkError) {
-      setLoginError(error.networkError.message);
+      setError(error.networkError.message);
     } 
     if (error.graphQLErrors[0]) {
-      setLoginError(error.graphQLErrors[0].message);
+      setError(error.graphQLErrors[0].message);
     }
   };
 
@@ -50,7 +50,7 @@ const useLogin = (): [any, string | undefined] => {
     }
   }, [result.data]);
 
-  return [loginQuery, loginError];
+  return [loginQuery, error];
 };
 
 export default useLogin;
