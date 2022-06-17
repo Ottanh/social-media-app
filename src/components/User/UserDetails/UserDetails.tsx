@@ -1,5 +1,6 @@
-import { gql, useQuery } from '@apollo/client';
+import { gql } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
+import { User } from '../../../types';
 import './UserDetails.css';
 
 export const FIND_USER = gql`
@@ -15,27 +16,16 @@ export const FIND_USER = gql`
 `;
 
 interface Props {
-  username: string | undefined
+  user: User;
 }
 
-const UserDetails = ({ username }: Props) => {
-  const userQuery = useQuery(FIND_USER, {
-    variables: { username: username }
-  });
+const UserDetails = ({ user }: Props) => {
 
   const navigate = useNavigate();
   const onClick = () => {
-    navigate(`/${username}`);
+    navigate(`/${user.username}`);
   };
 
-  if(userQuery.loading ) {
-    return <div className="UserDetails">Loading...</div>;
-  } 
-  if(!userQuery.data.findUser){
-    return <div className="UserDetails">No user found</div>;
-  }
-
-  const user = userQuery.data.findUser;
   return (
     <div className="UserDetails" onClick={onClick}>
       <div>

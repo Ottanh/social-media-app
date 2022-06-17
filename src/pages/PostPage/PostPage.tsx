@@ -22,6 +22,24 @@ export const FIND_POST = gql`
   }
 `;
 
+export const FIND_REPLIES = gql`
+  query findPosts($replyTo: String) {
+    findPosts (replyTo: $replyTo) { 
+      id
+      user {
+        id
+        name
+        username
+      }
+      date
+      content
+      likes
+      replyTo
+      replies
+    }
+  }
+`;
+
 const PostPage = () => {
   const { id } = useParams<{ id: string }>();
 
@@ -29,20 +47,24 @@ const PostPage = () => {
     variables: { id }
   });
 
-  if(postQuery.loading){
-    return <div className="Msg">Loading...</div>;
+  const replyQuery = useQuery(FIND_REPLIES, {
+    variables: { replyTo: id },
+  });
+
+  if(postQuery.loading || replyQuery.loading){
+    return <div className="PostPage">Loading...</div>;
   }
 
-  if(!postQuery.data || !postQuery.data.findPost){
-    return <div className="Msg">Not found</div>;
+  if(!postQuery.data){
+    return <div className="PostPage">Not found</div>;
   }
 
   return (
     <section className="PostPage">
       <PageHeader title="Post"/>
       <Post post={postQuery.data.findPost}/>
-      <PostForm username={undefined} replyTo={id}  />
-      <PostList username={undefined} replyTo={id} />
+      <PostForm replyTo={id}  />
+      <PostList posts={replyQuery.data.findPosts} />
     </section>
   );
 };

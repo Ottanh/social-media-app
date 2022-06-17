@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { Post } from '../../../../types';
-
 import './PostHeader.css';
 
 interface Props {

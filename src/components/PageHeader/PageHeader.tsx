@@ -8,7 +8,7 @@ interface Props {
 
 const PageHeader = ({ title }: Props) => {
   const navigate = useNavigate();
-
+  
   const onClick = () => {
     navigate(-1);
   };

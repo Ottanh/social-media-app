@@ -7,7 +7,6 @@ interface Props {
 }
 
 const PostContent = ({ post }: Props) => {
-
   const navigate = useNavigate();
 
   const onClick = () => {

@@ -6,8 +6,8 @@ import './PostForm.css';
 
 
 interface Props {
-  username: string | undefined,
-  replyTo: string | undefined
+  username?: string,
+  replyTo?: string
 }
 
 const PostForm = ({ username, replyTo }: Props) => {

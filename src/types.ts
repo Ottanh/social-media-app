@@ -2,7 +2,7 @@ export interface User {
   id: string;
   username: string;
   name: string;
-  joined: string;
+  date: string;
   description: string;
   likes: string[];
 }

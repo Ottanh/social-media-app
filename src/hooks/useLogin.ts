@@ -35,7 +35,7 @@ const useLogin = (): [any, string | undefined] => {
     }
   };
 
-  const [loginQuery, result] = useMutation(LOGIN, {
+  const [login, result] = useMutation(LOGIN, {
     onError: handleError,
   });
   
@@ -50,7 +50,7 @@ const useLogin = (): [any, string | undefined] => {
     }
   }, [result.data]);
 
-  return [loginQuery, error];
+  return [login, error];
 };
 
 export default useLogin;

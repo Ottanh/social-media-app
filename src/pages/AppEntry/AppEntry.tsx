@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
-import NavigationMenu from '../NavMenu/NavMenu';
-import EntryPage from '../../pages/EntryPage/EntryPage';
+import NavigationMenu from '../../components/NavMenu/NavMenu';
+import EntryPage from '../EntryPage/EntryPage';
 import { useStateValue } from '../../state';
 import './AppEntry.css';
 

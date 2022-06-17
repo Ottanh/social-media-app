@@ -1,7 +1,7 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
 import UserPage from './pages/UserPage/UserPage';
 import ExplorePage from './pages/ExplorePage/ExplorePage';
-import AppEntry from './components/AppEntry/AppEntry';
+import AppEntry from './pages/AppEntry/AppEntry';
 import PostPage from './pages/PostPage/PostPage';
 import './App.css';
 

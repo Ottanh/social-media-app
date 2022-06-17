@@ -1,5 +1,6 @@
 import { ApolloError, gql, useMutation } from '@apollo/client';
-import { FIND_POSTS } from '../components/Post/PostList/PostList';
+import { FIND_POSTS } from '../pages/UserPage/UserPage';
+import { FIND_REPLIES } from '../pages/PostPage/PostPage';
 import { useStateValue } from '../state';
 
 const CREATE_POST = gql`
@@ -25,12 +26,11 @@ const useCreatePost = (replyTo: string | undefined, setError: (msg: string) => v
   const [createPost,] = useMutation(CREATE_POST, {
     refetchQueries: [ 
       {
-        query: FIND_POSTS, variables: { 
-          replyTo: replyTo, 
-          username: replyTo ? undefined : user?.username 
-        }
+        query: FIND_POSTS, variables: { username: user?.username }
       },
-      { query: FIND_POSTS, variables: { id: replyTo } }
+      { 
+        query: FIND_REPLIES, variables: { replyTo } 
+      }
      ],
     onError: handleError,
   });
