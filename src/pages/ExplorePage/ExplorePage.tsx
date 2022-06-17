@@ -21,7 +21,7 @@ const ExplorePage = () => {
   };
 
     return (
-      <div className="ExplorePage">
+      <section className="ExplorePage">
         <PageHeader title="Explore" />
         <div className="ExploreContainer">
           <Search/>
@@ -39,7 +39,7 @@ const ExplorePage = () => {
           />
         </div>
         <SearchResult type={type}/>
-      </div>
+      </section>
     );
 };
 

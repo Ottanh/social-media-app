@@ -28,7 +28,7 @@ const NavigationBar = () => {
   };
 
   return (
-    <nav className="NavBar">
+    <nav className="NavMenu">
       <div className="LinkWrapper">
         <img className="manuliLogo" src={manuliLogo} alt="manuliLogo"/>
         <NavLink className={({ isActive }) => isActive ? 'ActiveNavLink' : 'NavLink'} to={profile} >

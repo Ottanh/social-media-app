@@ -9,12 +9,12 @@ import './UserPage.css';
 const UserPage = () => {
   const { username } = useParams<{ username: string }>();
   return (
-      <article className="UserPage">
+      <section className="UserPage">
         <PageHeader title={username ? `@${username }` : ''} />
         <UserDetails username={username} />
         <PostForm username={username} replyTo={undefined} />
         <PostList username={username} replyTo={undefined} />
-      </article>
+      </section>
   );
 };
 

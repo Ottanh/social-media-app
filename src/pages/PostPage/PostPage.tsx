@@ -38,12 +38,12 @@ const PostPage = () => {
   }
 
   return (
-    <div className="PostPage">
+    <section className="PostPage">
       <PageHeader title="Post"/>
       <Post post={postQuery.data.findPost}/>
       <PostForm username={undefined} replyTo={id}  />
       <PostList username={undefined} replyTo={id} />
-    </div>
+    </section>
   );
 };
 

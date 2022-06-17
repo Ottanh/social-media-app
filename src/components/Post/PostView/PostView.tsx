@@ -10,11 +10,11 @@ interface Props {
 
 const PostView = ({ post }: Props) => {
   return (
-    <div className="PostView">
+    <article className="PostView">
       <PostHeader post={post} />
       <PostContent post={post} />
       <PostFooter post={post}/>
-    </div>
+    </article>
   );
 };
 

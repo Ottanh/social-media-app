@@ -1,8 +1,11 @@
 
-html *
-{
-   font-size: large;
-   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+html * {
+  font-size: large;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#root {
+  --grey-5: rgba(108, 123, 149, 0.5);
 }
 
 body {
@@ -17,13 +20,4 @@ body {
   scrollbar-gutter: stable both-edges;
 }
 
-.MainContent {
-  display: flex;
-  width: 40rem;
-}
-
-.Padding {
-  display: flex;
-  flex: 1;
-}
 
