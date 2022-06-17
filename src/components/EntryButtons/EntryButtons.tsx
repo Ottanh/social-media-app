@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import './EntryButtons.css';
 
-const LogRegButtons = () => {
+const EntryButtons = () => {
   const navigate = useNavigate();
 
   const handleClick = (path: string) => {
@@ -17,6 +17,6 @@ const LogRegButtons = () => {
 };
 
 
-export default LogRegButtons;
+export default EntryButtons;
 
 

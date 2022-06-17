@@ -1,15 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import NavMenu from './NavMenu';
-import { MockState, reducer, setState, setUser, State, StateContext, StateProvider, useStateValue } from '../../state';
+import { MockState, reducer, State } from '../../state';
 import { MockedProvider } from '@apollo/client/testing';
-import { User } from '../../types';
-import { useReducer } from 'react';
-
 
 
 test('renders NavMenu correctly when logged in', async () => {
-
   const state: State = {
     loggedInUser: {
       user: {
@@ -28,9 +24,9 @@ test('renders NavMenu correctly when logged in', async () => {
   render(
     <BrowserRouter >
       <MockedProvider >
-          <MockState mockState={state} reducer={reducer}>
-            <NavMenu />
-          </MockState>
+        <MockState mockState={state} reducer={reducer}>
+          <NavMenu />
+        </MockState>
       </MockedProvider>
     </BrowserRouter>
   );
@@ -56,9 +52,9 @@ test('renders NavMenu correctly when not logged in', async () => {
   render(
     <BrowserRouter >
       <MockedProvider >
-          <MockState mockState={state} reducer={reducer}>
-            <NavMenu />
-          </MockState>
+        <MockState mockState={state} reducer={reducer}>
+          <NavMenu />
+        </MockState>
       </MockedProvider>
     </BrowserRouter>
   );
