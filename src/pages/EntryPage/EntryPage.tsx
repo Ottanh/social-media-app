@@ -1,29 +1,36 @@
-import LogRegButtons from '../../components/EntryButtons/EntryButtons';
 import manuli from '../../images/manuli.jpg';
-import { Outlet, Route, Routes } from 'react-router-dom';
 import LoginForm from '../../components/Forms/LoginForm/LoginForm';
 import RegisterForm from '../../components/Forms/RegisterForm/RegisterForm';
 import './EntryPage.css';
+import { useState } from 'react';
 
 const EntryPage = () => {
+  const [mode, setMode] = useState<'login' | 'register'>('login');
+
+  const login = () => {
+    setMode('login');
+  };
+
+  const register = () => {
+    setMode('register');
+  };
+
   return (
     <div className="StartPage">
       <img src={manuli} alt="manuli"/>
       <div className="PageContent">
-        <Routes>
-          <Route path="/" element={
-            <>
-              <h1 className="Title">SomeThing</h1>
-              <div className="OutletContainer">
-                <Outlet/>
-              </div>
-            </>
-          }>
-            <Route path="" element={<LogRegButtons />} />
-            <Route path="login" element={<LoginForm />} />
-            <Route path="register" element={<RegisterForm />} />
-          </Route>
-        </Routes>
+        <h1 className="Title">SomeThing</h1>
+        <div className="OutletContainer">
+          {mode === 'login' 
+            ? <>
+                <LoginForm /> 
+                <a className="signUp"  onClick={register}>Sign up</a> 
+              </>
+            : <>
+                <RegisterForm /> 
+                <a className="signIn" onClick={login}>Sign in</a>
+              </>}
+        </div>
       </div>
     </div>
   );

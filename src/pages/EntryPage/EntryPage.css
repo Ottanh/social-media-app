@@ -27,8 +27,22 @@
 .OutletContainer {
   height: 20rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-bottom: auto;
 }
+
+
+.signIn, .signUp {
+  color: #168dc0;
+}
+
+.signIn:hover, .signUp:hover {
+  text-decoration: underline;
+}
+
+
+
+
 
