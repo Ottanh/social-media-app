@@ -22,6 +22,6 @@ export interface Post {
 }
 
 export interface SearchResult {
-  users: [User?];
-  posts: [Post?];
+  users: User[];
+  posts: Post[];
 }
