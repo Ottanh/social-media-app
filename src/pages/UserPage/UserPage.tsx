@@ -50,7 +50,7 @@ const UserPage = () => {
   if(userQuery.loading || postQuery.loading  ) {
     return <div className="UserPage">Loading...</div>;
   } 
-  if(!userQuery.data.findUser){
+  if(!userQuery.data){
     return <div className="UserPage">No user found</div>;
   }
 
@@ -59,7 +59,7 @@ const UserPage = () => {
         <PageHeader title={username ? `@${username }` : ''} />
         <UserDetails user={userQuery.data.findUser} />
         <PostForm username={username} />
-        <PostList  posts={postQuery.data.findPosts}/>
+        <PostList  posts={postQuery.data? postQuery.data.findPosts : []}/>
       </section>
   );
 };

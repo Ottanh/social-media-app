@@ -90,29 +90,10 @@ describe('PostPage success state', () => {
 });
 
 describe('PostPage loading state', () => {
-  const mocks = [
-    {
-      request: {
-        query: FIND_POST,
-        variables: {
-          id: 'post1',
-        },
-      },
-    }, 
-    {
-      request: {
-        query: FIND_REPLIES,
-        variables: {
-          replyTo: 'post1',
-        },
-      },
-    }
-  ];
-
   test('renders Loading...', async () => {
     render(
       <MemoryRouter initialEntries={['/post/post1']}>
-        <MockedProvider mocks={mocks} addTypename={false}>
+        <MockedProvider>
           <Routes>
             <Route path="post/:id" element={<PostPage />} />
           </Routes>
