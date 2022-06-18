@@ -4,9 +4,10 @@ import './UserDetails.css';
 
 interface Props {
   user: User;
+  id?: string;
 }
 
-const UserDetails = ({ user }: Props) => {
+const UserDetails = ({ user, id }: Props) => {
 
   const navigate = useNavigate();
   const onClick = () => {
@@ -14,7 +15,7 @@ const UserDetails = ({ user }: Props) => {
   };
 
   return (
-    <div className="UserDetails" onClick={onClick}>
+    <div className="UserDetails" id={id} onClick={onClick}>
       <div>
         <div className="Name">
           {user.name} 

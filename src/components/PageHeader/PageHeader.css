@@ -1,6 +1,9 @@
 .PageHeader {
   border-bottom: 1px solid rgba(108, 123, 149, 0.5);
   display: flex;
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.95);
 }
 
 .BackArrow {

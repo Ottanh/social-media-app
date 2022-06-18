@@ -7,4 +7,8 @@
   border-color: rgba(108, 123, 149, 0.5);
 }
 
+.PostView:hover {
+  background-color: whitesmoke;
+}
+
 

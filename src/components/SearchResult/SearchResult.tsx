@@ -14,7 +14,7 @@ const SearchResult = ({ type, searchResult }: Props) => {
         {
           searchResult.users.map((user) => {
             if(!user) return null;
-            return <UserDetails key={user.username} user={user} />;
+            return <UserDetails id="userSearch" key={user.username} user={user} />;
           })
         }
       </div>

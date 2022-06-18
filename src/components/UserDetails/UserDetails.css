@@ -14,3 +14,7 @@
 .UserName {
   font-weight: lighter;
 }
+
+#userSearch:hover {
+  background-color: whitesmoke;
+}

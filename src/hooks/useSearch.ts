@@ -9,6 +9,7 @@ const SEARCH = gql`
         id
         name
         username
+        date
       }
       posts {
         id
