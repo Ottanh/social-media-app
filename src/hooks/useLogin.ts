@@ -1,8 +1,8 @@
 import { ApolloError, gql, useMutation } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { setHeaderToken } from '..';
 import { setToken, setUser, useStateValue } from '../state';
+import config from '../util/config';
 
 export const LOGIN = gql`
   mutation login($username: String!, $password: String!) {
@@ -43,7 +43,7 @@ const useLogin = (): [any, string | undefined] => {
     if(result.data){
       dispatch(setUser(result.data.login.user));
       dispatch(setToken(result.data.login.token));
-      setHeaderToken(result.data.login.token);
+      config.setHeaderToken(result.data.login.token);
       localStorage.setItem('sma-user-token', result.data.login.token);
       localStorage.setItem('sma-user', JSON.stringify(result.data.login.user));
       navigate(`/${result.data.login.user.username}`);

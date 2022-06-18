@@ -13,16 +13,13 @@ import {
 } from '@apollo/client';
 import { setContext } from 'apollo-link-context';
 
-let token = localStorage.getItem('sma-user-token');
-export const setHeaderToken = (newToken: string) => {
-  token = newToken;
-};
+import config from './util/config';
 
 const authLink = setContext((_, { headers }) => {  
   return {    
     headers: {      
       ...headers,      
-      authorization: token ? `bearer ${token}` : null,    
+      authorization: config.token ? `bearer ${config.token}` : null,    
     }  
   };
 });
@@ -32,7 +29,7 @@ const httpLink = new HttpLink({
 });
 
 
-export const client = new ApolloClient({
+const client = new ApolloClient({
   cache: new InMemoryCache(),
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   link: from([authLink as any, httpLink])

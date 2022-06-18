@@ -55,7 +55,7 @@ const LoginForm = () => {
       <input 
         className="button" 
         type="submit" 
-        value="Login"
+        value="Log in"
       />
     </form>
   );
