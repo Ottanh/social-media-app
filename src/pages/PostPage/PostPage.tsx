@@ -55,7 +55,7 @@ const PostPage = () => {
     return <div className="PostPage">Loading...</div>;
   }
 
-  if(!postQuery.data){
+  if(!postQuery.data || !replyQuery.data){
     return <div className="PostPage">Not found</div>;
   }
 

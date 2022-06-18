@@ -5,7 +5,7 @@ import { MockState, reducer, State } from '../../state';
 import { MockedProvider } from '@apollo/client/testing';
 
 
-test('renders NavMenu correctly when logged in', async () => {
+describe('NavMenu when logged in', () => {
   const state: State = {
     loggedInUser: {
       user: {
@@ -21,26 +21,28 @@ test('renders NavMenu correctly when logged in', async () => {
     searchResult: { users: [], posts: [] }
   };
 
-  render(
-    <BrowserRouter >
-      <MockedProvider >
-        <MockState mockState={state} reducer={reducer}>
-          <NavMenu />
-        </MockState>
-      </MockedProvider>
-    </BrowserRouter>
-  );
+  test('renders all links', async () => {
+    render(
+      <BrowserRouter >
+        <MockedProvider >
+          <MockState mockState={state} reducer={reducer}>
+            <NavMenu />
+          </MockState>
+        </MockedProvider>
+      </BrowserRouter>
+    );
 
-  const profileLink = screen.getByText('Profile');
-  const exploreLink = screen.getByText('Explore');
-  const signOutLink = screen.getByText('Sign out').closest('a');
+    const profileLink = screen.getByText('Profile');
+    const exploreLink = screen.getByText('Explore');
+    const signOutLink = screen.getByText('Sign out').closest('a');
 
-  expect(profileLink).toBeInTheDocument();
-  expect(exploreLink).toBeInTheDocument();
-  expect(signOutLink).not.toHaveStyle('display: none');
+    expect(profileLink).toBeInTheDocument();
+    expect(exploreLink).toBeInTheDocument();
+    expect(signOutLink).not.toHaveStyle('display: none');
+  });
 });
 
-test('renders NavMenu correctly when not logged in', async () => {
+describe('NavMenu when not logged in', () => {
   const state: State = {
     loggedInUser: {
       user: null,
@@ -49,22 +51,23 @@ test('renders NavMenu correctly when not logged in', async () => {
     searchResult: { users: [], posts: [] }
   };
 
-  render(
-    <BrowserRouter >
-      <MockedProvider >
-        <MockState mockState={state} reducer={reducer}>
-          <NavMenu />
-        </MockState>
-      </MockedProvider>
-    </BrowserRouter>
-  );
+  test('renders all links except "Sign out"', async () => {
+    render(
+      <BrowserRouter >
+        <MockedProvider >
+          <MockState mockState={state} reducer={reducer}>
+            <NavMenu />
+          </MockState>
+        </MockedProvider>
+      </BrowserRouter>
+    );
 
-  const profileLink = screen.getByText('Profile');
-  const exploreLink = screen.getByText('Explore');
-  const signOutLink = screen.getByText('Sign out').closest('a');
+    const profileLink = screen.getByText('Profile');
+    const exploreLink = screen.getByText('Explore');
+    const signOutLink = screen.getByText('Sign out').closest('a');
 
-  expect(profileLink).toBeInTheDocument();
-  expect(exploreLink).toBeInTheDocument();
-  expect(signOutLink).toHaveStyle('display: none');
+    expect(profileLink).toBeInTheDocument();
+    expect(exploreLink).toBeInTheDocument();
+    expect(signOutLink).toHaveStyle('display: none');
+  });
 });
-

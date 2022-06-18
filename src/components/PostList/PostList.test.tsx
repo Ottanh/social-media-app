@@ -4,8 +4,7 @@ import PostList from './PostList';
 import { Post as PostType } from '../../types';
 import { MockedProvider } from '@apollo/client/testing';
 
-
-test('renders correctly', async () => {
+describe('Post', () => {
   const posts: PostType[] = [{
     id: 'postId',
     user: {
@@ -31,18 +30,20 @@ test('renders correctly', async () => {
     replies: ['1','2']
   }];
 
-  render(
-    <MockedProvider>
-      <BrowserRouter>
-        <PostList posts={posts}/>
-      </BrowserRouter>
-    </MockedProvider>
-  );
+  test('renders both posts', async () => {
+    render(
+      <MockedProvider>
+        <BrowserRouter>
+          <PostList posts={posts}/>
+        </BrowserRouter>
+      </MockedProvider>
+    );
 
-  const post1 = screen.getByText('test');
-  const post2 = screen.getByText('test');
+    const post1 = screen.getByText('test');
+    const post2 = screen.getByText('test');
 
-  expect(post1).toBeInTheDocument();
-  expect(post2).toBeInTheDocument();
+    expect(post1).toBeInTheDocument();
+    expect(post2).toBeInTheDocument();
 
+  });
 });

@@ -4,8 +4,7 @@ import Post from './Post';
 import { Post as PostType } from '../../types';
 import { MockedProvider } from '@apollo/client/testing';
 
-
-test('renders correctly', async () => {
+describe('Post', () => {
   const post: PostType = {
     id: 'postId',
     user: {
@@ -17,25 +16,27 @@ test('renders correctly', async () => {
     content: 'test',
     likes: 6,
     replies: ['1']
-};
+  };
 
-  render(
-    <MockedProvider>
-      <BrowserRouter>
-        <Post post={post}/>
-      </BrowserRouter>
-    </MockedProvider>
-  );
+  test('renders post data', async () => {
+    render(
+      <MockedProvider>
+        <BrowserRouter>
+          <Post post={post}/>
+        </BrowserRouter>
+      </MockedProvider>
+    );
 
-  const user = screen.getByText('testUser');
-  const date = screen.getByText('17/6');
-  const content = screen.getByText('test');
-  const replyCount = screen.getByText('1');
-  const likes = screen.getByText('6');
+    const user = screen.getByText('testUser');
+    const date = screen.getByText('17/6');
+    const content = screen.getByText('test');
+    const replyCount = screen.getByText('1');
+    const likes = screen.getByText('6');
 
-  expect(user).toBeInTheDocument();
-  expect(date).toBeInTheDocument();
-  expect(content).toBeInTheDocument();
-  expect(replyCount).toBeInTheDocument();
-  expect(likes).toBeInTheDocument();
+    expect(user).toBeInTheDocument();
+    expect(date).toBeInTheDocument();
+    expect(content).toBeInTheDocument();
+    expect(replyCount).toBeInTheDocument();
+    expect(likes).toBeInTheDocument();
+  });
 });
