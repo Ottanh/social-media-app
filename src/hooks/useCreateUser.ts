@@ -1,7 +1,7 @@
 import { ApolloError, gql, useMutation } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { setToken, setUser, useStateValue } from '../state';
+import { setUser, useStateValue } from '../state';
 
 const REGISTER = gql`
 mutation CreateUser($username: String!, $password: String!, $name: String!) {
@@ -42,7 +42,6 @@ const useCreateUser = (): [any, string | undefined] => {
       const user = result.data.createUser.user;
       const token = result.data.createUser.token;
       dispatch(setUser(user));
-      dispatch(setToken(token));
       localStorage.setItem('sma-user-token', token);
       localStorage.setItem('sma-user', JSON.stringify(user));
       navigate(`/${user.username}`);

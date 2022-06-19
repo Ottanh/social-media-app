@@ -6,17 +6,17 @@ import { useStateValue } from '../../state';
 import './AppEntry.css';
 
 const AppEntry = () => {
-  const [{loggedInUser: { token, user }}] = useStateValue();
+  const [{loggedInUser: { user }}] = useStateValue();
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    if(token && user && location.pathname === '/') {
+    if(user && location.pathname === '/') {
       navigate(`/${user.username}`);
     }
   });
   
-  if (!token && !user && location.pathname === '/') {
+  if (!user && location.pathname === '/') {
     return <EntryPage />;
   } else {
     return (

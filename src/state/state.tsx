@@ -4,7 +4,6 @@ import { Action } from './reducer';
 
 export type State = {
   loggedInUser: {
-    token: string | null;
     user: User | null;
   },
   searchResult: SearchResult;
@@ -12,7 +11,6 @@ export type State = {
 
 const initialState: State = {
   loggedInUser: {
-    token: localStorage.getItem('sma-user-token'),
     user: (() => {
       const storedUser = localStorage.getItem('sma-user');
       if(storedUser){

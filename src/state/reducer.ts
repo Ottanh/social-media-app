@@ -11,10 +11,6 @@ export type Action =
       payload: string[];
     }
   | {
-      type: 'SET_TOKEN';
-      payload: string | null;
-    }
-  | {
       type: 'SET_SEARCH_RESULT';
       payload: SearchResult;
     }
@@ -48,15 +44,7 @@ export const reducer = (state: State, action: Action): State => {
             }
           }
         };
-    case 'SET_TOKEN':
-      return {
-        ...state,
-        loggedInUser: {
-          ...state.loggedInUser,
-          token: action.payload
-        }
-      };
-      case 'SET_SEARCH_RESULT':
+    case 'SET_SEARCH_RESULT':
       return {
         ...state,
         searchResult: action.payload
@@ -76,13 +64,6 @@ export const setUser = (payload: User | null): Action => {
 export const setUserLikes = (payload: string[]): Action => {
   return {
     type: 'SET_USER_LIKES',
-    payload
-  };
-};
-
-export const setToken = (payload: string | null): Action => {
-  return {
-    type: 'SET_TOKEN',
     payload
   };
 };

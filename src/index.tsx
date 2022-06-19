@@ -13,13 +13,12 @@ import {
 } from '@apollo/client';
 import { setContext } from 'apollo-link-context';
 
-import config from './util/config';
-
-const authLink = setContext((_, { headers }) => {  
+const authLink = setContext((_, { headers }) => { 
+  const token = localStorage.getItem('sma-user-token'); 
   return {    
     headers: {      
       ...headers,      
-      authorization: config.token ? `bearer ${config.token}` : null,    
+      authorization: token ? `bearer ${token}` : null,    
     }  
   };
 });
