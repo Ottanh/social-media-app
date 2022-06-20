@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { User } from '../../types';
 import FollowButton from '../FollowButton/FollowButton';
 import './UserProfile.css';
+import cat from '../../images/cat.jpg';
 
 interface Props {
   user: User;
@@ -18,7 +19,11 @@ const UserProfile = ({ user, id }: Props) => {
   return (
     <div className="UserProfile" id={id} onClick={onClick}>
       <div className="UserProfileHeader">
-        <div className="NameContainer">
+        <img className="userPic" src={cat} alt="manuliLogo"/>
+        
+        <FollowButton user={user} />
+      </div>
+      <div className="NameContainer">
           <div className="Name">
             {user.name} 
           </div>
@@ -26,9 +31,7 @@ const UserProfile = ({ user, id }: Props) => {
             @{user.username}
           </div>
         </div>
-        <FollowButton user={user} />
-      </div>
-      <div>
+      <div className="UserDetails">
         <p>
           {user.description}
         </p>
