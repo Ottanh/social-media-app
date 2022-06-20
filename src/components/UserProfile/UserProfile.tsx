@@ -32,9 +32,9 @@ const UserProfile = ({ user, id }: Props) => {
         <p>
           {user.description}
         </p>
-        <p>
+        <div>
           Joined: {user.date}
-        </p>
+        </div>
       </div>
     </div>
   );

@@ -59,7 +59,7 @@
   font-size: larger;
 }
 
-.ProfileIcon, .SearchIcon, .LogOutIcon {
+.ProfileIcon, .SearchIcon, .LogOutIcon, .HomeIcon {
   vertical-align: bottom;
   margin-top: auto;
   margin-bottom: auto;

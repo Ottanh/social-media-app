@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import PostList from '../../components/PostList/PostList';
 import UserDetails from '../../components/UserProfile/UserProfile';
-import PostForm from '../../components/Forms/PostForm/PostForm';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import './UserPage.css';
 import { gql, useQuery } from '@apollo/client';
@@ -58,7 +57,6 @@ const UserPage = () => {
       <section className="UserPage">
         <PageHeader title={username ? `@${username }` : ''} />
         <UserDetails user={userQuery.data.findUser} />
-        <PostForm username={username} />
         <PostList  posts={postQuery.data? postQuery.data.findPosts : []}/>
       </section>
   );

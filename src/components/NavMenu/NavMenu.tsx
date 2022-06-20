@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { setUser, useStateValue } from '../../state';
 import manuliLogo from '../../images/cat-logo.jpg';
 import './NavMenu.css';
-import { BsBoxArrowUpRight, BsSearch } from 'react-icons/bs';
+import { BsBoxArrowUpRight, BsHouse, BsSearch } from 'react-icons/bs';
 import { AiOutlineUser } from 'react-icons/ai';
 import { useApolloClient } from '@apollo/client';
 
@@ -17,7 +17,7 @@ const NavigationBar = () => {
     client.resetStore();
   };
 
-  const styleLogOut = () => {
+  const styleHide = () => {
     if(!loggedInUser){
       return {
         display: 'none'
@@ -29,7 +29,12 @@ const NavigationBar = () => {
     <nav className="NavMenu">
       <div className="LinkWrapper">
         <img className="manuliLogo" src={manuliLogo} alt="manuliLogo"/>
-        <NavLink className={({ isActive }) => isActive ? 'ActiveNavLink' : 'NavLink'} to={loggedInUser ? loggedInUser.username : ''} >
+        <NavLink className={({ isActive }) => isActive ? 'ActiveNavLink' : 'NavLink'} to={loggedInUser ? '/home' : ''} >
+          <div className="IconContainer">
+            <BsHouse className="HomeIcon" size="1.5em"/> Home
+          </div>
+        </NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'ActiveNavLink' : 'NavLink'} to={loggedInUser ? loggedInUser.username : ''} style={styleHide()}>
           <div className="IconContainer">
             <AiOutlineUser className="ProfileIcon" size="1.5em"/> Profile
           </div>
@@ -39,7 +44,7 @@ const NavigationBar = () => {
             <BsSearch className="SearchIcon" size="1.5em" /> Explore
           </div>
         </NavLink>
-        <NavLink className={({ isActive }) => isActive ? 'ActiveNavLink' : 'NavLink'} to="" onClick={logout} style={styleLogOut()}>
+        <NavLink className={({ isActive }) => isActive ? 'ActiveNavLink' : 'NavLink'} to="" onClick={logout} style={styleHide()}>
           <div className="IconContainer">
             <BsBoxArrowUpRight className="LogOutIcon" size="1.5em" /> Sign out
           </div>
