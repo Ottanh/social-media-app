@@ -2,6 +2,7 @@ import { ApolloError, gql, useMutation } from '@apollo/client';
 import { FIND_POSTS } from '../pages/UserPage/UserPage';
 import { FIND_REPLIES } from '../pages/PostPage/PostPage';
 import { useStateValue } from '../state';
+import { useState } from 'react';
 
 const CREATE_POST = gql`
   mutation createPost($content: String!,$replyTo: String) {
@@ -11,8 +12,10 @@ const CREATE_POST = gql`
   }
 `;
 
-const useCreatePost = (replyTo: string | undefined, setError: (msg: string) => void) => {
-  const [{loggedInUser: { user }}] = useStateValue();
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const useCreatePost = (replyTo: string | undefined): [any, string | undefined] => {
+  const [{ loggedInUser }] = useStateValue();
+  const [error, setError] = useState<string | undefined>();
 
   const handleError = (error: ApolloError) => {
     if(error.networkError) {
@@ -26,7 +29,7 @@ const useCreatePost = (replyTo: string | undefined, setError: (msg: string) => v
   const [createPost,] = useMutation(CREATE_POST, {
     refetchQueries: [ 
       {
-        query: FIND_POSTS, variables: { username: user?.username }
+        query: FIND_POSTS, variables: { username: loggedInUser?.username }
       },
       { 
         query: FIND_REPLIES, variables: { replyTo } 
@@ -35,7 +38,7 @@ const useCreatePost = (replyTo: string | undefined, setError: (msg: string) => v
     onError: handleError,
   });
 
-  return createPost;
+  return [createPost, error];
 };
 
 export default useCreatePost;

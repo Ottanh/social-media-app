@@ -3,21 +3,17 @@ import { SearchResult, User } from '../types';
 import { Action } from './reducer';
 
 export type State = {
-  loggedInUser: {
-    user: User | null;
-  },
+  loggedInUser: User | null;
   searchResult: SearchResult;
 };
 
 const initialState: State = {
-  loggedInUser: {
-    user: (() => {
+  loggedInUser: (() => {
       const storedUser = localStorage.getItem('sma-user');
       if(storedUser){
         return JSON.parse(storedUser);
       }
-    })()
-  },
+    })(),
   searchResult: {
     users: [],
     posts: []

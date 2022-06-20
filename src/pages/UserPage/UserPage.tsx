@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import PostList from '../../components/PostList/PostList';
-import UserDetails from '../../components/UserDetails/UserDetails';
+import UserDetails from '../../components/UserProfile/UserProfile';
 import PostForm from '../../components/Forms/PostForm/PostForm';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import './UserPage.css';

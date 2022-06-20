@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { User } from '../../types';
 import { MockedProvider } from '@apollo/client/testing';
-import UserDetails from './UserDetails';
+import UserDetails from './UserProfile';
 
 describe('User details', () => {
   const user: User = {

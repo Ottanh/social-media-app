@@ -1,6 +1,5 @@
 import { ApolloError, gql, useMutation } from '@apollo/client';
 import { useStateValue } from '../state';
-import { Post } from '../types';
 import { arrRemove } from '../util/array';
 
 const ADD_LIKE = gql`
@@ -21,9 +20,9 @@ const DELETE_LIKE = gql`
   }
 `;
 
-const useLike = (post: Post): [() => void, () => void] => {
-  const [{loggedInUser: { user }}] = useStateValue();
-  if(!user) {
+const useLike = () => {
+  const [{ loggedInUser }] = useStateValue();
+  if(!loggedInUser) {
     return [() => null, () => null];
   }
 
@@ -36,7 +35,7 @@ const useLike = (post: Post): [() => void, () => void] => {
     }
   };
   
-  const [addLikeMutation,] = useMutation(ADD_LIKE, {
+  const [addLike,] = useMutation(ADD_LIKE, {
     onError: handleError,
     update: (cache, response) => {  
       cache.modify({
@@ -48,7 +47,7 @@ const useLike = (post: Post): [() => void, () => void] => {
         }
       });
       cache.modify({
-        id: `User:${user.id}`,
+        id: `User:${loggedInUser.id}`,
         fields: {
           likes(cachedLikes) {
             return cachedLikes.concat(response.data.addLike.id);
@@ -58,7 +57,7 @@ const useLike = (post: Post): [() => void, () => void] => {
     },
   });
 
-  const [deleteLikeMutation,] = useMutation(DELETE_LIKE, {
+  const [deleteLike,] = useMutation(DELETE_LIKE, {
     onError: handleError,
     update: (cache, response) => {    
       cache.modify({
@@ -70,7 +69,7 @@ const useLike = (post: Post): [() => void, () => void] => {
         }
       }); 
       cache.modify({
-        id: `User:${user.id}`,
+        id: `User:${loggedInUser.id}`,
         fields: {
           likes(cachedLikes) {
             return arrRemove(response.data.deleteLike.id, cachedLikes);
@@ -79,22 +78,6 @@ const useLike = (post: Post): [() => void, () => void] => {
       }); 
     },
   });
-
-  const deleteLike = async () => {
-    deleteLikeMutation({
-      variables: {
-        id: post.id
-      }
-    });
-  };
-
-  const addLike = async () => {
-    addLikeMutation({
-      variables: {
-        id: post.id
-      }
-    });
-  };
 
   return [addLike, deleteLike];
 };

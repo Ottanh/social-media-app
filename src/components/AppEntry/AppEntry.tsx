@@ -5,18 +5,19 @@ import EntryPage from '../../pages/EntryPage/EntryPage';
 import { useStateValue } from '../../state';
 import './AppEntry.css';
 
+
 const AppEntry = () => {
-  const [{loggedInUser: { user }}] = useStateValue();
+  const [{ loggedInUser }] = useStateValue();
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    if(user && location.pathname === '/') {
-      navigate(`/${user.username}`);
+    if(loggedInUser && location.pathname === '/') {
+      navigate(`/${loggedInUser.username}`);
     }
   });
   
-  if (!user && location.pathname === '/') {
+  if (!loggedInUser && location.pathname === '/') {
     return <EntryPage />;
   } else {
     return (

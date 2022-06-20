@@ -1,25 +1,49 @@
 import { Post } from '../../../types';
-import { MouseEvent } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 import { BsChatText, BsHeart, BsHeartFill } from 'react-icons/bs';
 import './PostFooter.css';
 import { useNavigate } from 'react-router-dom';
 import useLike from '../../../hooks/useLike';
-import useLikedPost from '../../../hooks/useLikedPost';
+import { gql, useQuery } from '@apollo/client';
+
+const GET_USER_LIKES = gql`
+  query UserLikes {
+    me {
+      id
+      likes
+    }
+  }
+`;
 
 interface Props {
-  post: Post
+  post: Post;
 }
 
 const PostFooter = ({ post }: Props) => {
-  const [addLike, deleteLike] = useLike(post);
-  const likedPost = useLikedPost(post.id);
+  const [addLike, deleteLike] = useLike();
+  const [likedPost, setLikedPost] = useState<boolean>();
+  const { data } = useQuery(GET_USER_LIKES);
+
+  useEffect(() => {
+    if(data){
+      setLikedPost(data.me.likes.includes(post.id));
+    }
+  },[data]);
 
   const handleLike = (e: MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     if(likedPost) {
-      deleteLike();
+      deleteLike({
+        variables: {
+          id: post.id
+        }
+      });
     } else {
-      addLike();
+      addLike({
+        variables: {
+          id: post.id
+        }
+      });
     }
   };
 

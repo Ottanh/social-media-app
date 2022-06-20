@@ -1,6 +1,6 @@
 import { SearchResult as ResultType } from '../../types';
 import PostView from '../Post/Post';
-import UserDetails from '../UserDetails/UserDetails';
+import UserDetails from '../UserProfile/UserProfile';
 
 interface Props {
   type: 'users' | 'posts';

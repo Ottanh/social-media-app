@@ -25,24 +25,18 @@ export const reducer = (state: State, action: Action): State => {
     case 'SET_USER':
       return {
         ...state,
-        loggedInUser: {
-          ...state.loggedInUser,
-          user: action.payload
-        }
+        loggedInUser: action.payload
       };
     case 'SET_USER_LIKES':
-        if(!state.loggedInUser.user){
+        if(!state.loggedInUser){
           throw new TypeError('User is null');
         }
         return {
           ...state,
           loggedInUser: {
             ...state.loggedInUser,
-            user: {
-              ...state.loggedInUser.user,
-              likes: action.payload
+            likes: action.payload
             }
-          }
         };
     case 'SET_SEARCH_RESULT':
       return {

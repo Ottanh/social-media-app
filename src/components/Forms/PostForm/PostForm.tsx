@@ -11,10 +11,10 @@ interface Props {
 }
 
 const PostForm = ({ username, replyTo }: Props) => {
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string>();
   const [content, setContent] = useState<string>('');
-  const [{loggedInUser: { user }}] = useStateValue();
-  const createPost = useCreatePost(replyTo, setError);
+  const [{ loggedInUser }] = useStateValue();
+  const [createPost, createPostError] = useCreatePost(replyTo);
 
   const onSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault(); 
@@ -28,19 +28,20 @@ const PostForm = ({ username, replyTo }: Props) => {
         replyTo: replyTo
       } 
     });
+    setError(createPostError);
     setContent('');
   };
 
   const handleChange = (event: { target: { value: string; }; }) => {
     setContent(event.target.value);
-    setError(null);
+    setError(undefined);
   };
   
-  if(!user) {
+  if(!loggedInUser) {
     return null;
   }
 
-  if(username !== user.username && !replyTo) {
+  if(username !== loggedInUser.username && !replyTo) {
     return null;
   }
 

@@ -8,7 +8,6 @@ import { MockedProvider } from '@apollo/client/testing';
 describe('NavMenu when logged in', () => {
   const state: State = {
     loggedInUser: {
-      user: {
         id: 'id',
         username: 'testUser',
         name: 'name',
@@ -16,7 +15,6 @@ describe('NavMenu when logged in', () => {
         description: '',
         likes: []
       },
-    },
     searchResult: { users: [], posts: [] }
   };
 
@@ -43,9 +41,7 @@ describe('NavMenu when logged in', () => {
 
 describe('NavMenu when not logged in', () => {
   const state: State = {
-    loggedInUser: {
-      user: null,
-    },
+    loggedInUser: null,
     searchResult: { users: [], posts: [] }
   };
 

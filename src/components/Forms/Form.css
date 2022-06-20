@@ -14,17 +14,17 @@
 }
 
 .button {
-  width: 6rem;
   height: 2.5rem;
   background: #161d20;
   color: white;
   border-radius: 50px;
   border: none;
-  padding: 2px;
-  padding-left: 8px;
-  padding-right: 8px;
   margin: 0.2em;
-  width: 90%;
+  width: 85%;
+}
+
+.button:hover {
+  background: #263338;
 }
 
 .divErr {

@@ -1,0 +1,58 @@
+
+.UserProfile {
+  border-bottom: 1px solid;
+  border-color: rgba(108, 123, 149, 0.5);
+  box-sizing: border-box;
+  padding: 1rem;
+  padding-top: 2rem;
+}
+
+.UserProfileHeader {
+  display: flex;
+}
+
+.NameContainer {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.FollowButton {
+  font-weight: 600;
+  margin-left: auto;
+  height: 2rem;
+  background: #161d20;
+  color: white;
+  border-radius: 50px;
+  border: none;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.FollowedButton {
+  font-weight: 600;
+  margin-left: auto;
+  height: 2rem;
+  background: white;
+  color: black;
+  border-radius: 50px;
+  border: 1px solid var(--grey-5);
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.FollowButton:hover {
+  background: #263338;
+}
+
+.Name {
+  font-weight: bold;
+}
+
+.UserName {
+  font-weight: lighter;
+}
+
+#userSearch:hover {
+  background-color: whitesmoke;
+}

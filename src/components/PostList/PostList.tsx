@@ -9,7 +9,7 @@ const PostList = ({ posts }: Props) => {
   return (
     <div className="PostList">
       {posts.map((post: Post) => (
-        <PostView key={post.id} post={post} />
+        <PostView key={post.id} post={post}/>
       ))}
     </div>
   );
