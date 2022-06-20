@@ -1,7 +1,5 @@
 import { ApolloError, gql, useMutation } from '@apollo/client';
 import { useStateValue } from '../state';
-import { arrRemove } from '../util/array';
-
 
 const FOLLOW = gql`
   mutation follow($id: ID!) {
