@@ -1,5 +1,6 @@
 import { ApolloError, gql, useMutation } from '@apollo/client';
 import { useStateValue } from '../state';
+import { arrRemove } from '../util/array';
 
 
 const FOLLOW = gql`
@@ -11,10 +12,19 @@ const FOLLOW = gql`
   }
 `;
 
+const UNFOLLOW = gql`
+  mutation unFollow($id: ID!) {
+    unFollow(id: $id) {
+      id
+      followed
+    }
+  }
+`;
+
 const useFollow = () => {
   const [{ loggedInUser }] = useStateValue();
   if(!loggedInUser) {
-    return () => null;
+    return [() => null, () => null];
   }
 
   const handleError = (error: ApolloError) => {
@@ -29,20 +39,13 @@ const useFollow = () => {
 
   const [follow,] = useMutation(FOLLOW, {
     onError: handleError,
-    update: (cache, response) => {  
-      cache.modify({
-        id: `User:${loggedInUser.id}`,
-        fields: {
-          likes(cachedFollow) {
-            return cachedFollow.concat(response.data.addLike.id);
-          },
-        }
-      }); 
-    },
   });
 
-  return follow;
-  
+  const [unFollow,] = useMutation(UNFOLLOW, {
+    onError: handleError,
+  });
+
+  return [follow, unFollow];
 };
 
 export default useFollow;

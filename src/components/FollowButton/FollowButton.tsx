@@ -19,7 +19,7 @@ interface Props {
 const FollowButton = ({ user }: Props) => {
   const [{ loggedInUser },] = useStateValue();
   const followedQuery = useQuery(GET_USERS_FOLLOWED);
-  const follow = useFollow();
+  const [follow, unFollow] = useFollow();
 
   const clickFollow = () => {
     follow({
@@ -29,14 +29,18 @@ const FollowButton = ({ user }: Props) => {
     });
   };
 
-  const unFollow = () => {
-    return null;
+  const clickUnFollow = () => {
+    unFollow({
+      variables: {
+        id: user.id
+      }
+    });
   };
 
   if(loggedInUser?.id === user.id) {
     return null;
   } else if (followedQuery.data?.me.followed.includes(user.id)) {
-    return <button className="FollowedButton" onClick={unFollow}>Followed</button>;
+    return <button className="FollowedButton" onClick={clickUnFollow}>Followed</button>;
   } else {
     return <button className="FollowButton" onClick={clickFollow}>Follow</button>;
   }
