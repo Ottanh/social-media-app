@@ -16,7 +16,7 @@ export interface Post {
     };
     date: string;
     content?: string;
-    file?: string;
+    image?: string;
     likes: number;
     replyTo?: string;
     replies: string[];

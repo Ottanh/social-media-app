@@ -16,7 +16,7 @@ export const FIND_POSTS = gql`
       }
       date
       content
-      file
+      image
       likes
       replyTo
       replies

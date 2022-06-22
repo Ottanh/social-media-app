@@ -8,8 +8,8 @@ import axios from 'axios';
 
 
 const GET_SIGNED_PUT = gql`
-  query getSignedPostUrl($fileName: String!) {
-    getSignedPostUrl(fileName: $fileName)
+  query getSignedPut($fileName: String!) {
+    getSignedPut(fileName: $fileName)
   }
 `;
 
@@ -25,7 +25,7 @@ const PostForm = ({ username, replyTo }: Props) => {
   const [createPost, createPostError] = useCreatePost(replyTo);
   const [image, setImage] = useState<File | null>();
 
-  const signePutQuery = useQuery(GET_SIGNED_PUT, {
+  const signedQuery = useQuery(GET_SIGNED_PUT, {
     skip: !image,
     variables: {
       fileName: image?.name
@@ -34,17 +34,17 @@ const PostForm = ({ username, replyTo }: Props) => {
 
   const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault(); 
-    if(content.length < 3) {
+    if(content.length < 3 && !signedQuery.data) {
       setError('Post must be at least 3 charecters');
       return;
     }
 
-    if(signePutQuery.loading) {
+    if(signedQuery.loading) {
       return;
     }
 
-    if(signePutQuery.data) {
-      const res = await axios.put(signePutQuery.data.getSignedPostUrl, image);
+    if(signedQuery.data) {
+      const res = await axios.put(signedQuery.data.getSignedPut, image);
       if(res.status !== 200) {
         setError('Error uploading image');
         return;
@@ -54,7 +54,7 @@ const PostForm = ({ username, replyTo }: Props) => {
     createPost({ 
       variables: { 
         content: content,
-        file: image?.name,
+        image: image?.name,
         replyTo: replyTo
       } 
     });
