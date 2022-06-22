@@ -1,4 +1,7 @@
 .PostContent {
   padding-bottom: 1rem;
   word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
 }

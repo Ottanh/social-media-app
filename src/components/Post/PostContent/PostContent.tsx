@@ -16,6 +16,9 @@ const PostContent = ({ post }: Props) => {
   return (
     <div className="PostContent" onClick={onClick}>
       {post.content}
+      {post.file &&
+      <img src={post.file} alt="post image"/>
+      }
     </div>
   );
 };

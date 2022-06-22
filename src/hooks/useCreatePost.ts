@@ -5,8 +5,8 @@ import { useStateValue } from '../state';
 import { useState } from 'react';
 
 const CREATE_POST = gql`
-  mutation createPost($content: String!,$replyTo: String) {
-    createPost(content: $content, replyTo: $replyTo) {
+  mutation createPost($content: String!, $file: String, $replyTo: String) {
+    createPost(content: $content, file: $file, replyTo: $replyTo) {
       id
     }
   }

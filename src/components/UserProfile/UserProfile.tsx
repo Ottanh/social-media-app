@@ -20,7 +20,7 @@ const UserProfile = ({ user, id }: Props) => {
     <div className="UserProfile" id={id} onClick={onClick}>
       <div className="UserProfileHeader">
         <img className="userPic" src={cat} alt="manuliLogo"/>
-        
+      
         <FollowButton user={user} />
       </div>
       <div className="NameContainer">

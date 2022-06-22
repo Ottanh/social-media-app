@@ -16,6 +16,7 @@ export interface Post {
     };
     date: string;
     content?: string;
+    file?: string;
     likes: number;
     replyTo?: string;
     replies: string[];
