@@ -15,7 +15,8 @@ describe('NavMenu when logged in', () => {
         description: '',
         likes: []
       },
-    searchResult: { users: [], posts: [] }
+    searchResult: { users: [], posts: [] },
+    newPosts: []
   };
 
   test('renders all links', async () => {
@@ -42,7 +43,8 @@ describe('NavMenu when logged in', () => {
 describe('NavMenu when not logged in', () => {
   const state: State = {
     loggedInUser: null,
-    searchResult: { users: [], posts: [] }
+    searchResult: { users: [], posts: [] },
+    newPosts: []
   };
 
   test('renders all links except "Sign out"', async () => {

@@ -1,5 +1,5 @@
 import { State } from './state';
-import { SearchResult, User } from '../types';
+import { Post, SearchResult, User } from '../types';
 
 export type Action =
   | {
@@ -17,6 +17,10 @@ export type Action =
   | {
       type: 'SET_STATE';
       payload: State;
+    }
+  | {
+      type: 'ADD_POST';
+      payload: Post;
     };
 
 
@@ -42,6 +46,11 @@ export const reducer = (state: State, action: Action): State => {
       return {
         ...state,
         searchResult: action.payload
+      };
+    case 'ADD_POST':
+      return {
+        ...state,
+        newPosts: state.newPosts.concat(action.payload)
       };
     default:
       return state;
@@ -72,6 +81,13 @@ export const setSearchResult = (payload: SearchResult): Action => {
 export const setState = (payload: State): Action => {
   return {
     type: 'SET_STATE',
+    payload
+  };
+};
+
+export const addPost = (payload: Post): Action => {
+  return {
+    type: 'ADD_POST',
     payload
   };
 };

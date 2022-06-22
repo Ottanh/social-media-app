@@ -1,21 +1,31 @@
 import { ApolloError, gql, useMutation } from '@apollo/client';
-import { FIND_POSTS } from '../pages/UserPage/UserPage';
 import { FIND_REPLIES } from '../pages/PostPage/PostPage';
-import { useStateValue } from '../state';
+import { addPost, useStateValue } from '../state';
 import { useState } from 'react';
 
 const CREATE_POST = gql`
   mutation createPost($content: String!, $image: String, $replyTo: String) {
     createPost(content: $content, image: $image, replyTo: $replyTo) {
       id
+      date
+      content
+      image
+      likes
+      replyTo
+      replies
+      user {
+        id
+        name
+        username
+      }
     }
   }
 `;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useCreatePost = (replyTo: string | undefined): [any, string | undefined] => {
-  const [{ loggedInUser }] = useStateValue();
   const [error, setError] = useState<string | undefined>();
+  const [, dispatch] = useStateValue();
 
   const handleError = (error: ApolloError) => {
     if(error.networkError) {
@@ -28,13 +38,13 @@ const useCreatePost = (replyTo: string | undefined): [any, string | undefined] =
 
   const [createPost,] = useMutation(CREATE_POST, {
     refetchQueries: [ 
-      {
-        query: FIND_POSTS, variables: { username: loggedInUser?.username }
-      },
       { 
         query: FIND_REPLIES, variables: { replyTo } 
       }
      ],
+    onCompleted: (data) => {
+      dispatch(addPost(data.createPost));
+    },
     onError: handleError,
   });
 

@@ -17,6 +17,7 @@ export const FIND_POSTS = gql`
       }
       date
       content
+      image
       likes
       replyTo
       replies
@@ -34,8 +35,10 @@ const GET_USERS_FOLLOWED = gql`
 `;
 
 const HomePage = () => {
-  const [{ loggedInUser }] = useStateValue();
+  const [{ loggedInUser, newPosts }] = useStateValue();
   const [followed, setFollowed] = useState();
+
+  console.log(newPosts);
 
   const followQuery = useQuery(GET_USERS_FOLLOWED);
   const postQuery = useQuery(FIND_POSTS, {
@@ -60,7 +63,7 @@ const HomePage = () => {
       <section className="HomePage">
         <PageHeader title={'Home'} />
         <PostForm username={loggedInUser?.username} />
-        <PostList  posts={postQuery.data? postQuery.data.findPosts : []}/>
+        <PostList  posts={postQuery.data.findPosts.concat(newPosts)}/>
       </section>
   );
 };

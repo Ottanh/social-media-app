@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import { SearchResult, User } from '../types';
+import { Post, SearchResult, User } from '../types';
 import { Action } from './reducer';
 
 export type State = {
   loggedInUser: User | null;
   searchResult: SearchResult;
+  newPosts: Post[];
 };
 
 const initialState: State = {
@@ -17,7 +18,8 @@ const initialState: State = {
   searchResult: {
     users: [],
     posts: []
-   }
+   },
+   newPosts: []
 };
 
 export const StateContext = createContext<[State, React.Dispatch<Action>]>([
