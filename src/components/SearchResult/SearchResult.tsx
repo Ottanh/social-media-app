@@ -3,16 +3,16 @@ import PostView from '../Post/Post';
 import UserDetails from '../UserProfile/UserProfile';
 
 interface Props {
-  type: 'users' | 'posts';
+  from: 'user' | 'post';
   searchResult: ResultType
 }
 
-const SearchResult = ({ type, searchResult }: Props) => {
-  if(type === 'users') {
+const SearchResult = ({ from, searchResult }: Props) => {
+  if(from === 'user') {
     return (
       <div className="SearchResult">
         {
-          searchResult.users.map((user) => {
+          searchResult.user.map((user) => {
             if(!user) return null;
             return <UserDetails id="userSearch" key={user.username} user={user} />;
           })
@@ -21,11 +21,11 @@ const SearchResult = ({ type, searchResult }: Props) => {
     );
   }
 
-  if(type === 'posts') {
+  if(from === 'post') {
     return (
       <div className="SearchResult">
         {
-          searchResult.posts.map((post) => {
+          searchResult.post.map((post) => {
             if(!post) return null;
             return <PostView key={post.id} post={post} />;
           })

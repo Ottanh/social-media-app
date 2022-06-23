@@ -9,38 +9,38 @@ import { useStateValue } from '../../state';
 
 
 const ExplorePage = () => {
-  const [type, setType] = useState<'users' | 'posts'>('users');
+  const [from, setFrom] = useState<'user' | 'post'>('user');
   const [{ searchResult }] = useStateValue();
 
   const onClickPost = (event: MouseEvent<SVGElement>) => {
     event.preventDefault();
-    setType('posts');
+    setFrom('post');
   };
 
   const onClickUser = (event: MouseEvent<SVGElement>) => {
     event.preventDefault();
-    setType('users');
+    setFrom('user');
   };
 
   return (
     <section className="ExplorePage">
       <PageHeader title="Explore" />
       <div className="ExploreContainer">
-        <Search/>
+        <Search from={from}/>
         <BsChatText 
           className="SearchIcons" 
           size="1.3em" 
           onClick={onClickPost} 
-          style={type === 'posts' ? {'backgroundColor': 'rgba(108, 123, 149, 0.5)'} : {}} 
+          style={from === 'post' ? {'backgroundColor': 'rgba(108, 123, 149, 0.5)'} : {}} 
         />
         <AiOutlineUser 
           className="SearchIcons" 
           size="1.3em" 
           onClick={onClickUser} 
-          style={type === 'users' ? {'backgroundColor': 'rgba(108, 123, 149, 0.5)'} : {}} 
+          style={from === 'user' ? {'backgroundColor': 'rgba(108, 123, 149, 0.5)'} : {}} 
         />
       </div>
-      <SearchResult type={type} searchResult={searchResult}/>
+      <SearchResult from={from} searchResult={searchResult}/>
     </section>
   );
 };

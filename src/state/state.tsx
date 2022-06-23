@@ -16,9 +16,9 @@ const initialState: State = {
       }
     })(),
   searchResult: {
-    users: [],
-    posts: []
-   },
+    user: [],
+    post: []
+  },
    newPosts: []
 };
 

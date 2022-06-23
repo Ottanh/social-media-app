@@ -11,8 +11,12 @@ export type Action =
       payload: string[];
     }
   | {
-      type: 'SET_SEARCH_RESULT';
-      payload: SearchResult;
+      type: 'SET_SEARCH_USER';
+      payload: User[];
+    }
+  | {
+      type: 'SET_SEARCH_POST';
+      payload: Post[];
     }
   | {
       type: 'SET_STATE';
@@ -42,11 +46,22 @@ export const reducer = (state: State, action: Action): State => {
             likes: action.payload
             }
         };
-    case 'SET_SEARCH_RESULT':
+    case 'SET_SEARCH_USER':
       return {
         ...state,
-        searchResult: action.payload
+        searchResult: {
+          ...state.searchResult,
+          user: action.payload
+        }
       };
+    case 'SET_SEARCH_POST':
+        return {
+          ...state,
+          searchResult: {
+            ...state.searchResult,
+            post: action.payload
+          }
+        };
     case 'ADD_POST':
       return {
         ...state,
@@ -71,9 +86,16 @@ export const setUserLikes = (payload: string[]): Action => {
   };
 };
 
-export const setSearchResult = (payload: SearchResult): Action => {
+export const setSearchUser = (payload: User[]): Action => {
   return {
-    type: 'SET_SEARCH_RESULT',
+    type: 'SET_SEARCH_USER',
+    payload
+  };
+};
+
+export const setSearchPost = (payload: Post[]): Action => {
+  return {
+    type: 'SET_SEARCH_POST',
     payload
   };
 };

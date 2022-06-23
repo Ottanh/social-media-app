@@ -1,19 +1,24 @@
 import { gql, useQuery } from '@apollo/client';
 import { useEffect, useState } from 'react';
-import { setSearchResult, useStateValue } from '../state';
+import { setSearchPost, setSearchUser, useStateValue } from '../state';
 
-const SEARCH = gql`
-  query search($searchword: String!) {
-    search (searchword: $searchword) { 
-      users {
-        id
-        name
-        username
-        date
-      }
-      posts {
-        id
+const SEARCH_USER = gql`
+  query searchUser($searchword: String!) {
+    searchUser(searchword: $searchword) { 
+      id
+      name
+      username
+      date
+    }
+  }
+`;
+
+const SEARCH_POST = gql`
+  query searchPost($searchword: String!) {
+    searchPost(searchword: $searchword) { 
+      id
         user {
+          id
           name
           username
         }
@@ -21,27 +26,33 @@ const SEARCH = gql`
         content
         likes
         replies
-      }
     }
   }
 `;
 
-const useSearch = (def: string): [string, React.Dispatch<React.SetStateAction<string>>] => {
+const useSearch = (def: string, from: string): [string, React.Dispatch<React.SetStateAction<string>>] => {
   const [value, setValue] = useState<string>(def);
   const [, dispatch] = useStateValue();
 
-  const searchQuery = useQuery(SEARCH, {
-    variables: { searchword: value }
+  const userQuery = useQuery(SEARCH_USER, {
+    variables: { searchword: value },
+    skip: from !== 'user'
+  });
+
+  const postQuery = useQuery(SEARCH_POST, {
+    variables: { searchword: value },
+    skip: from !== 'post'
   });
 
   useEffect(() => {
-    if(searchQuery.data && searchQuery.data.search && value.length >= 3){
-      dispatch(setSearchResult(searchQuery.data.search));
+    if(userQuery.data){
+      dispatch(setSearchUser(userQuery.data.searchUser));
     }
-    if(value.length < 3) {
-      dispatch(setSearchResult({users: [], posts: []}));
+    if(postQuery.data){
+      dispatch(setSearchPost(postQuery.data.searchPost));
     }
-  },[searchQuery.data, value]);
+
+  },[userQuery.data, postQuery.data, value]);
 
   return [value, setValue];
 };

@@ -2,9 +2,12 @@ import Textarea from 'react-expanding-textarea';
 import useSearch from '../../../hooks/useSearch';
 import './SearchForm.css';
 
+interface props {
+  from: 'user' | 'post';
+}
 
-const SearchForm = () => {
-  const [value, setValue] = useSearch('');
+const SearchForm = ({ from }: props) => {
+  const [value, setValue] = useSearch('', from);
 
   const handleChange = (event: { target: { value: string; }; }) => {
     setValue(event.target.value);

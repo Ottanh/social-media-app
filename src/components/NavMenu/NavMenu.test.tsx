@@ -15,7 +15,7 @@ describe('NavMenu when logged in', () => {
         description: '',
         likes: []
       },
-    searchResult: { users: [], posts: [] },
+    searchResult: { user: [], post: [] },
     newPosts: []
   };
 
@@ -43,7 +43,7 @@ describe('NavMenu when logged in', () => {
 describe('NavMenu when not logged in', () => {
   const state: State = {
     loggedInUser: null,
-    searchResult: { users: [], posts: [] },
+    searchResult: { user: [], post: [] },
     newPosts: []
   };
 

@@ -6,7 +6,7 @@ import SearchResult from './SearchResult';
 
 describe('SearchResult', () => {
   const searchResult: SearchType = {
-    users: [
+    user: [
       {
         id: 'userId',
         name: 'olli',
@@ -16,7 +16,7 @@ describe('SearchResult', () => {
         likes: ['111']
       }
     ],
-    posts: [
+    post: [
       {
         id: 'postId',
         user: {
@@ -49,7 +49,7 @@ describe('SearchResult', () => {
     render(
       <MockedProvider>
         <BrowserRouter>
-          <SearchResult type="users" searchResult={searchResult} />
+          <SearchResult from="user" searchResult={searchResult} />
         </BrowserRouter>
       </MockedProvider>
     );
@@ -65,7 +65,7 @@ describe('SearchResult', () => {
     render(
       <MockedProvider>
         <BrowserRouter>
-          <SearchResult type="posts" searchResult={searchResult} />
+          <SearchResult from="post" searchResult={searchResult} />
         </BrowserRouter>
       </MockedProvider>
     );
