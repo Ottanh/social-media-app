@@ -50,7 +50,6 @@ const useCreateUser = (): [any, string | undefined] => {
 
 
   return [createUser, error];
-
 };
 
 
