@@ -1,5 +1,4 @@
-import { ApolloError, gql, useMutation } from "@apollo/client";
-
+import { ApolloError, gql, useMutation } from '@apollo/client';
 
 
 const EDIT = gql`

@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import Textarea from 'react-expanding-textarea';
 import useCreatePost from '../../../hooks/useCreatePost';
 import { useStateValue } from '../../../state';
@@ -8,8 +8,14 @@ import axios from 'axios';
 
 
 const GET_SIGNED_PUT = gql`
-  query getSignedPut($fileName: String!) {
-    getSignedPut(fileName: $fileName)
+  query getPutUrl($fileName: String!) {
+    getPutUrl(fileName: $fileName)
+  }
+`;
+
+const GET_SIGNED_DELETE = gql`
+  query getDeleteUrl($fileName: String!) {
+    getDeleteUrl(fileName: $fileName)
   }
 `;
 
@@ -32,6 +38,13 @@ const PostForm = ({ username, replyTo }: Props) => {
     }
   });
 
+  const signedDelete = useQuery(GET_SIGNED_DELETE, {
+    skip: !image,
+    variables: {
+      fileName: image?.name
+    }
+  });
+
   const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault(); 
     if(content.length < 3 && !signedQuery.data) {
@@ -39,12 +52,12 @@ const PostForm = ({ username, replyTo }: Props) => {
       return;
     }
 
-    if(signedQuery.loading) {
+    if(signedQuery.loading ||signedDelete.loading) {
       return;
     }
 
     if(signedQuery.data) {
-      const res = await axios.put(signedQuery.data.getSignedPut, image);
+      const res = await axios.put(signedQuery.data.getPutUrl, image);
       if(res.status !== 200) {
         setError('Error uploading image');
         return;
@@ -53,7 +66,7 @@ const PostForm = ({ username, replyTo }: Props) => {
 
     createPost({ 
       variables: { 
-        content: content,
+        content,
         image: image?.name,
         replyTo: replyTo
       } 
@@ -62,6 +75,17 @@ const PostForm = ({ username, replyTo }: Props) => {
     setError(createPostError);
     setContent('');
   };
+
+  useEffect(() => {
+    if(createPostError && signedDelete.data){
+      axios.delete(signedDelete.data.getDeleteUrl).then(res => {
+        if(res.status !== 204) {
+          setError('Error deleting image');
+          return;
+        }  
+      });
+    }
+  }, [createPostError, signedDelete]);
 
   const handleChange = (event: { target: { value: string; }; }) => {
     setContent(event.target.value);
@@ -72,6 +96,7 @@ const PostForm = ({ username, replyTo }: Props) => {
     if(event.target.files) {
       setImage(event.target.files[0]);
       console.log(event.target.files[0].name);
+      setError(undefined);
     }
   };
   
@@ -101,7 +126,7 @@ const PostForm = ({ username, replyTo }: Props) => {
             Send
           </button>
         </div>
-        <input type="file" accept="image/*, video/*, .gif" onChange={onImageChange} />
+        <input type="file" accept="image/*" onChange={onImageChange} />
         {error && <div className="divErrPost">{error}</div>}
     </div>
   );

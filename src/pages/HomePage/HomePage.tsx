@@ -38,8 +38,6 @@ const HomePage = () => {
   const [{ loggedInUser, newPosts }] = useStateValue();
   const [followed, setFollowed] = useState();
 
-  console.log(newPosts);
-
   const followQuery = useQuery(GET_USERS_FOLLOWED);
   const postQuery = useQuery(FIND_POSTS, {
     variables: { userIds: followed }
