@@ -92,16 +92,16 @@ const PostForm = ({ username, replyTo }: Props) => {
             onChange={handleChange}
             value={content}
           />
+          <button 
+            className="PostFormButton" 
+            type="submit" 
+            value="Post"
+            onClick={onSubmit}
+          >
+            Send
+          </button>
         </div>
         <input type="file" accept="image/*, video/*, .gif" onChange={onImageChange} />
-        <button 
-          className="PostFormButton" 
-          type="submit" 
-          value="Post"
-          onClick={onSubmit}
-        >
-          Send
-        </button>
         {error && <div className="divErrPost">{error}</div>}
     </div>
   );

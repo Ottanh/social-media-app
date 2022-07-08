@@ -33,8 +33,6 @@
   border: none;
   padding-left: 15px;
   padding-right: 15px;
-  margin-top: auto;
-  margin-bottom: auto;
 }
 
 .FollowedButton {
@@ -67,6 +65,15 @@
   background-color: whitesmoke;
 }
 
-.UserDetails {
 
+.UserDes {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background: 0;
+  outline: none;
+  border: 0;
+  border-bottom: 2px;
+  resize: none;
+  width: 100%;
 }
+

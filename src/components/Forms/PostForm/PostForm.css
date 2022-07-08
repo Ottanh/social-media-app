@@ -19,7 +19,7 @@
   padding: 4px;
   padding-left: 10px;
   padding-right: 10px;
-  margin-left: auto;
+  margin-left: 1rem;
   font-weight: bold;
   font-size: medium;
 }
@@ -31,14 +31,14 @@
 .TextArea {
   outline: none;
   border: 0;
-  border-bottom: 2px;
+  border-bottom: 1px solid;
+  border-color: #6c7b95;
   resize: none;
   width: 100%;
 }
 
 .TextAreaContainer {
-  border-bottom: 1px solid;
-  border-color: #6c7b95;
+  display: flex;
   margin-bottom: 0.5em;
   text-align: left;
 }
