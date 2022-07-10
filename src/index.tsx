@@ -24,7 +24,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const httpLink = new HttpLink({
-  uri: 'http://localhost:4000',
+  uri: 'http://ec2-16-170-237-56.eu-north-1.compute.amazonaws.com:4000',
 });
 
 

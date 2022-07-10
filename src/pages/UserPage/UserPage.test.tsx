@@ -46,6 +46,7 @@ describe('PostPage success state', () => {
                 username: 'olli1111'
               },
               replies: [],
+              image: null,
               replyTo: null
             }
           ]

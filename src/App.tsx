@@ -6,6 +6,7 @@ import PostPage from './pages/PostPage/PostPage';
 import './App.css';
 import HomePage from './pages/HomePage/HomePage';
 
+
 const App = () => {
   const loc = useLocation();
   console.log(loc.pathname);
