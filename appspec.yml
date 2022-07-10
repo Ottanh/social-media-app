@@ -6,7 +6,7 @@ files:
 hooks:
   AfterInstall:
     - location: scripts/AfterInstallHook.sh
-      timeout: 300
+      timeout: 600
   ApplicationStart:
     - location: scripts/ApplicationStartHook.sh
       timeout: 300
