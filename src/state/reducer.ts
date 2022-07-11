@@ -30,6 +30,8 @@ export type Action =
 
 export const reducer = (state: State, action: Action): State => {
   switch (action.type) {
+    case 'SET_STATE':
+      return action.payload;
     case 'SET_USER':
       return {
         ...state,

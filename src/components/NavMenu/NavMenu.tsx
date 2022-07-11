@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { setUser, useStateValue } from '../../state';
+import { setState, useStateValue } from '../../state';
 import manuliLogo from '../../images/cat-logo.jpg';
 import './NavMenu.css';
 import { BsBoxArrowUpRight, BsHouse, BsSearch } from 'react-icons/bs';
@@ -12,10 +12,21 @@ const NavigationBar = () => {
   const client = useApolloClient();
 
   const logout = () => {
-    dispatch(setUser(null));
+    dispatch(setState(
+      {
+        loggedInUser: null,
+        searchResult: {
+          user: [],
+          post: []
+        },
+        newPosts: []
+      }
+    ));
+    console.log(loggedInUser);
     localStorage.clear();  
     client.resetStore();
   };
+
 
   const styleHide = () => {
     if(!loggedInUser){

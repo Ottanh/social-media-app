@@ -43,7 +43,6 @@ const useCreatePost = (replyTo: string | undefined): [any, string | undefined] =
       }
      ],
     onCompleted: (data) => {
-      console.log(data);
       dispatch(addPost(data.createPost));
     },
     onError: handleError,

@@ -4,7 +4,7 @@ import FollowButton from '../FollowButton/FollowButton';
 import './UserProfile.css';
 import cat from '../../images/cat.jpg';
 import { useStateValue } from '../../state';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Textarea from 'react-expanding-textarea';
 import useEditUserDes from '../../hooks/useEditUserDes';
 
@@ -20,6 +20,7 @@ const UserProfile = ({ user, id }: Props) => {
   const [value, setValue] = useState<string>(user.description);
   const editDescription = useEditUserDes();
   const navigate = useNavigate();
+  const ref = useRef<HTMLInputElement>(null);
 
   const onClick = () => {
     navigate(`/${user.username}`);
@@ -31,6 +32,7 @@ const UserProfile = ({ user, id }: Props) => {
 
   const onEdit = () => {
     setEdit(true);
+    ref.current?.focus();
   };
 
   const onSave = () => {
@@ -69,10 +71,12 @@ const UserProfile = ({ user, id }: Props) => {
 
       <div className="UserDetails">
         <Textarea
+          ref={ref}
+          onFocus={(e)=>e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)}
           readOnly={!edit}
-          className="UserDes" 
+          className={edit ? 'UserDesEdit' : 'UserDes' }
           onChange={handleChange}
-          value={value}
+          value={value ? value : ''}
         />
         Joined: {user.date}
       </div>

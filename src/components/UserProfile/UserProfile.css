@@ -77,3 +77,15 @@
   width: 100%;
 }
 
+.UserDesEdit {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-style: italic;
+  background: 0;
+  outline: none;
+  border: 0;
+  border-bottom: 2px;
+  resize: none;
+  width: 100%;
+}
+
