@@ -32,6 +32,7 @@ export const FIND_USER = gql`
       name
       date
       description
+      image
     }
   }
 `;

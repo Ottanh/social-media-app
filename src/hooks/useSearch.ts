@@ -9,6 +9,7 @@ const SEARCH_USER = gql`
       name
       username
       date
+      image
     }
   }
 `;

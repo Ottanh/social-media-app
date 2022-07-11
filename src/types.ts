@@ -4,6 +4,7 @@ export interface User {
   name: string;
   date: string;
   description: string;
+  image: string;
   likes: string[];
 }
 

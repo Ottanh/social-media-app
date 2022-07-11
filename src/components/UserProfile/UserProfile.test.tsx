@@ -11,6 +11,7 @@ describe('User details', () => {
         username: 'olli111',
         date: '18/6',
         description: 'moi',
+        image: 'defaultUserPic.jpg',
         likes: ['111']
   };
 

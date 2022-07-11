@@ -97,7 +97,6 @@ const PostForm = ({ username, replyTo }: Props) => {
   const onImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     if(event.target.files) {
       setImage(event.target.files[0]);
-      console.log(event.target.files[0].name);
       setError(undefined);
     }
   };

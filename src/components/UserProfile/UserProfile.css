@@ -89,3 +89,14 @@
   width: 100%;
 }
 
+
+.camera-icon {
+  margin-top: auto;
+  color: var(--grey);
+}
+
+.camera-icon:hover {
+  color: var(--dark-grey);
+}
+
+

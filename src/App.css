@@ -6,6 +6,8 @@ html * {
 
 #root {
   --grey-5: rgba(108, 123, 149, 0.5);
+  --grey: rgb(108, 123, 149);
+  --dark-grey: rgb(52, 56, 63);
 }
 
 body {
