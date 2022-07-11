@@ -8,6 +8,10 @@
   font-weight: bold;
 }
 
+#postUser:hover {
+  text-decoration: underline;
+}
+
 #postDate {
   font-weight: 100;
 }
