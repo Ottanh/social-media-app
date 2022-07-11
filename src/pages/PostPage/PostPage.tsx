@@ -16,6 +16,7 @@ export const FIND_POST = gql`
       }
       date
       content
+      image
       likes
       replies
     }
@@ -34,6 +35,7 @@ export const FIND_REPLIES = gql`
       date
       content
       likes
+      image
       replyTo
       replies
     }
