@@ -19,7 +19,7 @@ const initialState: State = {
     user: [],
     post: []
   },
-   newPosts: []
+  newPosts: []
 };
 
 export const StateContext = createContext<[State, React.Dispatch<Action>]>([

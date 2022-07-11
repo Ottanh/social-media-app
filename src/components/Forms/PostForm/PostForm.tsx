@@ -72,10 +72,12 @@ const PostForm = ({ username, replyTo }: Props) => {
       } 
     });
 
+
     setError(createPostError);
     setContent('');
   };
 
+  //delete image from s3 if createPost returns error
   useEffect(() => {
     if(createPostError && signedDelete.data){
       axios.delete(signedDelete.data.getDeleteUrl).then(res => {

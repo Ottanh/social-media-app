@@ -1,5 +1,5 @@
 import { State } from './state';
-import { Post, SearchResult, User } from '../types';
+import { Post, User } from '../types';
 
 export type Action =
   | {

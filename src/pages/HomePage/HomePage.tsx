@@ -40,6 +40,7 @@ const HomePage = () => {
 
   const followQuery = useQuery(GET_USERS_FOLLOWED);
   const postQuery = useQuery(FIND_POSTS, {
+    skip: !followed,
     variables: { userIds: followed }
   });
 
@@ -57,11 +58,14 @@ const HomePage = () => {
     return <div className="UserPage">Error</div>;
   } 
 
+  const posts = newPosts.concat(postQuery.data.findPosts);
+  console.log(posts);
+
   return (
       <section className="HomePage">
         <PageHeader title={'Home'} />
         <PostForm username={loggedInUser?.username} />
-        <PostList  posts={postQuery.data.findPosts.concat(newPosts)}/>
+        <PostList  posts={posts}/>
       </section>
   );
 };
