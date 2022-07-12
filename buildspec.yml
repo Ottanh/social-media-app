@@ -7,6 +7,7 @@ phases:
   pre_build:
     commands:
         - pwd
+        - ls -a
         - npm run lint
         - npm run test
   build:
