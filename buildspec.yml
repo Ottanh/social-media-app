@@ -8,12 +8,8 @@ phases:
         - npm install
   pre_build:
     commands:
-        - pwd
-        - ls -a
-        - node --version
-        - npm -v
         - npm run lint
-        - npm run test
+        - npm run test -- --watchAll=false
   build:
     commands:
         - npm run build
