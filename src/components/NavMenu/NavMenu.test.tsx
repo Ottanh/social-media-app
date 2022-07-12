@@ -14,7 +14,8 @@ describe('NavMenu when logged in', () => {
         date: 'date',
         description: '',
         image: 'defaultUserPic.jpg',
-        likes: []
+        likes: [],
+        followed: []
       },
     searchResult: { user: [], post: [] },
     newPosts: []

@@ -12,7 +12,8 @@ describe('User details', () => {
         date: '18/6',
         description: 'moi',
         image: 'defaultUserPic.jpg',
-        likes: ['111']
+        likes: ['111'],
+        followed: []
   };
 
   test('renders correctly', async () => {

@@ -2,7 +2,7 @@ import { gql, useQuery } from '@apollo/client';
 import useFollow from '../../hooks/useFollow';
 import { User } from '../../types';
 
-const GET_USERS_FOLLOWED = gql`
+export const GET_USERS_FOLLOWED = gql`
   query UsersFollowed {
     me {
       id
@@ -36,7 +36,7 @@ const FollowButton = ({ user }: Props) => {
   };
 
   if (followedQuery.data?.me.followed.includes(user.id)) {
-    return <button className="FollowedButton" onClick={clickUnFollow}>Followed</button>;
+    return <button className="FollowedButton" onClick={clickUnFollow}>Unfollow</button>;
   } else {
     return <button className="FollowButton" onClick={clickFollow}>Follow</button>;
   }

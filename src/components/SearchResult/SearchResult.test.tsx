@@ -14,7 +14,8 @@ describe('SearchResult', () => {
         date: '18/6',
         description: 'moi',
         image: 'defaultUserPic.jpg',
-        likes: ['111']
+        likes: ['111'],
+        followed: []
       }
     ],
     post: [

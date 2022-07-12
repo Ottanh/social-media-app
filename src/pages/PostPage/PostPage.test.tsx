@@ -22,6 +22,7 @@ describe('PostPage success state', () => {
             }, 
             date: '18/6',
             content: 'Original post',
+            image: null,
             likes: 1,
             replies: ['post2'] 
           },
@@ -47,6 +48,7 @@ describe('PostPage success state', () => {
               }, 
               date: '18/6',
               content: 'Reply post',
+              image: null,
               likes: 2,
               replies: ['post2'],
               replyTo: 'post1'

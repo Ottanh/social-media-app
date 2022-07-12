@@ -6,6 +6,7 @@ export interface User {
   description: string;
   image: string;
   likes: string[];
+  followed: string[];
 }
 
 export interface Post {
