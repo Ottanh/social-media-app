@@ -25,7 +25,7 @@ export const FIND_POSTS = gql`
   }
 `;
 
-const GET_USERS_FOLLOWED = gql`
+export const GET_USERS_FOLLOWED = gql`
   query UsersFollowed {
     me {
       id
@@ -58,14 +58,11 @@ const HomePage = () => {
     return <div className="UserPage">Error</div>;
   } 
 
-  const posts = newPosts.concat(postQuery.data.findPosts);
-  console.log(posts);
-
   return (
       <section className="HomePage">
         <PageHeader title={'Home'} />
         <PostForm username={loggedInUser?.username} />
-        <PostList  posts={posts}/>
+        <PostList  posts={newPosts.concat(postQuery.data.findPosts)}/>
       </section>
   );
 };

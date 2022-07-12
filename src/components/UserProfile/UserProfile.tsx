@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { User } from '../../types';
 import FollowButton from '../FollowButton/FollowButton';
 import './UserProfile.css';
-import cat from '../../images/cat.jpg';
 import { useStateValue } from '../../state';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import Textarea from 'react-expanding-textarea';
@@ -67,11 +66,9 @@ const UserProfile = ({ user, id }: Props) => {
   };
 
   const onSave = async() => {
-
     if(signedQuery.loading ||signedDelete.loading) {
       return;
     }
-
 
     if(signedQuery.data) {
       const res = await axios.put(signedQuery.data.getPutUrl, image);
@@ -106,15 +103,12 @@ const UserProfile = ({ user, id }: Props) => {
   const onImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     if(event.target.files) {
       setImage(event.target.files[0]);
-      console.log(event.target.files[0].name);
     }
   };
 
   const onClickPicture = () => {
     refPicture.current?.click();
   };
-
-  console.log(user.image);
 
   return (
     <div className="UserProfile" id={id} onClick={onClick}>

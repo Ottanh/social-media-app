@@ -21,6 +21,7 @@ describe('PostPage success state', () => {
             name: 'Olli',
             date: '13/05/2022',
             description: 'testaus',
+            image: 'defaultUserPic.png'
           }
         }
       }
