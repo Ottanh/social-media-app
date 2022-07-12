@@ -8,6 +8,8 @@ phases:
     commands:
         - pwd
         - ls -a
+        - node --version
+        - npm -v
         - npm run lint
         - npm run test
   build:
