@@ -2,12 +2,14 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      nodejs: 16
     commands:
         - npm install
-  pre-build:
+  pre_build:
     commands:
         - npm run lint
-        - npm run test
+        - npm run test -- --watchAll=false
   build:
     commands:
         - npm run build
