@@ -3,7 +3,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { MockedProvider } from '@apollo/client/testing';
 import PostPage, { FIND_POST, FIND_REPLIES } from './PostPage';
 
-describe('PostPage success state', () => {
+describe('PostPage', () => {
   const mocks = [
     {
       request: {
@@ -59,6 +59,28 @@ describe('PostPage success state', () => {
     }
   ];
 
+  const mocksError = [
+    {
+      request: {
+        query: FIND_POST,
+        variables: {
+          id: 'post1',
+        },
+      },
+      error: new Error('An error occurred'),
+    }, 
+    {
+      request: {
+        query: FIND_REPLIES,
+        variables: {
+          replyTo: 'post1',
+        },
+      },
+      error: new Error('An error occurred'),
+    }
+  ];
+
+  
   test('renders original post', async () => {
     render(
       <MemoryRouter initialEntries={['/post/post1']}>
@@ -89,9 +111,6 @@ describe('PostPage success state', () => {
     expect(content).toBeInTheDocument();
   });
 
-});
-
-describe('PostPage loading state', () => {
   test('renders Loading...', async () => {
     render(
       <MemoryRouter initialEntries={['/post/post1']}>
@@ -107,35 +126,10 @@ describe('PostPage loading state', () => {
     expect(content).toBeInTheDocument();
   });
 
-});
-
-
-describe('PostPage error state', () => {
-  const mocks = [
-    {
-      request: {
-        query: FIND_POST,
-        variables: {
-          id: 'post1',
-        },
-      },
-      error: new Error('An error occurred'),
-    }, 
-    {
-      request: {
-        query: FIND_REPLIES,
-        variables: {
-          replyTo: 'post1',
-        },
-      },
-      error: new Error('An error occurred'),
-    }
-  ];
-
   test('renders not found', async () => {
     render(
       <MemoryRouter initialEntries={['/post/post1']}>
-        <MockedProvider mocks={mocks} addTypename={false}>
+        <MockedProvider mocks={mocksError} addTypename={false}>
           <Routes>
             <Route path="post/:id" element={<PostPage />} />
           </Routes>
@@ -146,8 +140,9 @@ describe('PostPage error state', () => {
     const content = await screen.findByText('Not found');
     expect(content).toBeInTheDocument();
   });
-
 });
+
+
 
 
 

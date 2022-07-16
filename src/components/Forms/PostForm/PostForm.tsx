@@ -64,6 +64,8 @@ const PostForm = ({ username, replyTo }: Props) => {
       }
     }
 
+    console.log('HEREEEE');
+
     createPost({ 
       variables: { 
         content,

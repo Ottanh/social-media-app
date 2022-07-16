@@ -4,7 +4,7 @@ import { MockedProvider } from '@apollo/client/testing';
 import HomePage, { FIND_POSTS, GET_USERS_FOLLOWED } from './HomePage';
 import { MockState, reducer, State } from '../../state';
 
-describe('HomePage success state', () => {
+describe('HomePage', () => {
 
   const state: State = {
     loggedInUser: {
@@ -20,7 +20,6 @@ describe('HomePage success state', () => {
     searchResult: { user: [], post: [] },
     newPosts: []
   };
-
 
   const mocks = [
     {
@@ -68,6 +67,41 @@ describe('HomePage success state', () => {
     }
   ];
 
+  const mocksError = [
+    {
+      request: {
+        query: FIND_POSTS,
+        variables: {
+          userIds: ['user2'],
+        },
+      },
+      error: new Error('An error occurred'),
+    }, 
+    {
+      request: {
+        query: GET_USERS_FOLLOWED,
+      },
+      error: new Error('An error occurred'),
+    }
+  ];
+
+  test('renders PostForm', async () => {
+    render(
+      <MemoryRouter >
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <MockState mockState={state} reducer={reducer}>
+              <HomePage />
+          </MockState>
+        </MockedProvider>
+      </MemoryRouter>
+    );
+
+    const textarea = await screen.findByRole('textbox');
+    const sendButton = await screen.findByText('Send');
+    expect(textarea).toBeInTheDocument();
+    expect(sendButton).toBeInTheDocument();
+  });
+
   test('renders post from followed user', async () => {
     render(
       <MemoryRouter >
@@ -82,10 +116,7 @@ describe('HomePage success state', () => {
     const content = await screen.findByText('Post from followed user');
     expect(content).toBeInTheDocument();
   });
-});
 
-
-describe('HomePage loading state', () => {
   test('renders Loading...', async () => {
     render(
       <MemoryRouter >
@@ -95,10 +126,26 @@ describe('HomePage loading state', () => {
       </MemoryRouter>
     );
 
-    const content = screen.getByText('Loading...');
-    expect(content).toBeInTheDocument();
+    const loading = screen.getByText('Loading...');
+    expect(loading).toBeInTheDocument();
+  });
+
+  test('renders Error', async () => {
+    render(
+      <MemoryRouter >
+        <MockedProvider mocks={mocksError} addTypename={false}>
+          <MockState mockState={state} reducer={reducer}>
+              <HomePage />
+          </MockState>
+        </MockedProvider>
+      </MemoryRouter>
+    );
+
+    const error = await screen.findByText('Error');
+    expect(error).toBeInTheDocument();
   });
 });
+
 
 
 

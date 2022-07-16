@@ -4,7 +4,7 @@ import { MockedProvider } from '@apollo/client/testing';
 import UserPage, { FIND_POSTS, FIND_USER } from './UserPage';
 import { act } from 'react-test-renderer';
 
-describe('PostPage success state', () => {
+describe('PostPage', () => {
   const mocks = [
     {
       request: {
@@ -38,7 +38,7 @@ describe('PostPage success state', () => {
           findPosts: [
             {
               id: 'postid1',
-              content: 'Eka postaus',
+              content: 'testPost',
               date: '14/05/2022',
               likes: 6,
               user: {
@@ -76,8 +76,8 @@ describe('PostPage success state', () => {
     expect(title).toHaveTextContent('@olli111');
   });
 
-  test('renders user details', async () => {
-    const { container } = render(
+  test('renders user profile', async () => {
+    render(
       <MemoryRouter initialEntries={['/olli111']}>
         <MockedProvider mocks={mocks} addTypename={false}>
           <Routes>
@@ -90,15 +90,30 @@ describe('PostPage success state', () => {
 
     const description = await screen.findByText('testaus');
     const joined = await screen.findByText('Joined: 13/05/2022');
-    const name = container.querySelector('.Name');
+    const name = await screen.findAllByText('Olli');
 
-    expect(name).toHaveTextContent('Olli');
+    expect(name).toHaveLength(2);
     expect(description).toBeInTheDocument();
     expect(joined).toBeInTheDocument();
   });
-});
 
-describe('PostPage loading state', () => {
+  test('renders user post', async () => {
+    render(
+      <MemoryRouter initialEntries={['/olli111']}>
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <Routes>
+            <Route path="/:username" element={<UserPage />}>
+            </Route>
+          </Routes>
+        </MockedProvider>
+      </MemoryRouter>
+    );
+
+    const postContent = await screen.findByText('testPost');
+    expect(postContent).toBeInTheDocument();
+  });
+
+
   test('renders page header', async () => {
     render(
       <MemoryRouter initialEntries={['/olli111']}>
@@ -113,6 +128,7 @@ describe('PostPage loading state', () => {
 
     const loading = screen.getByText('Loading...');
     expect(loading).toBeInTheDocument();
-    
-    });
+  });
 });
+
+
