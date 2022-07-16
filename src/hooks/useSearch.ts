@@ -2,7 +2,7 @@ import { gql, useQuery } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import { setSearchPost, setSearchUser, useStateValue } from '../state';
 
-const SEARCH_USER = gql`
+export const SEARCH_USER = gql`
   query searchUser($searchword: String!) {
     searchUser(searchword: $searchword) { 
       id
@@ -14,19 +14,20 @@ const SEARCH_USER = gql`
   }
 `;
 
-const SEARCH_POST = gql`
+export const SEARCH_POST = gql`
   query searchPost($searchword: String!) {
     searchPost(searchword: $searchword) { 
       id
-        user {
-          id
-          name
-          username
-        }
-        date
-        content
-        likes
-        replies
+      user {
+        id
+        name
+        username
+       }
+       date
+       content
+       likes
+       replies
+       image
     }
   }
 `;
