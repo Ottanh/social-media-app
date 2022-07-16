@@ -12,8 +12,8 @@
   flex-direction: column;
   height: 100%;
   text-align: center;
-  margin-right: 5rem;
-  margin-left: 1rem;
+  margin-right: 25rem;
+  margin-left: 5rem;
 }
 
 .Title {
@@ -21,7 +21,7 @@
   font-weight: 100;
   text-align: center;
   margin-bottom: 0;
-  margin-top: 20vh;
+  margin-top: 30vh;
 }
 
 .OutletContainer {
@@ -43,6 +43,19 @@
 }
 
 
+.manuli-img {
+  border-radius: 10px;
+}
+
+.manuli-logo-entry {
+  margin-top: auto;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+.entrypage-header {
+  display: flex;
+}
 
 
 

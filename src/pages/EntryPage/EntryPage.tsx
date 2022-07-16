@@ -1,8 +1,9 @@
-import manuli from '../../images/manuli.jpg';
+import manuli from '../../images/manuli.png';
 import LoginForm from '../../components/Forms/LoginForm/LoginForm';
 import RegisterForm from '../../components/Forms/RegisterForm/RegisterForm';
 import './EntryPage.css';
 import { useState } from 'react';
+import catlogo from '../../images/cat-logo.png';
 
 const EntryPage = () => {
   const [mode, setMode] = useState<'login' | 'register'>('login');
@@ -17,9 +18,12 @@ const EntryPage = () => {
 
   return (
     <div className="StartPage">
-      <img src={manuli} alt="manuli"/>
+      <img className="manuli-img" src={manuli} alt="manuli"/>
       <div className="PageContent">
-        <h1 className="Title">SomeThing</h1>
+        <span className="entrypage-header">
+          <h1 className="Title">SomeThing</h1>
+          <img className="manuli-logo-entry" src={catlogo} alt="manuliLogo"/>
+        </span>
         <div className="OutletContainer">
           {mode === 'login' 
             ? <>

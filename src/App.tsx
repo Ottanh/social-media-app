@@ -12,16 +12,16 @@ const App = () => {
   console.log(loc.pathname);
 
   return (
-    <div className="App">
-      <Routes>
-        <Route path="*" element={<AppEntry />}>
-          <Route path="home" element={<HomePage />} />
-          <Route path=":username" element={<UserPage />} />
-          <Route path="explore" element={<ExplorePage />} />
-          <Route path="post/:id" element={<PostPage />} />
-        </Route>
-      </Routes>
-    </div>
+      <div className="App">
+        <Routes>
+          <Route path="*" element={<AppEntry />}>
+            <Route path="home" element={<HomePage />} />
+            <Route path=":username" element={<UserPage />} />
+            <Route path="explore" element={<ExplorePage />} />
+            <Route path="post/:id" element={<PostPage />} />
+          </Route>
+        </Routes>
+      </div>
   );
 };
 

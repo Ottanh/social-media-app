@@ -2,4 +2,16 @@
   display: flex;
   flex: 1;
   margin-right: 5%;
+  align-items: end;
+}
+
+.iconAttribution {
+  height: fit-content;
+}
+
+
+.test {
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }

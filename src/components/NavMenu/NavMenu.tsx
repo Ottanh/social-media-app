@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { setState, useStateValue } from '../../state';
-import manuliLogo from '../../images/cat-logo.jpg';
+import catlogo from '../../images/cat-logo.png';
 import './NavMenu.css';
 import { BsBoxArrowUpRight, BsHouse, BsSearch } from 'react-icons/bs';
 import { AiOutlineUser } from 'react-icons/ai';
@@ -37,31 +37,32 @@ const NavigationBar = () => {
   };
 
   return (
-    <nav className="NavMenu">
-      <div className="LinkWrapper">
-        <img className="manuliLogo" src={manuliLogo} alt="manuliLogo"/>
-        <NavLink className={({ isActive }) => isActive ? 'ActiveNavLink' : 'NavLink'} to={loggedInUser ? '/home' : ''} >
-          <div className="IconContainer">
-            <BsHouse className="HomeIcon" size="1.5em"/> Home
+    <section className="nav-menu-container">
+      <nav className="nav-menu">
+        <img className="manuli-logo" src={catlogo} alt="manuliLogo"/>
+        <NavLink className={({ isActive }) => isActive ? 'active-nav-ink' : 'nav-link'} to={loggedInUser ? '/home' : ''} >
+          <div className="icon-container">
+            <BsHouse className="home-icon" size="1.5em"/> Home
           </div>
         </NavLink>
-        <NavLink className={({ isActive }) => isActive ? 'ActiveNavLink' : 'NavLink'} to={loggedInUser ? loggedInUser.username : ''} style={styleHide()}>
-          <div className="IconContainer">
-            <AiOutlineUser className="ProfileIcon" size="1.5em"/> Profile
+        <NavLink className={({ isActive }) => isActive ? 'active-nav-link' : 'nav-link'} to={loggedInUser ? loggedInUser.username : ''} style={styleHide()}>
+          <div className="icon-container">
+            <AiOutlineUser className="profile-icon" size="1.5em"/> Profile
           </div>
         </NavLink>
-        <NavLink className={({ isActive }) => isActive ? 'ActiveNavLink' : 'NavLink'} to="/explore" >
-          <div className="IconContainer">
-            <BsSearch className="SearchIcon" size="1.5em" /> Explore
+        <NavLink className={({ isActive }) => isActive ? 'active-nav-link' : 'nav-link'} to="/explore" >
+          <div className="icon-container">
+            <BsSearch className="search-icon" size="1.5em" /> Explore
           </div>
         </NavLink>
-        <NavLink className={({ isActive }) => isActive ? 'ActiveNavLink' : 'NavLink'} to="" onClick={logout} style={styleHide()}>
-          <div className="IconContainer">
-            <BsBoxArrowUpRight className="LogOutIcon" size="1.5em" /> Sign out
+        <NavLink className={({ isActive }) => isActive ? 'active-nav-link' : 'nav-link'} to="" onClick={logout} style={styleHide()}>
+          <div className="icon-container">
+            <BsBoxArrowUpRight className="logout-icon" size="1.5em" /> Sign out
           </div>
         </NavLink>
-      </div>
-    </nav>
+      </nav>
+      <a className="icon-attribution" href="https://www.flaticon.com/free-icons/cat" title="cat icons">Cat icons created by Freepik - Flaticon</a>
+    </section>
   );
 };
 

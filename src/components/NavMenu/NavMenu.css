@@ -1,13 +1,12 @@
 
-.manuliLogo {
-  width: 6rem;
-  border-radius: 50%;
+.manuli-logo {
+  width: 3rem;
   margin-right: auto;
-  margin-left: auto;
+  margin-left: 1rem;
   margin-bottom: 1rem;
 }
 
-.NavLink {
+.nav-link {
   display: inline-block;
   width: fit-content;
   text-decoration: none;
@@ -19,7 +18,11 @@
   border-radius: 15px;
 }
 
-.ActiveNavLink {
+.nav-link:hover {
+  background-color: rgba(26, 27, 29, 0.5)
+}
+
+.active-nav-link {
   font-weight: bold;
   display: inline-block;
   width: fit-content;
@@ -32,15 +35,12 @@
   border-radius: 15px;
 }
 
-.NavLink:hover {
+
+.active-nav-link:hover {
   background-color: rgba(26, 27, 29, 0.5)
 }
 
-.ActiveNavLink:hover {
-  background-color: rgba(26, 27, 29, 0.5)
-}
-
-.NavMenu {
+.nav-menu-container {
   display: flex; 
   flex: 1;
   flex-direction: column; 
@@ -49,19 +49,23 @@
   padding-top: 4rem;
 }
 
-.LinkWrapper {
+.nav-menu {
   display: flex;
   flex-direction: column;
 }
 
-.IconContainer {
+.icon-container {
   display: flex;
   font-size: larger;
 }
 
-.ProfileIcon, .SearchIcon, .LogOutIcon, .HomeIcon {
+.profile-icon, .search-icon, .logout-icon, .home-icon {
   vertical-align: bottom;
   margin-top: auto;
   margin-bottom: auto;
   padding-right: 1rem;
+}
+
+.icon-attribution {
+  margin-top: auto;
 }
