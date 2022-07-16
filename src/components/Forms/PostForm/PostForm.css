@@ -1,4 +1,4 @@
-.PostForm {
+.post-form {
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -10,7 +10,7 @@
 }
 
 
-.PostFormButton {
+.post-form-button {
   display: block;
   background: #168dc0;
   color: white;
@@ -24,11 +24,11 @@
   font-size: medium;
 }
 
-.PostFormButton:hover {
+.post-form-button:hover {
   background: #0e5b7c;
 }
 
-.TextArea {
+.text-area {
   outline: none;
   border: 0;
   border-bottom: 1px solid;
@@ -37,13 +37,13 @@
   width: 100%;
 }
 
-.TextAreaContainer {
+.input-container {
   display: flex;
   margin-bottom: 0.5em;
   text-align: left;
 }
 
-.divErrPost {
+.div-err-post {
   color: red;
   text-align: left;
 }

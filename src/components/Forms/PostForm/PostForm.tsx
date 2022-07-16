@@ -64,8 +64,6 @@ const PostForm = ({ username, replyTo }: Props) => {
       }
     }
 
-    console.log('HEREEEE');
-
     createPost({ 
       variables: { 
         content,
@@ -73,7 +71,6 @@ const PostForm = ({ username, replyTo }: Props) => {
         replyTo: replyTo
       } 
     });
-
 
     setError(createPostError);
     setContent('');
@@ -112,16 +109,16 @@ const PostForm = ({ username, replyTo }: Props) => {
   }
 
   return (
-    <div className="PostForm">
-        <div className="TextAreaContainer">
+    <form className="post-form">
+        <div className="input-container">
           <Textarea
-            className="TextArea" 
+            className="text-area" 
             placeholder="..."
             onChange={handleChange}
             value={content}
           />
           <button 
-            className="PostFormButton" 
+            className="post-form-button" 
             type="submit" 
             value="Post"
             onClick={onSubmit}
@@ -130,8 +127,8 @@ const PostForm = ({ username, replyTo }: Props) => {
           </button>
         </div>
         <input type="file" accept="image/*" onChange={onImageChange} />
-        {error && <div className="divErrPost">{error}</div>}
-    </div>
+        {error && <div className="div-err-post">{error}</div>}
+    </form>
   );
 };
 

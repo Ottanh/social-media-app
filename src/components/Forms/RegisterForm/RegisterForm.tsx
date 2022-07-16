@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { SubmitHandler, useForm, useFormState } from 'react-hook-form';
 import useCreateUser from '../../../hooks/useCreateUser';
-import '../Form.css';
+import './RegisterForm.css';
 
 
 type Inputs = {

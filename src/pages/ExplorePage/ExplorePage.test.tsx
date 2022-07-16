@@ -2,7 +2,7 @@ import { MockedProvider } from '@apollo/client/testing';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
-import { SEARCH_POST, SEARCH_USER } from '../../hooks/useSearch';
+import { SEARCH_POST, SEARCH_USER } from '../../components/Forms/SearchForm/SearchForm';
 import { State, MockState, reducer } from '../../state';
 import ExplorePage from './ExplorePage';
 

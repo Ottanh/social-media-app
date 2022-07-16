@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { SubmitHandler, useForm, useFormState } from 'react-hook-form';
 import useLogin from '../../../hooks/useLogin';
-import '../Form.css';
+import './LoginForm.css';
 
 
 type Inputs = {
