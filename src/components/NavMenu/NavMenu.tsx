@@ -40,7 +40,7 @@ const NavigationBar = () => {
     <section className="nav-menu-container">
       <nav className="nav-menu">
         <img className="manuli-logo" src={catlogo} alt="manuliLogo"/>
-        <NavLink className={({ isActive }) => isActive ? 'active-nav-ink' : 'nav-link'} to={loggedInUser ? '/home' : ''} >
+        <NavLink className={({ isActive }) => isActive ? 'active-nav-link' : 'nav-link'} to={loggedInUser ? '/home' : ''} >
           <div className="icon-container">
             <BsHouse className="home-icon" size="1.5em"/> Home
           </div>
