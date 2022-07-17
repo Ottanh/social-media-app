@@ -57,7 +57,7 @@ const PostFooter = ({ post }: Props) => {
   const onClick = () => {
     navigate(`/post/${post.id}`);
   };
-
+ 
   return (
     <div className="PostFooter" onClick={onClick}>
       <div className="Replies">

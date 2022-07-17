@@ -2,10 +2,11 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { MockedProvider } from '@apollo/client/testing';
 import HomePage, { FIND_POSTS, GET_USERS_FOLLOWED } from './HomePage';
-import { MockState, reducer, State } from '../../state';
+import { reducer, State, StateProvider } from '../../state';
+import { CREATE_POST } from '../../hooks/useCreatePost';
+import userEvent from '@testing-library/user-event';
 
 describe('HomePage', () => {
-
   const state: State = {
     loggedInUser: {
         id: 'id',
@@ -57,10 +58,36 @@ describe('HomePage', () => {
       result: {
         data: {
           me: {
-            id: 'user1',
+            id: 'id',
             followed: [
               'user2'
             ]
+          },
+        },
+      },
+    },
+    {
+      request: {
+        query: CREATE_POST,
+        variables: {
+          content: 'newPost'
+        }
+      },
+      result: {
+        data: {
+          createPost: {
+            id: 'postId',
+            date: '132134124',
+            content: 'newPost',
+            image: null,
+            likes: 0,
+            replyTo: null,
+            replies: [],
+            user: {
+              id: 'id',
+              name: 'name',
+              username: 'testUserName'
+            }
           },
         },
       },
@@ -85,64 +112,67 @@ describe('HomePage', () => {
     }
   ];
 
-  test('renders PostForm', async () => {
+  test('renders correctly', async () => {
     render(
       <MemoryRouter >
         <MockedProvider mocks={mocks} addTypename={false}>
-          <MockState mockState={state} reducer={reducer}>
+          <StateProvider mockState={state} reducer={reducer}>
               <HomePage />
-          </MockState>
-        </MockedProvider>
-      </MemoryRouter>
-    );
-
-    const textarea = await screen.findByRole('textbox');
-    const sendButton = await screen.findByText('Send');
-    expect(textarea).toBeInTheDocument();
-    expect(sendButton).toBeInTheDocument();
-  });
-
-  test('renders post from followed user', async () => {
-    render(
-      <MemoryRouter >
-        <MockedProvider mocks={mocks} addTypename={false}>
-          <MockState mockState={state} reducer={reducer}>
-              <HomePage />
-          </MockState>
-        </MockedProvider>
-      </MemoryRouter>
-    );
-
-    const content = await screen.findByText('Post from followed user');
-    expect(content).toBeInTheDocument();
-  });
-
-  test('renders Loading...', async () => {
-    render(
-      <MemoryRouter >
-        <MockedProvider>
-          <HomePage />
+          </StateProvider>
         </MockedProvider>
       </MemoryRouter>
     );
 
     const loading = screen.getByText('Loading...');
     expect(loading).toBeInTheDocument();
+
+    const textarea = await screen.findByRole('textbox');
+    const sendButton = await screen.findByText('Send');
+    const content = await screen.findByText('Post from followed user');
+    const pageheader = await screen.findByTestId('page-header');
+
+    expect(pageheader).toBeInTheDocument();
+    expect(content).toBeInTheDocument();
+    expect(textarea).toBeInTheDocument();
+    expect(sendButton).toBeInTheDocument();
   });
 
   test('renders Error', async () => {
     render(
       <MemoryRouter >
         <MockedProvider mocks={mocksError} addTypename={false}>
-          <MockState mockState={state} reducer={reducer}>
+          <StateProvider mockState={state} reducer={reducer}>
               <HomePage />
-          </MockState>
+          </StateProvider>
         </MockedProvider>
       </MemoryRouter>
     );
 
     const error = await screen.findByText('Error');
     expect(error).toBeInTheDocument();
+  });
+
+  test('create new post and render it', async () => {
+    render(
+      <MemoryRouter >
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <StateProvider mockState={state} reducer={reducer}>
+              <HomePage />
+          </StateProvider>
+        </MockedProvider>
+      </MemoryRouter>
+    );
+
+    const textarea = await screen.findByRole('textbox');
+    const sendButton = await screen.findByText('Send');
+
+    const user = userEvent.setup();
+    await user.click(textarea);
+    await user.keyboard('newPost');
+    await user.click(sendButton);
+
+    const newPost = await screen.findByText('newPost');
+    expect(newPost).toBeInTheDocument();
   });
 });
 

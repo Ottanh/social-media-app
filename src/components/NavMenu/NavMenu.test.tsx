@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import NavMenu from './NavMenu';
-import { MockState, reducer, State } from '../../state';
+import { reducer, State, StateProvider } from '../../state';
 import { MockedProvider } from '@apollo/client/testing';
 
 
@@ -25,9 +25,9 @@ describe('NavMenu when logged in', () => {
     render(
       <BrowserRouter >
         <MockedProvider >
-          <MockState mockState={state} reducer={reducer}>
+          <StateProvider mockState={state} reducer={reducer}>
             <NavMenu />
-          </MockState>
+          </StateProvider>
         </MockedProvider>
       </BrowserRouter>
     );
@@ -53,9 +53,9 @@ describe('NavMenu when not logged in', () => {
     render(
       <BrowserRouter >
         <MockedProvider >
-          <MockState mockState={state} reducer={reducer}>
+          <StateProvider mockState={state} reducer={reducer}>
             <NavMenu />
-          </MockState>
+          </StateProvider>
         </MockedProvider>
       </BrowserRouter>
     );

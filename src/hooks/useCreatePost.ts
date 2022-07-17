@@ -2,7 +2,7 @@ import { gql, useMutation } from '@apollo/client';
 import { FIND_REPLIES } from '../pages/PostPage/PostPage';
 import { FIND_POSTS } from '../pages/UserPage/UserPage';
 
-const CREATE_POST = gql`
+export const CREATE_POST = gql`
   mutation createPost($content: String!, $image: String, $replyTo: String) {
     createPost(content: $content, image: $image, replyTo: $replyTo) {
       id

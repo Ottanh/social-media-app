@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { MockedProvider } from '@apollo/client/testing';
 import UserPage, { FIND_POSTS, FIND_USER } from './UserPage';
-import { act } from 'react-test-renderer';
 
 describe('PostPage', () => {
   const mocks = [
@@ -56,68 +55,32 @@ describe('PostPage', () => {
     }
   ];
 
-  test('renders page header', async () => {
-    const { container } = render(
-      <MemoryRouter initialEntries={['/olli111']}>
-        <MockedProvider mocks={mocks} addTypename={false}>
-          <Routes>
-            <Route path="/:username" element={<UserPage />}>
-            </Route>
-          </Routes>
-        </MockedProvider>
-      </MemoryRouter>
-    );
+  const mocksError = [
+    {
+      request: {
+        query: FIND_USER,
+        variables: {
+          username: 'olli111',
+        },
+      },
+      error: new Error('An error occurred'),
+    },
+    {
+      request: {
+        query: FIND_POSTS,
+        variables: {
+          username: 'olli111',
+        },
+      },
+      error: new Error('An error occurred'),
+    }
+  ];
 
-    await act(async () => (
-      await new Promise(resolve => setTimeout(resolve, 100))
-    ));
 
-    const title = container.querySelector('.PostTitle');
-    expect(title).toHaveTextContent('@olli111');
-  });
-
-  test('renders user profile', async () => {
+  test('renders correctly', async () => {
     render(
       <MemoryRouter initialEntries={['/olli111']}>
         <MockedProvider mocks={mocks} addTypename={false}>
-          <Routes>
-            <Route path="/:username" element={<UserPage />}>
-            </Route>
-          </Routes>
-        </MockedProvider>
-      </MemoryRouter>
-    );
-
-    const description = await screen.findByText('testaus');
-    const joined = await screen.findByText('Joined: 13/05/2022');
-    const name = await screen.findAllByText('Olli');
-
-    expect(name).toHaveLength(2);
-    expect(description).toBeInTheDocument();
-    expect(joined).toBeInTheDocument();
-  });
-
-  test('renders user post', async () => {
-    render(
-      <MemoryRouter initialEntries={['/olli111']}>
-        <MockedProvider mocks={mocks} addTypename={false}>
-          <Routes>
-            <Route path="/:username" element={<UserPage />}>
-            </Route>
-          </Routes>
-        </MockedProvider>
-      </MemoryRouter>
-    );
-
-    const postContent = await screen.findByText('testPost');
-    expect(postContent).toBeInTheDocument();
-  });
-
-
-  test('renders page header', async () => {
-    render(
-      <MemoryRouter initialEntries={['/olli111']}>
-        <MockedProvider >
           <Routes>
             <Route path="/:username" element={<UserPage />}>
             </Route>
@@ -128,6 +91,30 @@ describe('PostPage', () => {
 
     const loading = screen.getByText('Loading...');
     expect(loading).toBeInTheDocument();
+
+    const userProfile = await screen.findByText('testaus');
+    const pageheader = await screen.findByTestId('page-header');
+    const postContent = await screen.findByText('testPost');
+
+    expect(userProfile).toBeInTheDocument();
+    expect(pageheader).toBeInTheDocument();
+    expect(postContent).toBeInTheDocument();
+  });
+
+  test('renders error no user found', async () => {
+    render(
+      <MemoryRouter initialEntries={['/olli111']}>
+        <MockedProvider mocks={mocksError} addTypename={false}>
+          <Routes>
+            <Route path="/:username" element={<UserPage />}>
+            </Route>
+          </Routes>
+        </MockedProvider>
+      </MemoryRouter>
+    );
+
+    const postContent = await screen.findByText('No user found');
+    expect(postContent).toBeInTheDocument();
   });
 });
 

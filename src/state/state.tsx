@@ -28,15 +28,17 @@ export const StateContext = createContext<[State, React.Dispatch<Action>]>([
 ]);
 
 type StateProviderProps = {
+  mockState?: State;
   reducer: React.Reducer<State, Action>;
   children: React.ReactElement;
 };
 
 export const StateProvider = ({
+  mockState,
   reducer,
   children
 }: StateProviderProps) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, mockState ? mockState : initialState);
   return (
     <StateContext.Provider value={[state, dispatch]}>
       {children}
@@ -51,6 +53,7 @@ interface MockState {
   debug?: boolean;
 }
 
+/*
 export const MockState = ({ mockState, reducer, children, debug = false }: MockState) => {
   const [state, dispatch] = useReducer(reducer, mockState);
 
@@ -64,6 +67,6 @@ export const MockState = ({ mockState, reducer, children, debug = false }: MockS
     </StateContext.Provider>
   );
 };
-
+*/
 
 export const useStateValue = () => useContext(StateContext);

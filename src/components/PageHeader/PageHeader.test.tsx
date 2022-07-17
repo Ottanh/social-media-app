@@ -13,8 +13,10 @@ describe('PageHeader', () => {
 
     const backArrow = container.querySelector('[class="BackArrow"]');
     const title = screen.getByText('testi420');
+    const testid = screen.getByTestId('page-header');
     
     expect(backArrow).toBeInTheDocument();
     expect(title).toBeInTheDocument();
+    expect(testid).toBeInTheDocument();
   });
 });

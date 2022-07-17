@@ -14,7 +14,7 @@ const PageHeader = ({ title }: Props) => {
   };
 
   return (
-    <div className="PageHeader">
+    <div className="PageHeader" data-testid="page-header">
       <BsArrowLeft className="BackArrow" size="1.5em" onClick={onClick}/>
       <p className="PostTitle">{title}</p>
     </div>

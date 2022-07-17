@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { SEARCH_POST, SEARCH_USER } from '../../components/Forms/SearchForm/SearchForm';
-import { State, MockState, reducer } from '../../state';
+import { State, reducer, StateProvider } from '../../state';
 import ExplorePage from './ExplorePage';
 
 describe('ExplorePage', () => {
@@ -65,13 +65,13 @@ describe('ExplorePage', () => {
     }
   ];
 
-  test('renders initial state correctly', async () => {
+  test('renders correctly', async () => {
     render(
       <MemoryRouter >
         <MockedProvider mocks={mocks} addTypename={false}>
-          <MockState mockState={state} reducer={reducer}>
+          <StateProvider mockState={state} reducer={reducer}>
               <ExplorePage />
-          </MockState>
+          </StateProvider>
         </MockedProvider>
       </MemoryRouter>
     );
@@ -79,6 +79,9 @@ describe('ExplorePage', () => {
     const textarea = screen.getByRole('textbox');
     const userButton = screen.getByTestId('selectUser');
     const postButton = screen.getByTestId('selectPost');
+    const pageheader = await screen.findByTestId('page-header');
+
+    expect(pageheader).toBeInTheDocument();
     expect(textarea).toBeInTheDocument();
     expect(userButton).toBeInTheDocument();
     expect(postButton).toBeInTheDocument();
@@ -88,9 +91,9 @@ describe('ExplorePage', () => {
     render(
       <MemoryRouter >
         <MockedProvider mocks={mocks} addTypename={false}>
-          <MockState mockState={state} reducer={reducer}>
+          <StateProvider mockState={state} reducer={reducer}>
               <ExplorePage />
-          </MockState>
+          </StateProvider>
         </MockedProvider>
       </MemoryRouter>
     );
@@ -108,9 +111,9 @@ describe('ExplorePage', () => {
     render(
       <MemoryRouter >
         <MockedProvider mocks={mocks} addTypename={false}>
-          <MockState mockState={state} reducer={reducer}>
+          <StateProvider mockState={state} reducer={reducer}>
               <ExplorePage />
-          </MockState>
+          </StateProvider>
         </MockedProvider>
       </MemoryRouter>
     );
