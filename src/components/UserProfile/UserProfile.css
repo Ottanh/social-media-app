@@ -61,11 +61,6 @@
   font-size: larger;
 }
 
-#userSearch:hover {
-  background-color: whitesmoke;
-}
-
-
 .UserDes {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -87,6 +82,10 @@
   border-bottom: 2px;
   resize: none;
   width: 100%;
+}
+
+#userSearch:hover {
+  background-color: whitesmoke;
 }
 
 

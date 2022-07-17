@@ -1,8 +1,7 @@
 import { gql, useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import PageHeader from '../../components/PageHeader/PageHeader';
-import UserProfile from '../../components/UserProfile/UserProfile';
-import { User } from '../../types';
+import UserList from '../../components/UserList/UserList';
 import './FollowedUsersPage.css';
 
 export const FIND_USER = gql`
@@ -56,14 +55,9 @@ const FollowedUsersPage = () => {
   return (
     <section className="FollowedUsersPage">
       <PageHeader title="Followed users" />
-      {
-        followedQuery.data.findUsers.map((user: User) => {
-          return <UserProfile id="userSearch" key={user.username} user={user} />;
-        })
-      }
+      <UserList users={followedQuery.data.findUsers} cssId="userSearch" />
     </section>
-);
-
+  );
 };
 
 export default FollowedUsersPage;
