@@ -3,24 +3,13 @@ import { User } from '../../types';
 import FollowButton from '../FollowButton/FollowButton';
 import './UserProfile.css';
 import { useStateValue } from '../../state';
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import Textarea from 'react-expanding-textarea';
 import useEditUserDes from '../../hooks/useEditUser';
 import { BsCamera } from 'react-icons/bs';
-import { gql, useQuery } from '@apollo/client';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
+import useS3 from '../../hooks/useS3';
 
-const GET_SIGNED_PUT = gql`
-  query getPutUrl($fileName: String!) {
-    getPutUrl(fileName: $fileName)
-  }
-`;
-
-const GET_SIGNED_DELETE = gql`
-  query getDeleteUrl($fileName: String!) {
-    getDeleteUrl(fileName: $fileName)
-  }
-`;
 
 interface Props {
   user: User;
@@ -31,26 +20,13 @@ const UserProfile = ({ user, id }: Props) => {
   const [{ loggedInUser },] = useStateValue();
   const [edit, setEdit] = useState<boolean>(false);
   const [value, setValue] = useState<string>(user.description);
-  const [editUser, editUserError] = useEditUserDes();
+  const [editUser] = useEditUserDes();
   const navigate = useNavigate();
   const refDescription = useRef<HTMLInputElement>(null);
   const refPicture = useRef<HTMLInputElement>(null);
   const [image, setImage] = useState<File | null>();
+  const [uploadImage, deleteImage] = useS3();
 
-
-  const signedQuery = useQuery(GET_SIGNED_PUT, {
-    skip: !image,
-    variables: {
-      fileName: image?.name
-    }
-  });
-
-  const signedDelete = useQuery(GET_SIGNED_DELETE, {
-    skip: !image,
-    variables: {
-      fileName: image?.name
-    }
-  });
 
   const onClick = () => {
     navigate(`/${user.username}`);
@@ -66,39 +42,58 @@ const UserProfile = ({ user, id }: Props) => {
   };
 
   const onSave = async() => {
-    if(signedQuery.loading ||signedDelete.loading) {
-      return;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let oldImage: AxiosResponse<any, any>;
+    try {
+     oldImage = await axios.get(user.image);
+    } catch {
+      console.log('Error fetching old image');
     }
 
-    if(signedQuery.data) {
-      const res = await axios.put(signedQuery.data.getPutUrl, image);
-      if(res.status !== 200) {
-        console.log('Error uploading image');
-        return;
+    if(image){
+      try {
+        await uploadImage(image);
+      } catch (e) {
+        if(e instanceof Error) {
+          console.log(e.message);
+        }
       }
     }
 
-    editUser( {
+    await editUser( {
       variables: {
         description: value,
         image: image?.name
+      },
+      // delete old image from s3
+      onCompleted: async () => {
+        if(oldImage) {
+          try {
+            await deleteImage(oldImage.data);
+          } catch (e) {
+            if(e instanceof Error) {
+              console.log(e.message);
+            }
+          }
+        }
+      },
+      // delete image from s3 if editUser returns error
+      onError: () => {
+        if(image) {
+          try {
+            deleteImage(image);
+          } catch (e) {
+            if(e instanceof Error) {
+              console.log(e.message);
+            }
+          }
+        }
       }
     });
 
     setEdit(false);
+    setImage(null);
   };
-
-  //delete image from s3 if editUser returns error
-  useEffect(() => {
-    if(editUserError && signedDelete.data){
-      axios.delete(signedDelete.data.getDeleteUrl).then(res => {
-        if(res.status !== 204) {
-          console.log('Error deleting image');
-          return;
-        }  
-      });
-    }
-  }, [editUserError, signedDelete]);
 
   const onImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     if(event.target.files) {

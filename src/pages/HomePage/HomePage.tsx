@@ -35,7 +35,7 @@ export const GET_USERS_FOLLOWED = gql`
 `;
 
 const HomePage = () => {
-  const [{ loggedInUser, newPosts }] = useStateValue();
+  const [{ newPosts }] = useStateValue();
   const [followed, setFollowed] = useState();
 
   const followQuery = useQuery(GET_USERS_FOLLOWED);
@@ -61,7 +61,7 @@ const HomePage = () => {
   return (
       <section className="HomePage">
         <PageHeader title={'Home'} />
-        <PostForm username={loggedInUser?.username} />
+        <PostForm />
         <PostList  posts={newPosts.concat(postQuery.data.findPosts)}/>
       </section>
   );

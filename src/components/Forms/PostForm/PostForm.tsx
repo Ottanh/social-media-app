@@ -1,66 +1,41 @@
-import { gql, useQuery } from '@apollo/client';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import Textarea from 'react-expanding-textarea';
 import useCreatePost from '../../../hooks/useCreatePost';
-import { useStateValue } from '../../../state';
 import './PostForm.css';
-import axios from 'axios';
+import useS3 from '../../../hooks/useS3';
+import { addPost, useStateValue } from '../../../state';
+import { Post } from '../../../types';
+import { ApolloError } from '@apollo/client';
 
-
-const GET_SIGNED_PUT = gql`
-  query getPutUrl($fileName: String!) {
-    getPutUrl(fileName: $fileName)
-  }
-`;
-
-const GET_SIGNED_DELETE = gql`
-  query getDeleteUrl($fileName: String!) {
-    getDeleteUrl(fileName: $fileName)
-  }
-`;
 
 interface Props {
   username?: string,
   replyTo?: string
 }
 
-const PostForm = ({ username, replyTo }: Props) => {
+const PostForm = ({ replyTo }: Props) => {
+  const [{ loggedInUser }] = useStateValue();
   const [error, setError] = useState<string>();
   const [content, setContent] = useState<string>('');
-  const [{ loggedInUser }] = useStateValue();
-  const [createPost, createPostError] = useCreatePost(replyTo);
+  const createPost = useCreatePost(replyTo, loggedInUser?.username);
   const [image, setImage] = useState<File | null>();
-
-  const signedQuery = useQuery(GET_SIGNED_PUT, {
-    skip: !image,
-    variables: {
-      fileName: image?.name
-    }
-  });
-
-  const signedDelete = useQuery(GET_SIGNED_DELETE, {
-    skip: !image,
-    variables: {
-      fileName: image?.name
-    }
-  });
+  const [uploadImage, deleteImage] = useS3();
+  const [, dispatch] = useStateValue();
 
   const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault(); 
-    if(content.length < 3 && !signedQuery.data) {
+    if(content.length < 3 && !image) {
       setError('Post must be at least 3 charecters');
       return;
     }
 
-    if(signedQuery.loading ||signedDelete.loading) {
-      return;
-    }
-
-    if(signedQuery.data) {
-      const res = await axios.put(signedQuery.data.getPutUrl, image);
-      if(res.status !== 200) {
-        setError('Error uploading image');
-        return;
+    if(image){
+      try {
+        await uploadImage(image);
+      } catch (e) {
+        if(e instanceof Error) {
+          setError(e.message);
+        }
       }
     }
 
@@ -69,24 +44,30 @@ const PostForm = ({ username, replyTo }: Props) => {
         content,
         image: image?.name,
         replyTo: replyTo
-      } 
+      },
+      // add new post to state
+      onCompleted: (data: { createPost: Post; }) => {
+        dispatch(addPost(data.createPost));
+      },
+      // delete image from s3 if createPost returns error
+      onError: (e: ApolloError) => {
+        setError(e.message);
+        if(image){
+          try {
+            deleteImage(image);
+          } catch (e) {
+            if(e instanceof Error) {
+              setError(e.message);
+            }
+          }
+        }
+      }
     });
 
-    setError(createPostError);
     setContent('');
+    setImage(null);
   };
 
-  //delete image from s3 if createPost returns error
-  useEffect(() => {
-    if(createPostError && signedDelete.data){
-      axios.delete(signedDelete.data.getDeleteUrl).then(res => {
-        if(res.status !== 204) {
-          setError('Error deleting image');
-          return;
-        }  
-      });
-    }
-  }, [createPostError, signedDelete]);
 
   const handleChange = (event: { target: { value: string; }; }) => {
     setContent(event.target.value);
@@ -100,14 +81,6 @@ const PostForm = ({ username, replyTo }: Props) => {
     }
   };
   
-  if(!loggedInUser) {
-    return null;
-  }
-
-  if(username !== loggedInUser.username && !replyTo) {
-    return null;
-  }
-
   return (
     <form className="post-form">
         <div className="input-container">

@@ -1,7 +1,6 @@
-import { ApolloError, gql, useMutation } from '@apollo/client';
+import { gql, useMutation } from '@apollo/client';
 import { FIND_REPLIES } from '../pages/PostPage/PostPage';
-import { addPost, useStateValue } from '../state';
-import { useState } from 'react';
+import { FIND_POSTS } from '../pages/UserPage/UserPage';
 
 const CREATE_POST = gql`
   mutation createPost($content: String!, $image: String, $replyTo: String) {
@@ -22,33 +21,20 @@ const CREATE_POST = gql`
   }
 `;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const useCreatePost = (replyTo: string | undefined): [any, string | undefined] => {
-  const [error, setError] = useState<string | undefined>();
-  const [, dispatch] = useStateValue();
 
-  const handleError = (error: ApolloError) => {
-    if(error.networkError) {
-      setError(error.networkError.message);
-    } 
-    if (error.graphQLErrors[0]) {
-      setError(error.graphQLErrors[0].message);
-    }
-  };
-
+const useCreatePost = (replyTo: string | undefined = undefined, username: string | undefined = undefined) => {
   const [createPost,] = useMutation(CREATE_POST, {
     refetchQueries: [ 
       { 
-        query: FIND_REPLIES, variables: { replyTo } 
-      }
-     ],
-    onCompleted: (data) => {
-      dispatch(addPost(data.createPost));
-    },
-    onError: handleError,
+        query: FIND_REPLIES, variables: { replyTo }
+      },
+      { 
+        query: FIND_POSTS, variables: { username }
+      },
+     ]
   });
 
-  return [createPost, error];
+  return createPost;
 };
 
 export default useCreatePost;

@@ -67,7 +67,7 @@ export const reducer = (state: State, action: Action): State => {
     case 'ADD_POST':
       return {
         ...state,
-        newPosts: state.newPosts.concat(action.payload)
+        newPosts: [action.payload].concat(state.newPosts)
       };
     default:
       return state;
