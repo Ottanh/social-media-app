@@ -1,7 +1,4 @@
-import { ApolloError, gql, useMutation } from '@apollo/client';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { setUser, useStateValue } from '../state';
+import { gql, useMutation } from '@apollo/client';
 
 export const LOGIN = gql`
   mutation login($username: String!, $password: String!) {
@@ -19,35 +16,10 @@ export const LOGIN = gql`
   }
 `;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const useLogin = (): [any, string | undefined] => {
-  const navigate = useNavigate();
-  const [, dispatch] = useStateValue();
-  const [error, setError] = useState<string | undefined>();
-  
-  const handleError = (error: ApolloError) => {
-    if(error.networkError) {
-      setError(error.networkError.message);
-    } 
-    if (error.graphQLErrors[0]) {
-      setError(error.graphQLErrors[0].message);
-    }
-  };
 
-  const [login, result] = useMutation(LOGIN, {
-    onError: handleError,
-  });
-  
-  useEffect(() => {
-    if(result.data){
-      dispatch(setUser(result.data.login.user));
-      localStorage.setItem('sma-user-token', result.data.login.token);
-      localStorage.setItem('sma-user', JSON.stringify(result.data.login.user));
-      navigate(`/${result.data.login.user.username}`);
-    }
-  }, [result.data]);
-
-  return [login, error];
+const useLogin = () => {
+  const [login,] = useMutation(LOGIN);
+  return login;
 };
 
 export default useLogin;

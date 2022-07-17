@@ -1,4 +1,4 @@
-import { gql, useQuery } from '@apollo/client';
+import { ApolloError, gql, useQuery } from '@apollo/client';
 import useFollow from '../../hooks/useFollow';
 import { User } from '../../types';
 
@@ -23,6 +23,9 @@ const FollowButton = ({ user }: Props) => {
     follow({
       variables: {
         id: user.id
+      },
+      onError: (e: ApolloError) => {
+        console.log(e.message);
       }
     });
   };
@@ -31,6 +34,9 @@ const FollowButton = ({ user }: Props) => {
     unFollow({
       variables: {
         id: user.id
+      },
+      onError: (e: ApolloError) => {
+        console.log(e.message);
       }
     });
   };

@@ -1,6 +1,10 @@
+import { ApolloError } from '@apollo/client';
 import { useEffect } from 'react';
 import { SubmitHandler, useForm, useFormState } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import useLogin from '../../../hooks/useLogin';
+import { setUser, useStateValue } from '../../../state';
+import { User } from '../../../types';
 import './LoginForm.css';
 
 
@@ -13,21 +17,31 @@ type Inputs = {
 const LoginForm = () => {
   const { register, handleSubmit, setError, clearErrors, reset, control, formState: { errors } } = useForm<Inputs>();
   const { isDirty } = useFormState({control});
-  const [loginQuery, loginError] = useLogin();
+  const loginQuery = useLogin();
+  const [, dispatch] =useStateValue();
+  const navigate = useNavigate();
 
   useEffect(() => {
     clearErrors('submit');
   }, [isDirty]);
 
-  useEffect(() => {
-    setError('submit', { message: loginError});
-  }, [loginError]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    await loginQuery({ variables: { 
-      username: data.username, 
-      password: data.password 
-    }});
+    await loginQuery({ 
+      variables: { 
+        username: data.username, 
+        password: data.password 
+      },
+      onCompleted: (data: { login: { user: User | null; token: string; }; }) => {
+        dispatch(setUser(data.login.user));
+        localStorage.setItem('sma-user-token', data.login.token);
+        localStorage.setItem('sma-user', JSON.stringify(data.login.user));
+        navigate(`/${data.login.user?.username}`);
+      },
+      onError: (e: ApolloError) => {
+        setError('submit', { message: e.message});
+      }
+    });
     reset();
   };
 

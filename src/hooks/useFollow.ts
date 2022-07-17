@@ -1,4 +1,4 @@
-import { ApolloError, gql, useMutation } from '@apollo/client';
+import { gql, useMutation } from '@apollo/client';
 import { useStateValue } from '../state';
 
 const FOLLOW = gql`
@@ -25,23 +25,8 @@ const useFollow = () => {
     return [() => null, () => null];
   }
 
-  const handleError = (error: ApolloError) => {
-    if(error.networkError) {
-      console.log(error.networkError.message);
-    } 
-    if (error.graphQLErrors[0]) {
-      console.log(error.graphQLErrors[0].message);
-    }
-  };
-  
-
-  const [follow,] = useMutation(FOLLOW, {
-    onError: handleError,
-  });
-
-  const [unFollow,] = useMutation(UNFOLLOW, {
-    onError: handleError,
-  });
+  const [follow,] = useMutation(FOLLOW);
+  const [unFollow,] = useMutation(UNFOLLOW);
 
   return [follow, unFollow];
 };

@@ -5,10 +5,10 @@ import './UserProfile.css';
 import { useStateValue } from '../../state';
 import { ChangeEvent, useRef, useState } from 'react';
 import Textarea from 'react-expanding-textarea';
-import useEditUserDes from '../../hooks/useEditUser';
+import useEditUser from '../../hooks/useEditUser';
 import { BsCamera } from 'react-icons/bs';
-import axios, { AxiosResponse } from 'axios';
 import useS3 from '../../hooks/useS3';
+import { ApolloError } from '@apollo/client';
 
 
 interface Props {
@@ -20,12 +20,12 @@ const UserProfile = ({ user, id }: Props) => {
   const [{ loggedInUser },] = useStateValue();
   const [edit, setEdit] = useState<boolean>(false);
   const [value, setValue] = useState<string>(user.description);
-  const [editUser] = useEditUserDes();
+  const editUser = useEditUser();
   const navigate = useNavigate();
   const refDescription = useRef<HTMLInputElement>(null);
   const refPicture = useRef<HTMLInputElement>(null);
   const [image, setImage] = useState<File | null>();
-  const [uploadImage, deleteImage] = useS3();
+  const [uploadImage, deleteImage, getImage] = useS3();
 
 
   const onClick = () => {
@@ -42,14 +42,6 @@ const UserProfile = ({ user, id }: Props) => {
   };
 
   const onSave = async() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let oldImage: AxiosResponse<any, any>;
-    try {
-     oldImage = await axios.get(user.image);
-    } catch {
-      console.log('Error fetching old image');
-    }
-
     if(image){
       try {
         await uploadImage(image);
@@ -67,6 +59,7 @@ const UserProfile = ({ user, id }: Props) => {
       },
       // delete old image from s3
       onCompleted: async () => {
+        const oldImage = await getImage(user.image);
         if(oldImage) {
           try {
             await deleteImage(oldImage.data);
@@ -78,7 +71,8 @@ const UserProfile = ({ user, id }: Props) => {
         }
       },
       // delete image from s3 if editUser returns error
-      onError: () => {
+      onError: (e: ApolloError) => {
+        console.log(e.message);
         if(image) {
           try {
             deleteImage(image);

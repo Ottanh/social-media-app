@@ -1,5 +1,5 @@
 import { gql, useLazyQuery } from '@apollo/client';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 const GET_SIGNED_PUT = gql`
   query getPutUrl($fileName: String!) {
@@ -14,9 +14,14 @@ const GET_SIGNED_DELETE = gql`
 `;
 
 
-const useS3 = () => {
-  const [getSignedPut, ] = useLazyQuery(GET_SIGNED_PUT);
+type Return = [
+  (file: File) => Promise<void>, 
+  (file: File) => Promise<void>, 
+  (ur: string) => Promise<AxiosResponse<any, any> | null>                       // eslint-disable-line @typescript-eslint/no-explicit-any
+];
 
+const useS3 = (): Return => {
+  const [getSignedPut, ] = useLazyQuery(GET_SIGNED_PUT);
   const [getSignedDelete, ] = useLazyQuery(GET_SIGNED_DELETE);
 
   const uploadImage = async (image: File) => {
@@ -25,7 +30,6 @@ const useS3 = () => {
         fileName: image.name 
       }, 
       onCompleted: async data => {
-        console.log(data);
         const res = await axios.put(data.getPutUrl, image);
         if(res.status !== 200) {
           throw new Error('Error uploading image');
@@ -41,7 +45,6 @@ const useS3 = () => {
         fileName: image.name 
       }, 
       onCompleted: async data => {
-        console.log(data);
         const res = await axios.delete(data.getDeleteUrl);
         if(res.status !== 204) {
           throw new Error('Error deleting image');
@@ -50,7 +53,16 @@ const useS3 = () => {
     });
   };
 
-  return [uploadImage, deleteImage];
+  const getImage = async (url: string) => {
+    try {
+      return await axios.get(url);
+    } catch {
+      console.log('Error fetching image');
+      return null;
+    }
+  };
+
+  return [uploadImage, deleteImage, getImage];
 };
 
 export default useS3;

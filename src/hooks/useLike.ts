@@ -1,4 +1,4 @@
-import { ApolloError, gql, useMutation } from '@apollo/client';
+import { gql, useMutation } from '@apollo/client';
 import { useStateValue } from '../state';
 
 const ADD_LIKE = gql`
@@ -37,22 +37,8 @@ const useLike = () => {
     return [() => null, () => null];
   }
 
-  const handleError = (error: ApolloError) => {
-    if(error.networkError) {
-      console.log(error.networkError.message);
-    } 
-    if (error.graphQLErrors[0]) {
-      console.log(error.graphQLErrors[0].message);
-    }
-  };
-  
-  const [addLike,] = useMutation(ADD_LIKE, {
-    onError: handleError,
-  });
-
-  const [deleteLike,] = useMutation(DELETE_LIKE, {
-    onError: handleError,
-  });
+  const [addLike,] = useMutation(ADD_LIKE);
+  const [deleteLike,] = useMutation(DELETE_LIKE);
 
   return [addLike, deleteLike];
 };

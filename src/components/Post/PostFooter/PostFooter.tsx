@@ -4,7 +4,7 @@ import { BsChatText, BsHeart, BsHeartFill } from 'react-icons/bs';
 import './PostFooter.css';
 import { useNavigate } from 'react-router-dom';
 import useLike from '../../../hooks/useLike';
-import { gql, useQuery } from '@apollo/client';
+import { ApolloError, gql, useQuery } from '@apollo/client';
 
 const GET_USER_LIKES = gql`
   query UserLikes {
@@ -36,12 +36,18 @@ const PostFooter = ({ post }: Props) => {
       deleteLike({
         variables: {
           id: post.id
+        },
+        onError: (e: ApolloError) => {
+          console.log(e.message);
         }
       });
     } else {
       addLike({
         variables: {
           id: post.id
+        },
+        onError: (e: ApolloError) => {
+          console.log(e.message);
         }
       });
     }

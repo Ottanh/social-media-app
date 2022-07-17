@@ -1,6 +1,10 @@
+import { ApolloError } from '@apollo/client';
 import { useEffect } from 'react';
 import { SubmitHandler, useForm, useFormState } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import useCreateUser from '../../../hooks/useCreateUser';
+import { setUser, useStateValue } from '../../../state';
+import { User } from '../../../types';
 import './RegisterForm.css';
 
 
@@ -14,12 +18,10 @@ type Inputs = {
 const RegisterForm = () => {
   const { register, handleSubmit, setError, clearErrors, reset, control, formState: { errors } } = useForm<Inputs>();
   const { isDirty } = useFormState({control});
-  const [createUser, createUserError] = useCreateUser();
+  const createUser = useCreateUser();
+  const [, dispatch] = useStateValue();
+  const navigate = useNavigate();
   
-  useEffect(() => {
-    setError('submit', { message: createUserError });
-  }, [createUserError]);
-
   useEffect(() => {
     clearErrors('submit');
   }, [isDirty]);
@@ -28,9 +30,17 @@ const RegisterForm = () => {
     createUser({ 
       variables: { 
         name: data.name, 
-        username: 
-        data.username, 
+        username: data.username, 
         password: data.password 
+      },
+      onCompleted: (data: { createUser: { user: User; token: string; }; }) => {
+        dispatch(setUser(data.createUser.user));
+        localStorage.setItem('sma-user-token', data.createUser.token);
+        localStorage.setItem('sma-user', JSON.stringify(data.createUser.user));
+        navigate(`/${data.createUser.user.username}`);
+      },
+      onError: (e: ApolloError) => {
+        setError('submit', { message: e.message });
       }
     });
     reset();
