@@ -57,7 +57,8 @@ describe('ExplorePage', () => {
               name: 'testName',
               username: 'testUser',
               date: '42134214124',
-              image: null
+              image: null,
+              followed: []
             }
           ],
         },

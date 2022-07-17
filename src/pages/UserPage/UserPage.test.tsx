@@ -20,7 +20,8 @@ describe('PostPage', () => {
             name: 'Olli',
             date: '13/05/2022',
             description: 'testaus',
-            image: 'defaultUserPic.png'
+            image: 'defaultUserPic.png',
+            followed: []
           }
         }
       }
