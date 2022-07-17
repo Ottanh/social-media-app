@@ -2,7 +2,6 @@ import { Post } from '../../../types';
 import { MouseEvent, useEffect, useState } from 'react';
 import { BsChatText, BsHeart, BsHeartFill } from 'react-icons/bs';
 import './PostFooter.css';
-import { useNavigate } from 'react-router-dom';
 import useLike from '../../../hooks/useLike';
 import { ApolloError, gql, useQuery } from '@apollo/client';
 
@@ -52,14 +51,9 @@ const PostFooter = ({ post }: Props) => {
       });
     }
   };
-
-  const navigate = useNavigate();
-  const onClick = () => {
-    navigate(`/post/${post.id}`);
-  };
  
   return (
-    <div className="PostFooter" onClick={onClick}>
+    <div className="PostFooter">
       <div className="Replies">
         <BsChatText className="PostIcons" size="1em" /> {post.replies.length}
       </div>

@@ -1,6 +1,7 @@
 import { ApolloError, gql, useQuery } from '@apollo/client';
 import useFollow from '../../hooks/useFollow';
 import { User } from '../../types';
+import { MouseEvent } from 'react';
 
 export const GET_USERS_FOLLOWED = gql`
   query UsersFollowed {
@@ -19,7 +20,8 @@ const FollowButton = ({ user }: Props) => {
   const followedQuery = useQuery(GET_USERS_FOLLOWED);
   const [follow, unFollow] = useFollow();
 
-  const clickFollow = () => {
+  const clickFollow = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     follow({
       variables: {
         id: user.id
@@ -30,7 +32,8 @@ const FollowButton = ({ user }: Props) => {
     });
   };
 
-  const clickUnFollow = () => {
+  const clickUnFollow = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     unFollow({
       variables: {
         id: user.id

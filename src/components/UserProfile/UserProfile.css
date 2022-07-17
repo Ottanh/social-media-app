@@ -100,3 +100,19 @@
 }
 
 
+.user-following {
+  margin-right: auto;
+}
+
+.user-following:hover {
+  text-decoration: underline;
+}
+
+.user-joined {
+  margin-left: auto;
+}
+
+.user-footer {
+  display: flex;
+}
+

@@ -10,17 +10,13 @@ interface Props {
 const PostHeader = ({ post }: Props) => {
   const navigate = useNavigate();
 
-  const onClick = () => {
-    navigate(`/post/${post.id}`);
-  };
-
   const onClickUser = (e: MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     navigate(`/${post.user.username}`);
   };
   
   return (
-    <div className="PostHeader" onClick={onClick}>
+    <div className="PostHeader">
       <span id="postUser" onClick={onClickUser}>{post.user.name}</span> 
       <span id="postDate">{post.date}</span>
     </div>

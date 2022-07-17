@@ -1,5 +1,5 @@
 import { SearchResult as ResultType } from '../../types';
-import PostView from '../Post/Post';
+import PostList from '../PostList/PostList';
 import UserDetails from '../UserProfile/UserProfile';
 
 interface Props {
@@ -22,16 +22,7 @@ const SearchResult = ({ from, searchResult }: Props) => {
   }
 
   if(from === 'post') {
-    return (
-      <div className="SearchResult">
-        {
-          searchResult.post.map((post) => {
-            if(!post) return null;
-            return <PostView key={post.id} post={post} />;
-          })
-        }
-      </div>
-    );
+    return <PostList posts={searchResult.post} />;
   }
 
   return null;

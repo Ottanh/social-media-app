@@ -5,6 +5,7 @@ import AppEntry from './components/AppEntry/AppEntry';
 import PostPage from './pages/PostPage/PostPage';
 import './App.css';
 import HomePage from './pages/HomePage/HomePage';
+import FollowedUsersPage from './pages/FollowedUsersPage/FollowedUsersPage';
 
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
             <Route path=":username" element={<UserPage />} />
             <Route path="explore" element={<ExplorePage />} />
             <Route path="post/:id" element={<PostPage />} />
+            <Route path=":username/following"  element={<FollowedUsersPage />}/>
           </Route>
         </Routes>
       </div>

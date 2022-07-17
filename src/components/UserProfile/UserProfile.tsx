@@ -9,6 +9,7 @@ import useEditUser from '../../hooks/useEditUser';
 import { BsCamera } from 'react-icons/bs';
 import useS3 from '../../hooks/useS3';
 import { ApolloError } from '@apollo/client';
+import { MouseEvent } from 'react';
 
 
 interface Props {
@@ -99,6 +100,11 @@ const UserProfile = ({ user, id }: Props) => {
     refPicture.current?.click();
   };
 
+  const onClickFollowing = (e: MouseEvent<HTMLSpanElement>) => {
+    e.stopPropagation();
+    navigate(`/${user.username}/following`);
+  };
+
   return (
     <div className="UserProfile" id={id} onClick={onClick}>
 
@@ -136,7 +142,14 @@ const UserProfile = ({ user, id }: Props) => {
           onChange={handleChange}
           value={value ? value : ''}
         />
-        Joined: {user.date}
+        <div className="user-footer">
+          <span className="user-following" onClick={onClickFollowing}>
+            {user.followed.length} Following
+          </span>
+          <span className="user-joined">
+            Joined: {user.date}
+          </span>
+        </div>
       </div>
     </div>
   );

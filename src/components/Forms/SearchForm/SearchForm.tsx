@@ -12,6 +12,7 @@ export const SEARCH_USER = gql`
       username
       date
       image
+      followed
     }
   }
 `;

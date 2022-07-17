@@ -33,6 +33,7 @@ export const FIND_USER = gql`
       date
       description
       image
+      followed
     }
   }
 `;
