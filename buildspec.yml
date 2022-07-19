@@ -13,7 +13,10 @@ phases:
   build:
     commands:
         - npm run build
-     
+
 artifacts:
   files:
-    - sma/**/*
+    - appspec.yml
+    - node_modules/**/*
+    - build/**/*
+    - scripts/*
