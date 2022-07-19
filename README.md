@@ -1,6 +1,9 @@
 # Social media app
 Twitter like social media website.    
-Made for practicing technologies and skills in web development.      
+Made for practicing technologies and skills in web development.    
+
+## URL
+http://ec2-13-48-53-135.eu-north-1.compute.amazonaws.com/
 
 ## Run locally
 `npm install`  
