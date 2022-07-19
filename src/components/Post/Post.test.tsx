@@ -12,7 +12,7 @@ describe('Post', () => {
       name: 'testUser',
       username: 'testUserName'
     },
-    date: 1658258620000,
+    date: 1658178000000,
     content: 'test',
     likes: 6,
     replies: ['1']
