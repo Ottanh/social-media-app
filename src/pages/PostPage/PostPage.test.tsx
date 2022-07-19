@@ -23,7 +23,7 @@ describe('PostPage', () => {
               name: 'Olli',
               username: 'olli111'
             }, 
-            date: '18/6',
+            date: 1658178000000,
             content: 'Original post',
             image: null,
             likes: 1,
@@ -59,7 +59,7 @@ describe('PostPage', () => {
         data: {
           createPost: {
             id: 'postId',
-            date: '132134124',
+            date: 1658178000000,
             content: 'newReply',
             image: null,
             likes: 0,
@@ -88,7 +88,7 @@ describe('PostPage', () => {
               name: 'Tuomas',
               username: 'tume'
             }, 
-            date: '18/6',
+            date: 1658178000000,
             content: 'Reply post',
             image: null,
             likes: 2,
@@ -108,7 +108,7 @@ describe('PostPage', () => {
               name: 'Tuomas',
               username: 'tume'
             }, 
-            date: '18/6',
+            date: 1658178000000,
             content: 'Reply post',
             image: null,
             likes: 2,
@@ -117,7 +117,7 @@ describe('PostPage', () => {
           },
           {
             id: 'post3',
-            date: '132134124',
+            date: 1658178000000,
             content: 'newReply',
             image: null,
             likes: 0,

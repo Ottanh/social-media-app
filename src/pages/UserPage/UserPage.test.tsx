@@ -18,7 +18,7 @@ describe('PostPage', () => {
             id: 'userId',
             username: 'olli111',
             name: 'Olli',
-            date: '13/05/2022',
+            date: 1658178000000,
             description: 'testaus',
             image: 'defaultUserPic.png',
             followed: []
@@ -39,7 +39,7 @@ describe('PostPage', () => {
             {
               id: 'postid1',
               content: 'testPost',
-              date: '14/05/2022',
+              date: 1658178000000,
               likes: 6,
               user: {
                 id: 'userId',

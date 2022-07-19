@@ -1,6 +1,6 @@
 # Social media app
-Twitter like social media website. 
-Made for practicing technologies and skills in web development.
+Twitter like social media website.    
+Made for practicing technologies and skills in web development.      
 
 ## Run locally
 `npm install`  

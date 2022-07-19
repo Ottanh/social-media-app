@@ -32,7 +32,7 @@ describe('ExplorePage', () => {
                 name: 'testName',
                 username: 'testUser'
               }, 
-              date: '14124124124',
+              date: 1658178000000,
               content: 'testPost',
               image: null,
               likes: 1,
@@ -56,7 +56,7 @@ describe('ExplorePage', () => {
               id: 'user1',
               name: 'testName',
               username: 'testUser',
-              date: '42134214124',
+              date: 1658178000000,
               image: null,
               followed: []
             }

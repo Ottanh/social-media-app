@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { MockedProvider } from '@apollo/client/testing';
 import FollowButton, { GET_USERS_FOLLOWED } from './FollowButton';
-import userEvent from '@testing-library/user-event';
 
 describe('FollowButton', () => {
 
@@ -10,7 +9,7 @@ describe('FollowButton', () => {
     id: 'id',
     username: 'testUser',
     name: 'name',
-    date: 'date',
+    date: 1658178000000,
     description: '',
     image: 'defaultUserPic.jpg',
     likes: [],

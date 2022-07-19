@@ -12,7 +12,7 @@ describe('HomePage', () => {
         id: 'id',
         username: 'testUser',
         name: 'name',
-        date: 'date',
+        date: 1658178000000,
         description: '',
         image: 'defaultUserPic.jpg',
         likes: [],
@@ -40,7 +40,7 @@ describe('HomePage', () => {
                 name: 'Olli',
                 username: 'olli111'
               }, 
-              date: '18/6',
+              date: 1658178000000,
               content: 'Post from followed user',
               image: null,
               likes: 1,
@@ -77,7 +77,7 @@ describe('HomePage', () => {
         data: {
           createPost: {
             id: 'postId',
-            date: '132134124',
+            date: 1658178000000,
             content: 'newPost',
             image: null,
             likes: 0,

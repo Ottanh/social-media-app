@@ -11,7 +11,7 @@ describe('SearchResult', () => {
         id: 'userId',
         name: 'olli',
         username: 'olli111',
-        date: '18/6',
+        date: 1658178000000,
         description: 'moi',
         image: 'defaultUserPic.jpg',
         likes: ['111'],
@@ -26,7 +26,7 @@ describe('SearchResult', () => {
           name: 'testUser',
           username: 'testUserName'
         },
-        date: '17/6',
+        date: 1658178000000,
         content: 'test',
         likes: 6,
         replies: ['1']
@@ -38,7 +38,7 @@ describe('SearchResult', () => {
           name: 'testUser2',
           username: 'testUserName2'
         },
-        date: '17/6/2',
+        date: 1658178000000,
         content: 'test2',
         likes: 62,
         replies: ['1','2']
