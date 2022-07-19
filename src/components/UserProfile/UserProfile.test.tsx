@@ -9,7 +9,7 @@ describe('User details', () => {
         id: 'userId',
         name: 'olli',
         username: 'olli111',
-        date: '18/6',
+        date: 1658247820000,
         description: 'moi',
         image: 'defaultUserPic.jpg',
         likes: ['111'],
@@ -28,7 +28,7 @@ describe('User details', () => {
     const name = screen.getByText('olli');
     const username = screen.getByText('@olli111');
     const description = screen.getByText('moi');
-    const joinedDate = screen.getByText('Joined: 18/6');
+    const joinedDate = screen.getByText('Joined: 19/07/2022');
 
 
     expect(name).toBeInTheDocument();

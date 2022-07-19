@@ -2,7 +2,7 @@ export interface User {
   id: string;
   username: string;
   name: string;
-  date: string;
+  date: number;
   description: string;
   image: string;
   likes: string[];
@@ -16,7 +16,7 @@ export interface Post {
       name: string;
       username: string;
     };
-    date: string;
+    date: number;
     content?: string;
     image?: string;
     likes: number;

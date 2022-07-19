@@ -12,7 +12,7 @@ describe('Post', () => {
       name: 'testUser',
       username: 'testUserName'
     },
-    date: '17/6',
+    date: 1658258620000,
     content: 'test',
     likes: 6,
     replies: ['1']
@@ -28,7 +28,7 @@ describe('Post', () => {
     );
 
     const user = screen.getByText('testUser');
-    const date = screen.getByText('17/6');
+    const date = screen.getByText('19/07/2022');
     const content = screen.getByText('test');
     const replyCount = screen.getByText('1');
     const likes = screen.getByText('6');
