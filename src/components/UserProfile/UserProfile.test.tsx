@@ -9,7 +9,7 @@ describe('User details', () => {
         id: 'userId',
         name: 'olli',
         username: 'olli111',
-        date: 1658247820000,
+        date: 1658178000000,
         description: 'moi',
         image: 'defaultUserPic.jpg',
         likes: ['111'],
@@ -25,11 +25,11 @@ describe('User details', () => {
       </MockedProvider>
     );
 
+    const dateString = `Joined: ${new Date(1658178000000).toLocaleDateString()}`;
     const name = screen.getByText('olli');
     const username = screen.getByText('@olli111');
     const description = screen.getByText('moi');
-    const joinedDate = screen.getByText('Joined: 19/07/2022');
-
+    const joinedDate = screen.getByText(dateString);
 
     expect(name).toBeInTheDocument();
     expect(username).toBeInTheDocument();

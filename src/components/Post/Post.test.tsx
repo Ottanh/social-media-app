@@ -27,8 +27,9 @@ describe('Post', () => {
       </MockedProvider>
     );
 
+    const dateString = new Date(1658178000000).toLocaleDateString();
     const user = screen.getByText('testUser');
-    const date = screen.getByText('19/07/2022');
+    const date = screen.getByText(dateString);
     const content = screen.getByText('test');
     const replyCount = screen.getByText('1');
     const likes = screen.getByText('6');
