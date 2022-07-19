@@ -24,7 +24,7 @@ const PostFooter = ({ post }: Props) => {
   const { data } = useQuery(GET_USER_LIKES);
 
   useEffect(() => {
-    if(data){
+    if(data && data.me){
       setLikedPost(data.me.likes.includes(post.id));
     }
   },[data]);

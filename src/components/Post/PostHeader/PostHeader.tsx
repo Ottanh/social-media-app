@@ -18,7 +18,7 @@ const PostHeader = ({ post }: Props) => {
   return (
     <div className="PostHeader">
       <span id="postUser" onClick={onClickUser}>{post.user.name}</span> 
-      <span id="postDate">{post.date}</span>
+      <span id="postDate">{new Date(post.date).toLocaleDateString()}</span>
     </div>
   );
 };

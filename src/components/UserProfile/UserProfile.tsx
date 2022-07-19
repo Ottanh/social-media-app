@@ -119,7 +119,7 @@ const UserProfile = ({ user, id }: Props) => {
         {(loggedInUser?.id === user.id && edit === true) && 
           <button className="FollowButton" onClick={onSave}>Save</button>
         }
-        {loggedInUser?.id !== user.id && 
+        {(loggedInUser && loggedInUser.id !== user.id) && 
           <FollowButton user={user} />
         }
       </div>
@@ -147,7 +147,7 @@ const UserProfile = ({ user, id }: Props) => {
             {user.followed.length} Following
           </span>
           <span className="user-joined">
-            Joined: {user.date}
+            Joined: {new Date(user.date).toLocaleDateString()}
           </span>
         </div>
       </div>
