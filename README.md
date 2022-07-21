@@ -3,7 +3,7 @@ Twitter like social media website.
 Made for practicing technologies and skills in web development.    
 
 ## URL
-http://ec2-13-48-53-135.eu-north-1.compute.amazonaws.com/
+something.fi
 
 ## Backend
 https://github.com/Ottanh/social-media-app-backend
