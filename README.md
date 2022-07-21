@@ -3,7 +3,7 @@ Twitter like social media website.
 Made for practicing technologies and skills in web development.    
 
 ## URL
-something.fi
+http://something.fi
 
 ## Backend
 https://github.com/Ottanh/social-media-app-backend
