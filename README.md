@@ -1,6 +1,6 @@
 # Social media app
 Twitter like social media website.    
-Made for practicing technologies and skills in web development.    
+Fullstack harkkatyö.
 
 ## URL
 http://something.fi
@@ -18,8 +18,34 @@ https://github.com/Ottanh/social-media-app-backend
 `serve build`  
 
 ## Tests
-`npm test`   
+`npm test` 
 
+
+## Features / Instructions
+
+### Account creation and login
+An account is required to use the app. an Accoutn can be created by clicking 'Sign up' and the filling in the fields and clicking 'Register'. 
+If the user already has an account they can simply log in. 
+
+### Editing user profile
+Profile can be edited by going to the profile page and clicking 'Edit profile'. The image and description can be changed.
+
+### Posting
+A new post can be created by going to the home page and writing their message and/or choosing an image and clicking 'Send'.
+
+### Searching for posts/users
+Users or posts can be searched for by going to the explore page. Icons on the right side can be used to select wheter to search for posts or users (can't search for both at the same time).
+You can try searching posts with 'moi' or users with 'Olli'.
+
+### Following
+User can follow another user by going to their profile and clicking 'Follow'. 
+The followed users posts will then appear on the home page.
+
+### Liking posts
+Post can be liked by clicking the heart icon. 
+
+### Replying to a post
+By clicking on a post shows all of the replies and a new one can be created. 
 
 ## Tech stack
 <a href="https://www.typescriptlang.org/" title="Typescript"><img src="https://github.com/get-icon/geticon/raw/master/icons/typescript-icon.svg" alt="Typescript" width="21px" height="21px"></a>
