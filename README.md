@@ -24,14 +24,14 @@ https://github.com/Ottanh/social-media-app-backend
 ## Features / Instructions
 
 ### Account creation and login
-An account is required to use the app. an Accoutn can be created by clicking 'Sign up' and the filling in the fields and clicking 'Register'. 
+An account is required to use the app. An account can be created by clicking 'Sign up' and the filling in the fields and clicking 'Register'. 
 If the user already has an account they can simply log in. 
 
 ### Editing user profile
 Profile can be edited by going to the profile page and clicking 'Edit profile'. The image and description can be changed.
 
 ### Posting
-A new post can be created by going to the home page and writing their message and/or choosing an image and clicking 'Send'.
+A new post can be created by going to the home page and writing the message and/or choosing an image and clicking 'Send'.
 
 ### Searching for posts/users
 Users or posts can be searched for by going to the explore page. Icons on the right side can be used to select wheter to search for posts or users (can't search for both at the same time).
