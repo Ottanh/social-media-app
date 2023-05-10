@@ -8,18 +8,8 @@ http://something.fi
 ## Backend
 https://github.com/Ottanh/social-media-app-backend
 
-## Run locally
-`npm install`  
-`npm start`   
-
-## Production build:  
-`npm run build`  
-`npm install -g serve`
-`serve build`  
-
-## Tests
-`npm test` 
-
+## Aika kirjanpito
+[ajat.md](https://github.com/Ottanh/social-media-app/blob/master/ajat.md)
 
 ## Features / Instructions
 
@@ -45,7 +35,19 @@ The followed users posts will then appear on the home page.
 Post can be liked by clicking the heart icon. 
 
 ### Replying to a post
-By clicking on a post shows all of the replies and a new one can be created. 
+Clicking on a post shows all of the replies and a new one can be created. 
+
+## Run locally
+`npm install`  
+`npm start`   
+
+## Production build:  
+`npm run build`  
+`npm install -g serve`
+`serve build`  
+
+## Tests
+`npm test` 
 
 ## Tech stack
 <a href="https://www.typescriptlang.org/" title="Typescript"><img src="https://github.com/get-icon/geticon/raw/master/icons/typescript-icon.svg" alt="Typescript" width="21px" height="21px"></a>
