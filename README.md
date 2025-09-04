@@ -3,7 +3,7 @@ Twitter like social media website.
 Fullstack harkkatyö.
 
 ## URL
-http://something.fi USET TO WORK NOT ANYMORE ;(
+http://something.fi USED TO WORK NOT ANYMORE ;(
 
 ## Backend
 https://github.com/Ottanh/social-media-app-backend
